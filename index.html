@@ -3,2110 +3,1790 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IELTS Writing Mastery — Band 6 → 7.5+</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Sora:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<title>IELTS Writing System — Band 6 → 7.5+</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Sora:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --surface2: #1a1a26;
-    --surface3: #22223a;
-    --border: #2a2a40;
-    --text: #e8e8f0;
-    --text2: #9090b0;
-    --text3: #5a5a7a;
-    --accent: #7c6fff;
-    --accent2: #4cc9f0;
-    --accent3: #06d6a0;
-    --warn: #ff6b6b;
-    --gold: #ffd166;
-    --radius: 12px;
-    --radius-sm: 8px;
-  }
+:root {
+  --bg: #0c0c10;
+  --s1: #13131c;
+  --s2: #1a1a26;
+  --s3: #22223a;
+  --b: #2a2a3e;
+  --t1: #e6e6f0;
+  --t2: #8888aa;
+  --t3: #4a4a6a;
+  --ac: #7c6fff;
+  --bl: #4cc9f0;
+  --gr: #06d6a0;
+  --rd: #ff6b6b;
+  --gd: #ffd166;
+  --r: 10px;
+  --rs: 7px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--s3);border-radius:2px}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* LAYOUT */
+.shell{display:flex;min-height:100vh}
 
-  body {
-    font-family: 'Sora', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* SIDEBAR */
+.sb{
+  width:240px;flex-shrink:0;background:var(--s1);
+  border-right:1px solid var(--b);
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;bottom:0;z-index:100;
+}
+.sb-logo{padding:22px 18px 18px;border-bottom:1px solid var(--b)}
+.sb-logo-main{font-family:'Playfair Display',serif;font-size:18px;line-height:1.2}
+.sb-logo-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-top:4px}
 
-  /* ── LAYOUT ── */
-  .app { display: flex; min-height: 100vh; }
+.nav{flex:1;padding:12px 0;overflow-y:auto}
+.nav-sect{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);padding:14px 18px 5px}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 18px;cursor:pointer;
+  font-size:13px;color:var(--t2);
+  border-left:2px solid transparent;
+  transition:all .15s;
+}
+.nav-item:hover{background:var(--s2);color:var(--t1)}
+.nav-item.on{background:var(--s2);border-left-color:var(--ac);color:var(--t1)}
+.nav-ic{width:18px;text-align:center;font-size:15px}
+.nav-chip{
+  margin-left:auto;font-family:'DM Mono',monospace;
+  font-size:9px;padding:2px 6px;border-radius:8px;
+  background:var(--ac);color:#fff;
+}
 
-  /* ── SIDEBAR ── */
-  .sidebar {
-    width: 260px;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    padding: 24px 0;
-    position: fixed;
-    top: 0; left: 0; bottom: 0;
-    z-index: 100;
-    transition: transform 0.3s;
-  }
+/* STREAK WIDGET */
+.streak-box{
+  margin:14px;background:var(--s2);
+  border:1px solid var(--b);border-radius:var(--r);
+  padding:14px;
+}
+.streak-row{display:flex;align-items:center;justify-content:space-between}
+.streak-n{font-family:'Playfair Display',serif;font-size:28px;color:var(--gd);line-height:1}
+.streak-lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--t2);margin-top:2px}
+.streak-dots{display:flex;gap:3px;margin-top:10px}
+.sd{
+  flex:1;height:20px;border-radius:3px;
+  background:var(--s3);display:flex;align-items:center;
+  justify-content:center;font-family:'DM Mono',monospace;
+  font-size:9px;color:var(--t3);transition:background .3s;
+}
+.sd.hit{background:var(--gd);color:#000}
+.sd.now{background:var(--ac);color:#fff}
+.freeze-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.freeze-lbl{font-size:10px;color:var(--t2)}
+.freeze-uses{font-family:'DM Mono',monospace;font-size:10px;color:var(--bl)}
+.btn-freeze{
+  background:none;border:1px solid var(--b);color:var(--t2);
+  padding:3px 8px;border-radius:4px;font-size:10px;cursor:pointer;
+  transition:all .15s;font-family:'DM Mono',monospace;
+}
+.btn-freeze:hover{border-color:var(--bl);color:var(--bl)}
+.btn-freeze:disabled{opacity:.3;cursor:not-allowed}
 
-  .logo {
-    padding: 0 20px 24px;
-    border-bottom: 1px solid var(--border);
-  }
-  .logo-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--text);
-    line-height: 1.2;
-  }
-  .logo-sub {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 4px;
-  }
+/* MAIN */
+.main{margin-left:240px;flex:1;min-height:100vh;display:flex;flex-direction:column}
+.topbar{
+  height:54px;background:var(--s1);border-bottom:1px solid var(--b);
+  display:flex;align-items:center;padding:0 28px;gap:14px;
+  position:sticky;top:0;z-index:50;
+}
+.topbar-title{font-family:'DM Mono',monospace;font-size:12px;color:var(--t2)}
+.topbar-title b{color:var(--t1);font-weight:600}
+.target-pill{
+  margin-left:auto;background:var(--s2);border:1px solid var(--b);
+  border-radius:20px;padding:4px 12px;
+  font-family:'DM Mono',monospace;font-size:10px;color:var(--ac);
+}
 
-  .nav { flex: 1; padding: 16px 0; overflow-y: auto; }
+.content{padding:28px;flex:1}
+.page{display:none}.page.on{display:block}
 
-  .nav-section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text3);
-    padding: 12px 20px 6px;
-  }
+/* ── TYPOGRAPHY HELPERS ── */
+.pg-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:6px}
+.pg-sub{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:24px}
+.sect-label{
+  font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--t3);margin-bottom:10px;
+}
 
-  .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all 0.15s;
-    border-left: 2px solid transparent;
-    font-size: 13px;
-    color: var(--text2);
-  }
-  .nav-item:hover { background: var(--surface2); color: var(--text); }
-  .nav-item.active { 
-    background: var(--surface2); 
-    border-left-color: var(--accent); 
-    color: var(--text);
-  }
-  .nav-icon { font-size: 16px; width: 20px; text-align: center; }
-  .nav-badge {
-    margin-left: auto;
-    background: var(--accent);
-    color: white;
-    font-size: 9px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    font-family: 'DM Mono', monospace;
-  }
+/* CARDS */
+.card{background:var(--s1);border:1px solid var(--b);border-radius:var(--r);padding:20px;margin-bottom:14px}
+.card.ac-top{border-top:2px solid var(--ac)}
+.card.gr-top{border-top:2px solid var(--gr)}
+.card.gd-top{border-top:2px solid var(--gd)}
+.card.bl-top{border-top:2px solid var(--bl)}
 
-  /* Streak widget */
-  .streak-widget {
-    margin: 16px;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px;
-  }
-  .streak-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .streak-fire { font-size: 22px; }
-  .streak-count {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    color: var(--gold);
-    line-height: 1;
-  }
-  .streak-label {
-    font-size: 10px;
-    color: var(--text2);
-    margin-top: 2px;
-    font-family: 'DM Mono', monospace;
-  }
-  .streak-dots {
-    display: flex;
-    gap: 4px;
-    margin-top: 10px;
-  }
-  .streak-dot {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    background: var(--surface3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-family: 'DM Mono', monospace;
-    color: var(--text3);
-  }
-  .streak-dot.done { background: var(--gold); color: #000; }
-  .streak-dot.today { background: var(--accent); color: #fff; }
+/* GRID HELPERS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 
-  /* ── MAIN ── */
-  .main {
-    margin-left: 260px;
-    flex: 1;
-    min-height: 100vh;
-  }
+/* STAT CARD */
+.stat-val{font-family:'Playfair Display',serif;font-size:34px;color:var(--t1);line-height:1;margin:8px 0 4px}
+.stat-sub{font-size:11px;color:var(--t3)}
 
-  .topbar {
-    height: 60px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    padding: 0 32px;
-    gap: 16px;
-    background: var(--surface);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  .topbar-title {
-    font-size: 14px;
-    color: var(--text2);
-    font-family: 'DM Mono', monospace;
-  }
-  .topbar-title span { color: var(--text); font-weight: 500; }
+/* SKILL ITEMS */
+.skill-row{
+  display:flex;align-items:center;gap:12px;
+  padding:12px;background:var(--s2);border:1px solid var(--b);
+  border-radius:var(--rs);margin-bottom:8px;cursor:pointer;
+  transition:border-color .15s;
+}
+.skill-row:hover{border-color:var(--ac)}
+.skill-row.done{border-color:var(--gr)}
+.skill-ic{font-size:20px;width:28px;text-align:center;flex-shrink:0}
+.skill-info{flex:1;min-width:0}
+.skill-name{font-size:13px;font-weight:600}
+.skill-desc{font-size:11px;color:var(--t2);margin-top:2px}
+.prog-bar{width:100%;height:3px;background:var(--s3);border-radius:2px;margin-top:7px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;background:var(--ac);transition:width .5s}
+.skill-row.done .prog-fill{background:var(--gr)}
 
-  .band-badge {
-    margin-left: auto;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-  }
+/* TABS */
+.tabs{display:flex;gap:3px;background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:3px;margin-bottom:18px}
+.tab{
+  flex:1;padding:7px 10px;text-align:center;font-size:11px;
+  cursor:pointer;border-radius:calc(var(--r) - 3px);
+  transition:all .15s;color:var(--t2);font-family:'DM Mono',monospace;
+  letter-spacing:.5px;
+}
+.tab.on{background:var(--ac);color:#fff}
+.tc{display:none}.tc.on{display:block}
 
-  .content { padding: 32px; }
+/* TEMPLATE BOX */
+.tpl{
+  background:var(--s2);border:1px solid var(--b);
+  border-left:3px solid var(--ac);border-radius:var(--rs);
+  padding:12px 14px;margin-bottom:8px;font-family:'DM Mono',monospace;
+  font-size:12px;line-height:1.6;cursor:pointer;transition:background .15s;
+}
+.tpl:hover{background:var(--s3)}
+.tpl .slot{color:var(--ac);font-style:italic}
+.tpl-hint{font-size:10px;color:var(--t3);margin-top:4px;font-family:'Sora',sans-serif}
 
-  /* ── PAGES ── */
-  .page { display: none; }
-  .page.active { display: block; }
+/* COMPARE */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.cmp-col{border-radius:var(--rs);padding:14px}
+.cmp-bad{background:rgba(255,107,107,.05);border:1px solid rgba(255,107,107,.25)}
+.cmp-good{background:rgba(6,214,160,.05);border:1px solid rgba(6,214,160,.25)}
+.cmp-hd{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid}
+.cmp-bad .cmp-hd{color:var(--rd);border-color:rgba(255,107,107,.2)}
+.cmp-good .cmp-hd{color:var(--gr);border-color:rgba(6,214,160,.2)}
+.cmp-txt{font-size:13px;line-height:1.6}
+.cmp-note{font-size:11px;color:var(--t3);margin-top:7px;font-style:italic}
 
-  /* ── DASHBOARD ── */
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 32px;
-  }
+/* SELF-CHECK PANEL */
+.check-section{margin-bottom:18px}
+.check-title{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.check-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:8px 10px;border-radius:var(--rs);
+  background:var(--s2);border:1px solid var(--b);
+  margin-bottom:5px;cursor:pointer;transition:all .15s;
+  font-size:13px;color:var(--t2);
+  user-select:none;
+}
+.check-item:hover{border-color:var(--ac)}
+.check-item.checked{background:rgba(6,214,160,.06);border-color:rgba(6,214,160,.3);color:var(--t1)}
+.check-box{
+  width:16px;height:16px;border-radius:3px;border:1px solid var(--b);
+  flex-shrink:0;margin-top:1px;display:flex;align-items:center;
+  justify-content:center;font-size:10px;transition:all .15s;
+}
+.check-item.checked .check-box{background:var(--gr);border-color:var(--gr);color:#000}
+.check-score{
+  text-align:center;padding:20px;background:var(--s2);
+  border:1px solid var(--b);border-radius:var(--r);margin-top:16px;
+}
+.score-num{font-family:'Playfair Display',serif;font-size:42px;line-height:1}
+.score-lbl{font-size:12px;color:var(--t2);margin-top:4px}
+.score-msg{font-size:13px;color:var(--t2);margin-top:10px;line-height:1.6}
 
-  .stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-  }
-  .stat-card.green::before { background: var(--accent3); }
-  .stat-card.blue::before { background: var(--accent2); }
-  .stat-card.gold::before { background: var(--gold); }
-  .stat-label { font-size: 11px; color: var(--text2); font-family: 'DM Mono', monospace; letter-spacing: 1px; text-transform: uppercase; }
-  .stat-value { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--text); margin-top: 8px; line-height: 1; }
-  .stat-sub { font-size: 11px; color: var(--text3); margin-top: 6px; }
+/* BUTTONS */
+.btn{
+  padding:9px 18px;border-radius:var(--rs);
+  font-family:'Sora',sans-serif;font-size:13px;font-weight:500;
+  cursor:pointer;border:none;transition:all .2s;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.btn-p{background:var(--ac);color:#fff}
+.btn-p:hover{background:#9580ff;transform:translateY(-1px)}
+.btn-s{background:var(--s2);color:var(--t1);border:1px solid var(--b)}
+.btn-s:hover{border-color:var(--ac)}
+.btn-gr{background:var(--gr);color:#000;font-weight:600}
+.btn-gr:hover{transform:translateY(-1px)}
+.btn-sm{padding:6px 13px;font-size:12px}
+.btn-full{width:100%;justify-content:center}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important}
 
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-  .section-sub {
-    font-size: 13px;
-    color: var(--text2);
-    margin-bottom: 24px;
-    line-height: 1.6;
-  }
+/* TEXTAREA / INPUT */
+.txt{
+  width:100%;background:var(--s2);border:1px solid var(--b);
+  border-radius:var(--rs);padding:11px 13px;
+  font-family:'Sora',sans-serif;font-size:13px;color:var(--t1);
+  resize:vertical;outline:none;transition:border-color .15s;line-height:1.7;
+}
+.txt:focus{border-color:var(--ac)}
+.txt::placeholder{color:var(--t3)}
+.inp{
+  background:var(--s2);border:1px solid var(--b);
+  border-radius:var(--rs);padding:9px 12px;
+  font-family:'Sora',sans-serif;font-size:13px;color:var(--t1);
+  outline:none;transition:border-color .15s;width:100%;
+}
+.inp:focus{border-color:var(--ac)}
 
-  /* Skill tree */
-  .skill-tree { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .skill-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .skill-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .skill-card.locked { opacity: 0.4; cursor: not-allowed; }
-  .skill-card.mastered { border-color: var(--accent3); }
-  .skill-icon { font-size: 24px; flex-shrink: 0; }
-  .skill-info { flex: 1; min-width: 0; }
-  .skill-name { font-size: 13px; font-weight: 600; color: var(--text); }
-  .skill-desc { font-size: 11px; color: var(--text2); margin-top: 3px; }
-  .skill-progress {
-    width: 100%; height: 3px;
-    background: var(--surface3);
-    border-radius: 2px;
-    margin-top: 8px;
-    overflow: hidden;
-  }
-  .skill-progress-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-    transition: width 0.5s;
-  }
-  .skill-card.mastered .skill-progress-fill { background: var(--accent3); }
+/* IDEA LAB */
+.angle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.angle-card{
+  background:var(--s2);border:1px solid var(--b);border-radius:var(--rs);
+  padding:12px;cursor:pointer;transition:all .15s;
+}
+.angle-card:hover,.angle-card.sel{border-color:var(--ac);background:rgba(124,111,255,.07)}
+.angle-card.sel{border-left:3px solid var(--ac)}
+.angle-ic{font-size:18px;margin-bottom:6px}
+.angle-name{font-size:12px;font-weight:600}
+.angle-ex{font-size:11px;color:var(--t2);margin-top:3px}
 
-  /* ── LESSON PAGE ── */
-  .lesson-header {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    margin-bottom: 24px;
-  }
-  .lesson-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-  .lesson-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    line-height: 1.2;
-  }
-  .lesson-meta {
-    display: flex;
-    gap: 16px;
-    margin-top: 12px;
-    font-size: 12px;
-    color: var(--text2);
-    font-family: 'DM Mono', monospace;
-  }
-  .lesson-meta span { display: flex; align-items: center; gap: 5px; }
+.idea-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--s2);border:1px solid var(--b);
+  border-radius:20px;padding:5px 12px;
+  font-size:12px;cursor:pointer;margin:3px;transition:all .15s;
+}
+.idea-pill:hover{border-color:var(--ac)}
+.idea-pill .rm{color:var(--t3);font-size:10px}
 
-  .lesson-tabs {
-    display: flex;
-    gap: 4px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 4px;
-    margin-bottom: 20px;
-  }
-  .lesson-tab {
-    flex: 1;
-    padding: 8px 12px;
-    text-align: center;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: calc(var(--radius) - 4px);
-    transition: all 0.15s;
-    color: var(--text2);
-    font-family: 'DM Mono', monospace;
-  }
-  .lesson-tab.active {
-    background: var(--accent);
-    color: white;
-  }
+.expand-box{
+  background:rgba(124,111,255,.06);border:1px solid rgba(124,111,255,.2);
+  border-radius:var(--rs);padding:14px;margin-top:12px;
+}
+.expand-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
 
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
+/* WHY/HOW DRILLS */
+.drill-prompt{
+  background:var(--s2);border:1px solid var(--b);border-radius:var(--rs);
+  padding:14px;margin-bottom:12px;font-size:13px;line-height:1.6;
+}
+.drill-step{
+  display:flex;align-items:flex-start;gap:10px;
+  margin-bottom:10px;
+}
+.drill-num{
+  width:22px;height:22px;border-radius:50%;background:var(--ac);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-family:'DM Mono',monospace;flex-shrink:0;margin-top:2px;
+}
+.drill-num.why{background:var(--bl)}
+.drill-num.how{background:var(--gr);color:#000}
 
-  /* Concept card */
-  .concept-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    margin-bottom: 16px;
-  }
-  .concept-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-  .concept-text { font-size: 14px; line-height: 1.7; color: var(--text); }
-  .concept-text strong { color: var(--accent2); }
+/* IDEA BANK */
+.bank-topic-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.topic-btn{
+  padding:5px 13px;border-radius:20px;font-size:11px;
+  cursor:pointer;border:1px solid var(--b);color:var(--t2);
+  transition:all .15s;font-family:'DM Mono',monospace;background:none;
+}
+.topic-btn:hover,.topic-btn.on{border-color:var(--ac);color:var(--ac);background:rgba(124,111,255,.08)}
 
-  /* Template box */
-  .template-box {
-    background: var(--surface2);
-    border: 1px solid var(--accent);
-    border-left: 3px solid var(--accent);
-    border-radius: var(--radius-sm);
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.5;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  .template-box:hover { background: var(--surface3); }
-  .template-box .blank { color: var(--accent); font-style: italic; }
-  .template-hint { font-size: 10px; color: var(--text3); margin-top: 4px; font-family: 'Sora', sans-serif; }
+.idea-entry{
+  background:var(--s2);border:1px solid var(--b);border-radius:var(--rs);
+  padding:14px;margin-bottom:8px;
+}
+.idea-entry-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
+.idea-main{font-size:13px;line-height:1.5;flex:1}
+.idea-tag{
+  font-family:'DM Mono',monospace;font-size:9px;padding:3px 7px;
+  border-radius:4px;flex-shrink:0;
+}
+.tag-ec{background:rgba(255,209,102,.12);color:var(--gd)}
+.tag-sc{background:rgba(76,201,240,.12);color:var(--bl)}
+.tag-ps{background:rgba(124,111,255,.15);color:var(--ac)}
+.tag-en{background:rgba(6,214,160,.12);color:var(--gr)}
+.tag-pr{background:rgba(255,107,107,.12);color:var(--rd)}
+.idea-expand{font-size:12px;color:var(--t3);line-height:1.6;border-top:1px solid var(--b);padding-top:8px;margin-top:0;display:none}
+.idea-entry.open .idea-expand{display:block}
+.idea-expand-btn{
+  font-size:10px;color:var(--t3);cursor:pointer;
+  font-family:'DM Mono',monospace;letter-spacing:.5px;
+  background:none;border:none;padding:0;transition:color .15s;
+}
+.idea-expand-btn:hover{color:var(--ac)}
 
-  /* Comparison table */
-  .comparison {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .comp-col { border-radius: var(--radius); padding: 16px; }
-  .comp-col.bad {
-    background: rgba(255,107,107,0.06);
-    border: 1px solid rgba(255,107,107,0.3);
-  }
-  .comp-col.good {
-    background: rgba(6,214,160,0.06);
-    border: 1px solid rgba(6,214,160,0.3);
-  }
-  .comp-header {
-    font-size: 10px;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid;
-  }
-  .comp-col.bad .comp-header { color: var(--warn); border-color: rgba(255,107,107,0.3); }
-  .comp-col.good .comp-header { color: var(--accent3); border-color: rgba(6,214,160,0.3); }
-  .comp-text { font-size: 13px; line-height: 1.6; }
-  .comp-note { font-size: 11px; color: var(--text3); margin-top: 8px; font-style: italic; }
+/* WRITING WORKSPACE */
+.ws{display:grid;grid-template-columns:260px 1fr 300px;height:calc(100vh - 54px);overflow:hidden}
+.ws-pane{overflow-y:auto;padding:18px;border-right:1px solid var(--b)}
+.ws-pane:last-child{border-right:none}
+.ws-left{background:var(--s1)}
+.ws-mid{background:var(--bg);display:flex;flex-direction:column;padding:0}
+.ws-right{background:var(--s1)}
 
-  /* ── PRACTICE / WRITING WORKSPACE ── */
-  .workspace {
-    display: grid;
-    grid-template-columns: 280px 1fr 320px;
-    gap: 0;
-    height: calc(100vh - 60px);
-    overflow: hidden;
-    margin: -32px;
-  }
+.ws-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.prompt-block{background:var(--s2);border:1px solid var(--b);border-radius:var(--rs);padding:14px;font-size:13px;line-height:1.7;margin-bottom:14px}
+.ptype{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--ac);color:#fff;margin-bottom:8px}
 
-  .ws-panel {
-    border-right: 1px solid var(--border);
-    overflow-y: auto;
-    padding: 20px;
-  }
-  .ws-panel:last-child { border-right: none; }
+.tip-row{background:rgba(124,111,255,.07);border:1px solid rgba(124,111,255,.18);border-radius:var(--rs);padding:10px 12px;font-size:12px;line-height:1.6;color:var(--t2);margin-bottom:8px}
+.tip-row b{color:var(--ac)}
 
-  .ws-prompt {
-    background: var(--surface);
-  }
-  .ws-editor-wrap {
-    display: flex;
-    flex-direction: column;
-    background: var(--bg);
-  }
-  .ws-feedback {
-    background: var(--surface);
-  }
+.wc-bar{display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--b);background:var(--s1);font-family:'DM Mono',monospace;font-size:11px;color:var(--t2);flex-shrink:0}
+.wc-n{color:var(--gr)}
 
-  .ws-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 12px;
-  }
+.editor{
+  flex:1;width:100%;background:transparent;border:none;outline:none;
+  resize:none;padding:22px;font-family:'Sora',sans-serif;
+  font-size:14px;line-height:1.9;color:var(--t1);caret-color:var(--ac);
+}
+.editor::placeholder{color:var(--t3)}
 
-  .prompt-box {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px;
-    font-size: 13px;
-    line-height: 1.7;
-    margin-bottom: 16px;
-  }
+.ws-actions{padding:10px 14px;border-top:1px solid var(--b);background:var(--s1);display:flex;gap:7px;flex-shrink:0}
 
-  .prompt-type-badge {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 4px;
-    background: var(--accent);
-    color: white;
-    margin-bottom: 10px;
-  }
+/* checklist sidebar in workspace */
+.cl-item{
+  display:flex;align-items:center;gap:8px;padding:7px 9px;
+  border-radius:var(--rs);font-size:12px;color:var(--t2);
+  background:var(--s2);border:1px solid var(--b);margin-bottom:5px;
+  transition:all .2s;
+}
+.cl-item.ok{background:rgba(6,214,160,.06);border-color:rgba(6,214,160,.25);color:var(--t1)}
+.cl-dot{width:8px;height:8px;border-radius:50%;background:var(--s3);flex-shrink:0;transition:background .2s}
+.cl-item.ok .cl-dot{background:var(--gr)}
 
-  .tip-box {
-    background: rgba(124,111,255,0.08);
-    border: 1px solid rgba(124,111,255,0.2);
-    border-radius: var(--radius-sm);
-    padding: 12px;
-    font-size: 12px;
-    line-height: 1.6;
-    color: var(--text2);
-    margin-bottom: 12px;
-  }
-  .tip-box strong { color: var(--accent); }
+/* DAY GRID */
+.day-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-bottom:14px}
+.dc{
+  aspect-ratio:1;border-radius:4px;background:var(--s2);border:1px solid var(--b);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:10px;color:var(--t3);
+  cursor:pointer;transition:all .15s;
+}
+.dc:hover{border-color:var(--ac);color:var(--ac)}
+.dc.done{background:var(--gr);color:#000;border-color:transparent}
+.dc.now{background:var(--ac);color:#fff;border-color:transparent}
+.dc.lock{opacity:.28;cursor:not-allowed}
 
-  .timer-display {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-  .timer-label { font-size: 11px; color: var(--text2); font-family: 'DM Mono', monospace; }
-  .timer-value {
-    font-family: 'DM Mono', monospace;
-    font-size: 20px;
-    color: var(--gold);
-    font-weight: 500;
-  }
-  .timer-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--text2);
-    padding: 3px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 11px;
-    transition: all 0.15s;
-  }
-  .timer-btn:hover { border-color: var(--accent); color: var(--accent); }
+.phase-hd{
+  display:flex;align-items:center;gap:12px;padding:14px 16px;
+  background:var(--s2);border:1px solid var(--b);border-radius:var(--r);
+  margin-bottom:12px;margin-top:20px;
+}
+.phase-n{
+  width:32px;height:32px;border-radius:50%;background:var(--ac);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.phase-nm{font-size:13px;font-weight:600}
+.phase-ds{font-size:11px;color:var(--t2);margin-top:2px}
 
-  .word-count-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 16px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--text2);
-  }
-  .wc-num { color: var(--accent3); }
+/* PROMPT SELECTOR */
+.p-sel{
+  width:100%;background:var(--s2);border:1px solid var(--b);
+  color:var(--t1);border-radius:var(--rs);padding:8px 10px;
+  font-size:12px;font-family:'Sora',sans-serif;outline:none;
+  margin-bottom:12px;transition:border-color .15s;
+}
+.p-sel:focus{border-color:var(--ac)}
 
-  .editor-area {
-    flex: 1;
-    width: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    resize: none;
-    padding: 24px;
-    font-family: 'Sora', sans-serif;
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--text);
-    caret-color: var(--accent);
-  }
-  .editor-area::placeholder { color: var(--text3); }
+/* TIMER */
+.timer-row{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--s2);border-radius:var(--rs);margin-bottom:10px;border:1px solid var(--b)}
+.timer-val{font-family:'DM Mono',monospace;font-size:18px;color:var(--gd);font-weight:500}
+.timer-btns{display:flex;gap:5px}
+.t-btn{background:none;border:1px solid var(--b);color:var(--t2);padding:3px 9px;border-radius:4px;cursor:pointer;font-size:11px;transition:all .15s;font-family:'DM Mono',monospace}
+.t-btn:hover{border-color:var(--ac);color:var(--ac)}
 
-  .ws-actions {
-    padding: 12px 16px;
-    border-top: 1px solid var(--border);
-    background: var(--surface);
-    display: flex;
-    gap: 8px;
-  }
+/* TOAST */
+.toast{
+  position:fixed;bottom:22px;right:22px;
+  background:var(--s1);border:1px solid var(--b);border-radius:var(--r);
+  padding:12px 16px;font-size:13px;z-index:999;
+  transform:translateY(60px);opacity:0;transition:all .25s;max-width:300px;
+  pointer-events:none;
+}
+.toast.on{transform:translateY(0);opacity:1}
+.toast.ok{border-color:var(--gr)}
+.toast.err{border-color:var(--rd)}
 
-  /* Feedback panel */
-  .feedback-waiting {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text3);
-  }
-  .feedback-waiting .icon { font-size: 40px; margin-bottom: 12px; }
-  .feedback-waiting p { font-size: 12px; line-height: 1.6; }
+/* MODAL */
+.mo-bg{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.mo-bg.on{display:flex}
+.mo{background:var(--s1);border:1px solid var(--b);border-radius:var(--r);padding:26px;max-width:480px;width:90%;max-height:85vh;overflow-y:auto}
+.mo-title{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px}
 
-  .feedback-block {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 14px;
-    margin-bottom: 12px;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-  .feedback-block .fb-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .fb-structure { border-left: 2px solid var(--accent2); }
-  .fb-structure .fb-label { color: var(--accent2); }
-  .fb-vocab { border-left: 2px solid var(--accent); }
-  .fb-vocab .fb-label { color: var(--accent); }
-  .fb-logic { border-left: 2px solid var(--accent3); }
-  .fb-logic .fb-label { color: var(--accent3); }
-  .fb-overall { border-left: 2px solid var(--gold); }
-  .fb-overall .fb-label { color: var(--gold); }
-  .fb-band {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    text-align: center;
-    color: var(--gold);
-    margin: 10px 0;
-  }
-
-  .loading-feedback {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .skeleton {
-    background: var(--surface3);
-    border-radius: 4px;
-    height: 14px;
-    animation: pulse 1.5s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.8} }
-
-  /* ── BUTTONS ── */
-  .btn {
-    padding: 10px 20px;
-    border-radius: var(--radius-sm);
-    font-family: 'Sora', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .btn-primary { background: var(--accent); color: white; }
-  .btn-primary:hover { background: #9580ff; transform: translateY(-1px); }
-  .btn-secondary {
-    background: var(--surface2);
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-  .btn-secondary:hover { border-color: var(--accent); }
-  .btn-accent3 { background: var(--accent3); color: #000; font-weight: 600; }
-  .btn-sm { padding: 6px 14px; font-size: 12px; }
-  .btn-full { width: 100%; justify-content: center; }
-  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
-
-  /* ── PROGRESS / REVIEW ── */
-  .review-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-    margin-bottom: 16px;
-  }
-  .review-prompt {
-    font-size: 13px;
-    color: var(--text2);
-    margin-bottom: 16px;
-    line-height: 1.6;
-  }
-  .review-input {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 12px;
-    font-family: 'Sora', sans-serif;
-    font-size: 13px;
-    color: var(--text);
-    resize: vertical;
-    min-height: 80px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .review-input:focus { border-color: var(--accent); }
-
-  /* Analytics */
-  .analytics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  .analytics-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-  }
-  .bar-chart { margin-top: 12px; }
-  .bar-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-  .bar-name { font-size: 11px; color: var(--text2); width: 80px; flex-shrink: 0; font-family: 'DM Mono', monospace; }
-  .bar-track { flex: 1; height: 8px; background: var(--surface3); border-radius: 4px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 4px; transition: width 1s; }
-  .bar-pct { font-size: 11px; color: var(--text2); width: 30px; text-align: right; font-family: 'DM Mono', monospace; }
-
-  /* Notifications */
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px 18px;
-    font-size: 13px;
-    z-index: 999;
-    transform: translateY(80px);
-    opacity: 0;
-    transition: all 0.3s;
-    max-width: 320px;
-  }
-  .toast.show { transform: translateY(0); opacity: 1; }
-  .toast.success { border-color: var(--accent3); }
-  .toast.error { border-color: var(--warn); }
-
-  /* Modal */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 200;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px;
-    max-width: 520px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  .modal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 16px;
-  }
-
-  /* API Key input */
-  .api-input-wrap {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
-  .api-input {
-    flex: 1;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 10px 14px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .api-input:focus { border-color: var(--accent); }
-
-  /* Day selector */
-  .day-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; margin-bottom: 16px; }
-  .day-cell {
-    aspect-ratio: 1;
-    border-radius: 4px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text3);
-    transition: all 0.15s;
-  }
-  .day-cell:hover { border-color: var(--accent); color: var(--accent); }
-  .day-cell.done { background: var(--accent3); color: #000; border-color: transparent; }
-  .day-cell.active { background: var(--accent); color: white; border-color: transparent; }
-  .day-cell.locked { opacity: 0.3; cursor: not-allowed; }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 2px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
-
-  /* Phase header */
-  .phase-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 20px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 16px;
-  }
-  .phase-num {
-    width: 36px;
-    height: 36px;
-    background: var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    color: white;
-    flex-shrink: 0;
-  }
-  .phase-name { font-weight: 600; font-size: 14px; }
-  .phase-desc { font-size: 11px; color: var(--text2); margin-top: 2px; }
-
-  /* Mini tab inside lesson tabs */
-  .sub-nav {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-  .sub-nav-item {
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    color: var(--text2);
-    transition: all 0.15s;
-    font-family: 'DM Mono', monospace;
-  }
-  .sub-nav-item.active, .sub-nav-item:hover { 
-    border-color: var(--accent); 
-    color: var(--accent);
-    background: rgba(124,111,255,0.08);
-  }
-
-  @media (max-width: 900px) {
-    .sidebar { transform: translateX(-100%); }
-    .main { margin-left: 0; }
-    .workspace { grid-template-columns: 1fr; }
-    .dashboard-grid { grid-template-columns: 1fr; }
-    .comparison { grid-template-columns: 1fr; }
-  }
+/* Done button row */
+.done-row{margin-top:16px;padding-top:16px;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.done-note{font-size:11px;color:var(--t3)}
 </style>
 </head>
 <body>
+<div class="shell">
 
-<div class="app">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="logo">
-      <div class="logo-title">IELTS<br>Mastery</div>
-      <div class="logo-sub">Band 6 → 7.5+ System</div>
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sb">
+  <div class="sb-logo">
+    <div class="sb-logo-main">IELTS<br>Writing System</div>
+    <div class="sb-logo-sub">Band 6 → 7.5+</div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-sect">Overview</div>
+    <div class="nav-item on" onclick="go('dashboard')"><span class="nav-ic">⬡</span>Dashboard</div>
+    <div class="nav-item" onclick="go('path')"><span class="nav-ic">◈</span>30-Day Path</div>
+
+    <div class="nav-sect">Skills</div>
+    <div class="nav-item" onclick="go('lessons')"><span class="nav-ic">◉</span>Sentence Skills<span class="nav-chip">6</span></div>
+    <div class="nav-item" onclick="go('idea-lab')"><span class="nav-ic">⚗</span>Idea Lab</div>
+    <div class="nav-item" onclick="go('drills')"><span class="nav-ic">⚡</span>WHY/HOW Drills</div>
+    <div class="nav-item" onclick="go('idea-bank')"><span class="nav-ic">◆</span>Idea Bank</div>
+
+    <div class="nav-sect">Practice</div>
+    <div class="nav-item" onclick="go('workspace')"><span class="nav-ic">✎</span>Writing Lab</div>
+    <div class="nav-item" onclick="go('review')"><span class="nav-ic">↺</span>Review Queue<span class="nav-chip" id="rv-badge">3</span></div>
+  </nav>
+
+  <div class="streak-box">
+    <div class="streak-row">
+      <div>
+        <div class="streak-lbl">Day Streak</div>
+        <div class="streak-n" id="s-num">0</div>
+      </div>
+      <div style="font-size:24px">🔥</div>
+    </div>
+    <div class="streak-dots" id="s-dots"></div>
+    <div class="freeze-row">
+      <div>
+        <div class="freeze-lbl">Streak freezes</div>
+        <div class="freeze-uses" id="freeze-count">— / 2 used</div>
+      </div>
+      <button class="btn-freeze" id="freeze-btn" onclick="useFreeze()">Use freeze</button>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">/ <b id="pg-title">Dashboard</b></div>
+    <div class="target-pill" id="target-pill">🎯 Target: Band 7.5</div>
+  </div>
+
+  <div class="content" id="content-wrap">
+
+  <!-- ══ DASHBOARD ══ -->
+  <div class="page on" id="pg-dashboard">
+    <div class="pg-title">Dashboard</div>
+    <div class="pg-sub">Your progress at a glance. Everything resets unless you put in the work.</div>
+
+    <div class="g3" style="margin-bottom:22px">
+      <div class="card ac-top">
+        <div class="sect-label">Days active</div>
+        <div class="stat-val" id="d-days">0</div>
+        <div class="stat-sub">of 30-day plan</div>
+      </div>
+      <div class="card gr-top">
+        <div class="sect-label">Sessions done</div>
+        <div class="stat-val" id="d-sessions">0</div>
+        <div class="stat-sub">lessons + writings</div>
+      </div>
+      <div class="card gd-top">
+        <div class="sect-label">Skills trained</div>
+        <div class="stat-val" id="d-skills">0<span style="font-size:16px;color:var(--t2)">/6</span></div>
+        <div class="stat-sub">sentence types</div>
+      </div>
     </div>
 
-    <nav class="nav">
-      <div class="nav-section-label">Overview</div>
-      <div class="nav-item active" onclick="showPage('dashboard')">
-        <span class="nav-icon">⬡</span> Dashboard
-      </div>
-      <div class="nav-item" onclick="showPage('path')">
-        <span class="nav-icon">◈</span> Learning Path
-      </div>
-
-      <div class="nav-section-label">Train</div>
-      <div class="nav-item" onclick="showPage('lessons')">
-        <span class="nav-icon">◉</span> Lessons
-        <span class="nav-badge">6</span>
-      </div>
-      <div class="nav-item" onclick="showPage('workspace')">
-        <span class="nav-icon">✎</span> Writing Lab
-      </div>
-      <div class="nav-item" onclick="showPage('review')">
-        <span class="nav-icon">↺</span> Review Queue
-        <span class="nav-badge" id="review-badge">3</span>
-      </div>
-
-      <div class="nav-section-label">Insights</div>
-      <div class="nav-item" onclick="showPage('analytics')">
-        <span class="nav-icon">◆</span> Analytics
-      </div>
-      <div class="nav-item" onclick="openSettings()">
-        <span class="nav-icon">⚙</span> Settings
-      </div>
-    </nav>
-
-    <div class="streak-widget">
-      <div class="streak-top">
+    <div class="sect-label">Today — pick something and do it</div>
+    <div class="card" style="cursor:pointer;border-color:var(--ac)" onclick="go('lessons')">
+      <div style="display:flex;align-items:center;justify-content:space-between">
         <div>
-          <div class="streak-label">Current Streak</div>
-          <div class="streak-count" id="streak-num">5</div>
+          <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--ac);margin-bottom:6px">CONTINUE LESSON</div>
+          <div style="font-size:15px;font-weight:600" id="today-lesson">The Mechanism Sentence (HOW)</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:4px">The single most important skill for Band 6 → 7. Most students skip it.</div>
         </div>
-        <div class="streak-fire">🔥</div>
+        <div style="font-size:22px;color:var(--t3)">→</div>
       </div>
-      <div class="streak-dots" id="streak-dots"></div>
     </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-    <div class="topbar">
-      <div class="topbar-title">
-        <span id="page-title">Dashboard</span>
+    <div style="display:flex;gap:10px">
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('idea-lab')">
+        <div style="font-size:18px;margin-bottom:6px">⚗</div>
+        <div style="font-size:13px;font-weight:600">Idea Lab</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">Generate arguments from any angle</div>
       </div>
-      <div class="band-badge">🎯 Target: Band 7.5</div>
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('drills')">
+        <div style="font-size:18px;margin-bottom:6px">⚡</div>
+        <div style="font-size:13px;font-weight:600">WHY/HOW Drills</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">The Band 6 → 7 gap in one exercise</div>
+      </div>
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('workspace')">
+        <div style="font-size:18px;margin-bottom:6px">✎</div>
+        <div style="font-size:13px;font-weight:600">Writing Lab</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">Even 3 sentences counts as Done</div>
+      </div>
     </div>
 
-    <div class="content">
+    <div class="sect-label" style="margin-top:22px">Skill status</div>
+    <div id="dash-skills"></div>
+  </div>
 
-      <!-- ══════════ DASHBOARD ══════════ -->
-      <div class="page active" id="page-dashboard">
-        <div class="dashboard-grid">
-          <div class="stat-card">
-            <div class="stat-label">Overall Progress</div>
-            <div class="stat-value" id="stat-progress">18%</div>
-            <div class="stat-sub">of 30-day program</div>
-          </div>
-          <div class="stat-card green">
-            <div class="stat-label">Essays Written</div>
-            <div class="stat-value" id="stat-essays">7</div>
-            <div class="stat-sub">+2 this week</div>
-          </div>
-          <div class="stat-card gold">
-            <div class="stat-label">Skills Mastered</div>
-            <div class="stat-value" id="stat-skills">3</div>
-            <div class="stat-sub">of 6 sentence types</div>
-          </div>
+  <!-- ══ 30-DAY PATH ══ -->
+  <div class="page" id="pg-path">
+    <div class="pg-title">30-Day Training Path</div>
+    <div class="pg-sub">Four phases. Do them in order. Skipping ahead is how people stay at Band 6.</div>
+
+    <div class="phase-hd" style="margin-top:0">
+      <div class="phase-n">I</div>
+      <div><div class="phase-nm">Sentence Mastery</div><div class="phase-ds">Days 1–10 · The 6 core sentence types</div></div>
+    </div>
+    <div class="day-grid" id="dg-1"></div>
+
+    <div class="phase-hd">
+      <div class="phase-n" style="background:var(--bl);color:#000">II</div>
+      <div><div class="phase-nm">Paragraph Construction</div><div class="phase-ds">Days 11–18 · Assemble full paragraphs with logical flow</div></div>
+    </div>
+    <div class="day-grid" id="dg-2"></div>
+
+    <div class="phase-hd">
+      <div class="phase-n" style="background:var(--gr);color:#000">III</div>
+      <div><div class="phase-nm">Coherence & Flow</div><div class="phase-ds">Days 19–24 · Cohesion, transitions, academic vocabulary</div></div>
+    </div>
+    <div class="day-grid" id="dg-3"></div>
+
+    <div class="phase-hd">
+      <div class="phase-n" style="background:var(--gd);color:#000">IV</div>
+      <div><div class="phase-nm">Full Essay Practice</div><div class="phase-ds">Days 25–30 · Timed essays, self-check, band scoring</div></div>
+    </div>
+    <div class="day-grid" id="dg-4"></div>
+  </div>
+
+  <!-- ══ LESSONS ══ -->
+  <div class="page" id="pg-lessons">
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px" id="skill-nav"></div>
+    <div class="card ac-top" style="margin-bottom:16px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:6px" id="l-tag">LEVEL 1 · SENTENCE MASTERY</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px" id="l-title">The Mechanism Sentence</div>
+      <div style="font-size:12px;color:var(--t2);margin-top:6px;display:flex;gap:14px">
+        <span>⏱ ~20 min</span><span id="l-progress-text">Skill 4 of 6</span>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab('learn','lessons')">① Learn</div>
+      <div class="tab" onclick="switchTab('compare','lessons')">② Compare</div>
+      <div class="tab" onclick="switchTab('practice','lessons')">③ Practice</div>
+      <div class="tab" onclick="switchTab('done-check','lessons')">④ Self-Check</div>
+    </div>
+
+    <div class="tc on" id="tc-learn">
+      <div class="card">
+        <div class="sect-label">Concept</div>
+        <div style="font-size:14px;line-height:1.7" id="l-concept"></div>
+      </div>
+      <div class="card">
+        <div class="sect-label">Templates — click to copy</div>
+        <div id="l-templates"></div>
+      </div>
+    </div>
+
+    <div class="tc" id="tc-compare">
+      <div class="pg-sub" style="margin-bottom:14px">Study the exact gap between Band 6 and Band 7. Name the difference before moving on.</div>
+      <div id="l-comparisons"></div>
+    </div>
+
+    <div class="tc" id="tc-practice">
+      <div class="card">
+        <div class="sect-label">Practice Task</div>
+        <div id="l-practice-prompt" style="font-size:13px;line-height:1.7;color:var(--t2);margin-bottom:14px"></div>
+        <textarea class="txt" id="l-practice-input" rows="4" placeholder="Write your sentence here..."></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn btn-s btn-sm" onclick="showModel()">Show model answer</button>
         </div>
+      </div>
+      <div id="l-model-area"></div>
+    </div>
 
-        <div class="section-title">Continue Today</div>
-        <div class="concept-card" style="cursor:pointer; border-color: var(--accent)" onclick="showPage('lessons')">
-          <div class="concept-label">📍 Day 5 — Mechanism Sentence</div>
-          <div class="concept-text">
-            <strong>The Mechanism Sentence</strong> is what separates Band 6 from Band 7. After your Reason (WHY), you must explain the exact process or chain of events (HOW). Most students skip this — don't.
-          </div>
-          <br>
-          <button class="btn btn-primary btn-sm">Continue Lesson →</button>
+    <div class="tc" id="tc-done-check">
+      <div class="pg-sub" style="margin-bottom:14px">Tick every box honestly. Then click <strong>Done</strong> to log your streak.</div>
+      <div id="lesson-checklist"></div>
+      <div class="done-row">
+        <div class="done-note" id="check-tally">0 / 5 checked</div>
+        <button class="btn btn-gr" onclick="completLesson()" id="lesson-done-btn" disabled>Mark as Done ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ IDEA LAB ══ -->
+  <div class="page" id="pg-idea-lab">
+    <div class="pg-title">Idea Lab</div>
+    <div class="pg-sub">Ideas don't appear from nowhere. They come from angles. This teaches you to think systematically before you write a single sentence.</div>
+
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab('angles','idea-lab')">① Five Angles</div>
+      <div class="tab" onclick="switchTab('expand','idea-lab')">② Expand an Idea</div>
+      <div class="tab" onclick="switchTab('drill-idea','idea-lab')">③ Idea Drill</div>
+    </div>
+
+    <!-- Angles -->
+    <div class="tc on" id="tc-angles">
+      <div class="pg-sub" style="margin-bottom:14px">Every IELTS argument fits into one of these five categories. Pick a prompt and use at least two different angles.</div>
+      <div class="angle-grid">
+        <div class="angle-card" onclick="selectAngle(this,'economic')">
+          <div class="angle-ic">💰</div>
+          <div class="angle-name">Economic</div>
+          <div class="angle-ex">Money · Cost · Jobs · Trade</div>
         </div>
-
-        <div class="section-title" style="margin-top:28px;">Skill Overview</div>
-        <div class="skill-tree">
-          <div class="skill-card mastered" onclick="loadLesson('thesis')">
-            <div class="skill-icon">🎯</div>
-            <div class="skill-info">
-              <div class="skill-name">Thesis Statement</div>
-              <div class="skill-desc">Clear, direct opinion opener</div>
-              <div class="skill-progress"><div class="skill-progress-fill" style="width:100%"></div></div>
-            </div>
-          </div>
-          <div class="skill-card mastered" onclick="loadLesson('topic')">
-            <div class="skill-icon">📌</div>
-            <div class="skill-info">
-              <div class="skill-name">Topic Sentence</div>
-              <div class="skill-desc">Mini thesis for each paragraph</div>
-              <div class="skill-progress"><div class="skill-progress-fill" style="width:85%"></div></div>
-            </div>
-          </div>
-          <div class="skill-card mastered" onclick="loadLesson('reason')">
-            <div class="skill-icon">❓</div>
-            <div class="skill-info">
-              <div class="skill-name">Reason (WHY)</div>
-              <div class="skill-desc">Logical backbone of argument</div>
-              <div class="skill-progress"><div class="skill-progress-fill" style="width:70%"></div></div>
-            </div>
-          </div>
-          <div class="skill-card" onclick="loadLesson('mechanism')">
-            <div class="skill-icon">⚙️</div>
-            <div class="skill-info">
-              <div class="skill-name">Mechanism (HOW)</div>
-              <div class="skill-desc">Band 6 → 7 differentiator</div>
-              <div class="skill-progress"><div class="skill-progress-fill" style="width:30%"></div></div>
-            </div>
-          </div>
-          <div class="skill-card locked">
-            <div class="skill-icon">🔒</div>
-            <div class="skill-info">
-              <div class="skill-name">Example Sentence</div>
-              <div class="skill-desc">Real-world grounding</div>
-              <div class="skill-progress"><div class="skill-progress-fill" style="width:0%"></div></div>
-            </div>
-          </div>
-          <div class="skill-card locked">
-            <div class="skill-icon">🔒</div>
-            <div class="skill-info">
-              <div class="skill-name">Concluding Sentence</div>
-              <div class="skill-desc">Paragraph closure</div>
-              <div class="skill-progress"><div class="skill-progress-fill" style="width:0%"></div></div>
-            </div>
-          </div>
+        <div class="angle-card" onclick="selectAngle(this,'social')">
+          <div class="angle-ic">👥</div>
+          <div class="angle-name">Social</div>
+          <div class="angle-ex">People · Behaviour · Relationships · Community</div>
+        </div>
+        <div class="angle-card" onclick="selectAngle(this,'psychological')">
+          <div class="angle-ic">🧠</div>
+          <div class="angle-name">Psychological</div>
+          <div class="angle-ex">Emotions · Motivation · Mental health</div>
+        </div>
+        <div class="angle-card" onclick="selectAngle(this,'environmental')">
+          <div class="angle-ic">🌱</div>
+          <div class="angle-name">Environmental</div>
+          <div class="angle-ex">Nature · Sustainability · Climate</div>
+        </div>
+        <div class="angle-card" onclick="selectAngle(this,'practical')">
+          <div class="angle-ic">⚙️</div>
+          <div class="angle-name">Practical</div>
+          <div class="angle-ex">Convenience · Time · Efficiency · Daily life</div>
+        </div>
+        <div class="angle-card" style="opacity:.4;cursor:not-allowed">
+          <div class="angle-ic">＋</div>
+          <div class="angle-name">Other</div>
+          <div class="angle-ex">Political · Ethical · Historical</div>
         </div>
       </div>
 
-      <!-- ══════════ LEARNING PATH ══════════ -->
-      <div class="page" id="page-path">
-        <div class="section-title">30-Day Training Path</div>
-        <div class="section-sub">Four phases from sentence mastery to full essay fluency. Complete each day in sequence. Skipping phases undermines the system.</div>
-
-        <div class="phase-header">
-          <div class="phase-num">I</div>
-          <div>
-            <div class="phase-name">Sentence Mastery</div>
-            <div class="phase-desc">Days 1–10 · Build the 6 core sentence types</div>
-          </div>
-        </div>
-        <div class="day-grid">
-          <div class="day-cell done" onclick="loadDay(1)">1</div>
-          <div class="day-cell done" onclick="loadDay(2)">2</div>
-          <div class="day-cell done" onclick="loadDay(3)">3</div>
-          <div class="day-cell done" onclick="loadDay(4)">4</div>
-          <div class="day-cell active" onclick="loadDay(5)">5</div>
-          <div class="day-cell" onclick="loadDay(6)">6</div>
-          <div class="day-cell" onclick="loadDay(7)">7</div>
-          <div class="day-cell" onclick="loadDay(8)">8</div>
-          <div class="day-cell" onclick="loadDay(9)">9</div>
-          <div class="day-cell" onclick="loadDay(10)">10</div>
-        </div>
-
-        <div class="phase-header" style="margin-top:20px">
-          <div class="phase-num" style="background:var(--accent2); color:#000">II</div>
-          <div>
-            <div class="phase-name">Paragraph Construction</div>
-            <div class="phase-desc">Days 11–18 · Assemble full paragraphs with logical flow</div>
-          </div>
-        </div>
-        <div class="day-grid">
-          <div class="day-cell locked">11</div>
-          <div class="day-cell locked">12</div>
-          <div class="day-cell locked">13</div>
-          <div class="day-cell locked">14</div>
-          <div class="day-cell locked">15</div>
-          <div class="day-cell locked">16</div>
-          <div class="day-cell locked">17</div>
-          <div class="day-cell locked">18</div>
-        </div>
-
-        <div class="phase-header" style="margin-top:20px">
-          <div class="phase-num" style="background:var(--accent3); color:#000">III</div>
-          <div>
-            <div class="phase-name">Coherence & Flow</div>
-            <div class="phase-desc">Days 19–24 · Cohesion, transitions, academic vocabulary</div>
-          </div>
-        </div>
-        <div class="day-grid">
-          <div class="day-cell locked">19</div>
-          <div class="day-cell locked">20</div>
-          <div class="day-cell locked">21</div>
-          <div class="day-cell locked">22</div>
-          <div class="day-cell locked">23</div>
-          <div class="day-cell locked">24</div>
-        </div>
-
-        <div class="phase-header" style="margin-top:20px">
-          <div class="phase-num" style="background:var(--gold); color:#000">IV</div>
-          <div>
-            <div class="phase-name">Full Essay Practice</div>
-            <div class="phase-desc">Days 25–30 · Timed essays, model comparison, band scoring</div>
-          </div>
-        </div>
-        <div class="day-grid">
-          <div class="day-cell locked">25</div>
-          <div class="day-cell locked">26</div>
-          <div class="day-cell locked">27</div>
-          <div class="day-cell locked">28</div>
-          <div class="day-cell locked">29</div>
-          <div class="day-cell locked">30</div>
-        </div>
+      <div class="card" id="angle-detail" style="display:none">
+        <div class="sect-label" id="angle-detail-label">ECONOMIC ANGLE</div>
+        <div id="angle-detail-content"></div>
       </div>
+    </div>
 
-      <!-- ══════════ LESSONS ══════════ -->
-      <div class="page" id="page-lessons">
-        <div class="lesson-header">
-          <div class="lesson-tag" id="lesson-tag">LEVEL 1 · SENTENCE MASTERY</div>
-          <div class="lesson-title" id="lesson-title">The Mechanism Sentence (HOW)</div>
-          <div class="lesson-meta">
-            <span>⏱ ~20 min</span>
-            <span>🎯 Band 6 → 7 key</span>
-            <span id="lesson-progress-text">4/6 sentence types</span>
-          </div>
-        </div>
-
-        <div class="sub-nav">
-          <div class="sub-nav-item active" onclick="switchSkill('mechanism')">⚙️ Mechanism</div>
-          <div class="sub-nav-item" onclick="switchSkill('thesis')">🎯 Thesis</div>
-          <div class="sub-nav-item" onclick="switchSkill('topic')">📌 Topic</div>
-          <div class="sub-nav-item" onclick="switchSkill('reason')">❓ Reason</div>
-          <div class="sub-nav-item" onclick="switchSkill('example')">💡 Example</div>
-          <div class="sub-nav-item" onclick="switchSkill('conclusion')">✅ Conclusion</div>
-        </div>
-
-        <div class="lesson-tabs">
-          <div class="lesson-tab active" onclick="switchTab('learn')">① Learn</div>
-          <div class="lesson-tab" onclick="switchTab('compare')">② Compare</div>
-          <div class="lesson-tab" onclick="switchTab('practice')">③ Practice</div>
-          <div class="lesson-tab" onclick="switchTab('ai-check')">④ AI Check</div>
-        </div>
-
-        <!-- TAB: LEARN -->
-        <div class="tab-content active" id="tab-learn">
-          <div class="concept-card">
-            <div class="concept-label">📖 Concept</div>
-            <div class="concept-text" id="concept-text">
-              The mechanism sentence is what separates Band 6 from Band 7. After you give a reason (WHY), you explain the exact process or chain of events (HOW). This shows deeper thinking and sophisticated analysis. Many students skip this — don't.
-            </div>
-          </div>
-
-          <div class="concept-card">
-            <div class="concept-label">📐 Templates — Click to copy</div>
-            <div id="templates-list"></div>
-          </div>
-        </div>
-
-        <!-- TAB: COMPARE -->
-        <div class="tab-content" id="tab-compare">
-          <div class="section-sub">Study what makes a sentence weak vs strong. Identify the exact gap.</div>
-          <div id="comparisons-list"></div>
-        </div>
-
-        <!-- TAB: PRACTICE -->
-        <div class="tab-content" id="tab-practice">
-          <div class="concept-card">
-            <div class="concept-label">✏️ Practice Task</div>
-            <div class="concept-text" id="practice-prompt" style="margin-bottom:16px">
-              Write a mechanism sentence for this context:<br><br>
-              <em style="color:var(--text2)">Topic: "Online learning improves access to education." <br>Reason: "This is because students can access courses from anywhere in the world."<br><br>→ Now write the HOW mechanism sentence explaining the exact chain of events.</em>
-            </div>
-            <textarea class="review-input" id="practice-input" placeholder="Specifically, when a student in [country] gains internet access..." rows="4"></textarea>
-            <div style="display:flex; gap:8px; margin-top:12px">
-              <button class="btn btn-primary" onclick="checkPractice()">Get AI Feedback</button>
-              <button class="btn btn-secondary" onclick="showModel()">Show Model Answer</button>
-            </div>
-          </div>
-          <div id="practice-feedback-area"></div>
-        </div>
-
-        <!-- TAB: AI CHECK -->
-        <div class="tab-content" id="tab-ai-check">
-          <div class="concept-card">
-            <div class="concept-label">🤖 Full Sentence Analysis</div>
-            <div class="concept-text" style="margin-bottom:16px">
-              Write any sentence or short paragraph. Claude will identify which sentence types are present, what's missing, and exactly how to improve it.
-            </div>
-            <textarea class="review-input" id="ai-check-input" placeholder="Paste your sentence or paragraph here..." rows="5"></textarea>
-            <div style="display:flex; gap:8px; margin-top:12px">
-              <button class="btn btn-primary" onclick="analyzeText()">Analyze My Writing</button>
-              <button class="btn btn-secondary" onclick="clearAnalysis()">Clear</button>
-            </div>
-          </div>
-          <div id="ai-check-result"></div>
-        </div>
-      </div>
-
-      <!-- ══════════ WORKSPACE ══════════ -->
-      <div class="page" id="page-workspace"></div>
-
-      <!-- ══════════ REVIEW ══════════ -->
-      <div class="page" id="page-review">
-        <div class="section-title">Review Queue</div>
-        <div class="section-sub">Spaced repetition: weaker skills return more often. Each card takes under 2 minutes.</div>
-
-        <div class="review-card">
-          <div class="concept-label">🔁 REVIEW · MECHANISM SENTENCE</div>
-          <div class="review-prompt">
-            <strong>Context:</strong> "Governments should invest in public transport."<br>
-            Reason: "This is because private car usage contributes significantly to urban pollution."<br><br>
-            <strong>Task:</strong> Complete the mechanism sentence:<br>
-            <em style="color:var(--accent)">Specifically, when more commuters switch to buses and trains, _______</em>
-          </div>
-          <textarea class="review-input" placeholder="...this reduces the volume of exhaust fumes in cities, which leads to..." rows="3"></textarea>
-          <div style="display:flex; gap:8px; margin-top:12px">
-            <button class="btn btn-primary btn-sm" onclick="reviewSubmit(this)">Submit</button>
-            <button class="btn btn-secondary btn-sm" onclick="revealAnswer(this)">Reveal Answer</button>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="concept-label">🔁 REVIEW · TOPIC SENTENCE</div>
-          <div class="review-prompt">
-            Essay prompt: <em>"Some people believe that technology has made life more complicated. Do you agree?"</em><br><br>
-            <strong>Task:</strong> Write a topic sentence for a paragraph arguing in favour of technology simplifying life.
-          </div>
-          <textarea class="review-input" placeholder="One major reason why technology has..." rows="3"></textarea>
-          <div style="display:flex; gap:8px; margin-top:12px">
-            <button class="btn btn-primary btn-sm" onclick="reviewSubmit(this)">Submit</button>
-            <button class="btn btn-secondary btn-sm" onclick="revealAnswer(this)">Reveal Answer</button>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="concept-label">🔁 REVIEW · THESIS STATEMENT</div>
-          <div class="review-prompt">
-            Prompt: <em>"Governments should ban fast food advertising. To what extent do you agree?"</em><br><br>
-            <strong>Task:</strong> Write a strong, specific thesis statement (one sentence).
-          </div>
-          <textarea class="review-input" placeholder="I strongly believe that..." rows="3"></textarea>
-          <div style="display:flex; gap:8px; margin-top:12px">
-            <button class="btn btn-primary btn-sm" onclick="reviewSubmit(this)">Submit</button>
-            <button class="btn btn-secondary btn-sm" onclick="revealAnswer(this)">Reveal Answer</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════ ANALYTICS ══════════ -->
-      <div class="page" id="page-analytics">
-        <div class="section-title">Your Progress Analytics</div>
-        <div class="section-sub">Only actionable metrics. Focus on the weakest skill next.</div>
-
-        <div class="analytics-grid">
-          <div class="analytics-card">
-            <div class="ws-label">Skill Mastery</div>
-            <div class="bar-chart" id="skill-bars"></div>
-          </div>
-          <div class="analytics-card">
-            <div class="ws-label">Writing Frequency</div>
-            <div id="freq-chart"></div>
-          </div>
-        </div>
-
-        <div class="analytics-card" style="margin-bottom:16px">
-          <div class="ws-label">⚠️ Weakest Skills — Focus Here Next</div>
-          <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap">
-            <div style="background:rgba(255,107,107,0.1); border:1px solid rgba(255,107,107,0.3); padding:8px 14px; border-radius:8px; font-size:12px">
-              ⚙️ Mechanism Sentence <span style="color:var(--warn); font-family:'DM Mono',monospace; margin-left:6px">30%</span>
-            </div>
-            <div style="background:rgba(255,107,107,0.06); border:1px solid rgba(255,107,107,0.2); padding:8px 14px; border-radius:8px; font-size:12px">
-              💡 Example Sentence <span style="color:var(--warn); font-family:'DM Mono',monospace; margin-left:6px">0%</span>
-            </div>
-            <div style="background:rgba(255,107,107,0.06); border:1px solid rgba(255,107,107,0.2); padding:8px 14px; border-radius:8px; font-size:12px">
-              ✅ Concluding Sentence <span style="color:var(--warn); font-family:'DM Mono',monospace; margin-left:6px">0%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /content -->
-  </main>
-</div><!-- /app -->
-
-<!-- WRITING WORKSPACE (full-page) -->
-<div id="workspace-full" style="display:none; position:fixed; inset:60px 0 0 260px; z-index:10;">
-  <div class="workspace">
-    <!-- Prompt panel -->
-    <div class="ws-panel ws-prompt">
-      <div class="ws-label">📝 Essay Prompt</div>
-
+    <!-- Expand -->
+    <div class="tc" id="tc-expand">
+      <div class="pg-sub" style="margin-bottom:14px">Pick a prompt. Generate three ideas (one per angle). Then expand the strongest one into a full argument chain.</div>
       <div style="margin-bottom:12px">
-        <label style="font-size:11px; color:var(--text2); font-family:'DM Mono',monospace; display:block; margin-bottom:6px">Select prompt:</label>
-        <select id="prompt-select" onchange="changePrompt()" style="width:100%; background:var(--surface2); border:1px solid var(--border); color:var(--text); border-radius:6px; padding:8px; font-size:12px; font-family:'Sora',sans-serif;">
-          <option value="0">Technology & Society</option>
-          <option value="1">Education</option>
-          <option value="2">Environment</option>
-          <option value="3">Health</option>
-          <option value="4">Work & Economy</option>
+        <div class="sect-label">Step 1 — Choose a prompt</div>
+        <select class="p-sel" id="expand-prompt-sel" onchange="renderExpandPrompt()">
+          <option value="0">Social media is harmful to society</option>
+          <option value="1">Governments should invest in renewable energy</option>
+          <option value="2">University education should be free</option>
+          <option value="3">Technology is making people less sociable</option>
+          <option value="4">Fast food advertising should be banned</option>
         </select>
+        <div class="prompt-block" id="expand-prompt-text"></div>
       </div>
 
-      <div class="prompt-type-badge" id="prompt-badge">OPINION ESSAY</div>
-      <div class="prompt-box" id="prompt-text">
-        Some people believe that technology has made communication easier, while others argue it has made people less sociable. Discuss both views and give your own opinion.
+      <div style="margin-bottom:14px">
+        <div class="sect-label">Step 2 — Generate 3 ideas (different angles)</div>
+        <div style="display:flex;gap:7px;margin-bottom:8px">
+          <input class="inp" id="idea-inp" placeholder="e.g. causes anxiety in young users" style="flex:1">
+          <select class="p-sel" style="width:160px;margin-bottom:0" id="idea-angle-sel">
+            <option value="psychological">🧠 Psychological</option>
+            <option value="social">👥 Social</option>
+            <option value="economic">💰 Economic</option>
+            <option value="environmental">🌱 Environmental</option>
+            <option value="practical">⚙️ Practical</option>
+          </select>
+          <button class="btn btn-s btn-sm" onclick="addIdea()">Add</button>
+        </div>
+        <div id="idea-list"></div>
       </div>
 
-      <div class="ws-label" style="margin-top:16px">💡 Structure Checklist</div>
-      <div style="font-size:12px; line-height:2; color:var(--text2)">
-        <div id="check-intro">☐ Introduction + Thesis</div>
-        <div id="check-body1">☐ Body 1: Topic + Reason + HOW + Example</div>
-        <div id="check-body2">☐ Body 2: Topic + Reason + HOW + Example</div>
-        <div id="check-conc">☐ Conclusion</div>
-      </div>
-
-      <div class="ws-label" style="margin-top:16px">📚 Sentence Templates</div>
-      <div class="tip-box">
-        <strong>Mechanism:</strong> "When [A] occurs, this leads to [B], which ultimately causes [C]."
-      </div>
-      <div class="tip-box">
-        <strong>Topic:</strong> "One major reason why [position] is that [point]."
-      </div>
-      <div class="tip-box">
-        <strong>Example:</strong> "For instance, in [country], [evidence], demonstrating that [link]."
+      <div id="expand-area" style="display:none">
+        <div class="sect-label">Step 3 — Expand your best idea into a full argument</div>
+        <div class="expand-box" id="expand-selected-idea" style="margin-bottom:12px"></div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Topic Sentence</div>
+          <textarea class="txt" id="exp-topic" rows="2" placeholder="One major reason why [position] is that [your idea]..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Reason (WHY)</div>
+          <textarea class="txt" id="exp-reason" rows="2" placeholder="This is because..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Mechanism (HOW)</div>
+          <textarea class="txt" id="exp-mechanism" rows="2" placeholder="Specifically, when [A] occurs, this leads to [B], which ultimately causes [C]..."></textarea>
+        </div>
+        <div class="done-row">
+          <div class="done-note">Write all 3 parts, then mark done</div>
+          <button class="btn btn-gr" onclick="completeExpand()">Mark Done ✓</button>
+        </div>
       </div>
     </div>
 
-    <!-- Editor panel -->
-    <div class="ws-panel ws-editor-wrap" style="padding:0">
-      <div class="timer-display" style="margin:12px 12px 0; border-radius:8px">
+    <!-- Idea Drill -->
+    <div class="tc" id="tc-drill-idea">
+      <div class="pg-sub" style="margin-bottom:14px">Timed drill. You get a topic. You have 3 minutes. You produce 3 ideas from 3 different angles. No thinking, just writing.</div>
+      <div class="card" id="drill-idea-prompt">
+        <div class="sect-label">Your Topic</div>
+        <div style="font-size:16px;font-weight:600;margin-bottom:12px" id="drill-idea-topic">Click Start to get your topic</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-p btn-sm" onclick="startIdeaDrill()">Start drill</button>
+        </div>
+      </div>
+      <div id="drill-idea-inputs" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="sect-label" style="margin:0">3 minutes — go</div>
+          <div style="font-family:'DM Mono',monospace;font-size:16px;color:var(--gd)" id="drill-timer">3:00</div>
+        </div>
+        <div class="card" style="margin-bottom:8px">
+          <div class="expand-label">Idea 1 — angle: <span id="drill-a1" style="color:var(--ac)"></span></div>
+          <textarea class="txt" id="drill-i1" rows="2" placeholder="Your idea..."></textarea>
+        </div>
+        <div class="card" style="margin-bottom:8px">
+          <div class="expand-label">Idea 2 — angle: <span id="drill-a2" style="color:var(--bl)"></span></div>
+          <textarea class="txt" id="drill-i2" rows="2" placeholder="Your idea..."></textarea>
+        </div>
+        <div class="card" style="margin-bottom:8px">
+          <div class="expand-label">Idea 3 — angle: <span id="drill-a3" style="color:var(--gr)"></span></div>
+          <textarea class="txt" id="drill-i3" rows="2" placeholder="Your idea..."></textarea>
+        </div>
+        <button class="btn btn-gr btn-full" onclick="submitIdeaDrill()">Submit & Finish ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ WHY/HOW DRILLS ══ -->
+  <div class="page" id="pg-drills">
+    <div class="pg-title">WHY / HOW Drills</div>
+    <div class="pg-sub">This is where Band 6 becomes Band 7. Weak writers jump from claim to example. Strong writers explain WHY the claim is true, then HOW that mechanism actually works.</div>
+
+    <div id="drill-set"></div>
+    <div style="text-align:center;margin-top:16px">
+      <button class="btn btn-p" onclick="loadDrills()">Next set →</button>
+    </div>
+  </div>
+
+  <!-- ══ IDEA BANK ══ -->
+  <div class="page" id="pg-idea-bank">
+    <div class="pg-title">Idea Bank</div>
+    <div class="pg-sub">Pre-built arguments from Band 9 model essays, tagged by topic and angle. Use these when your brain goes blank. Then practise building your own.</div>
+
+    <div class="bank-topic-row" id="bank-topics"></div>
+    <div id="bank-entries"></div>
+  </div>
+
+  <!-- ══ WORKSPACE ══ -->
+  <div class="page" id="pg-workspace" style="padding:0;margin:-28px"></div>
+
+  <!-- ══ REVIEW ══ -->
+  <div class="page" id="pg-review">
+    <div class="pg-title">Review Queue</div>
+    <div class="pg-sub">3 cards. Each takes under 2 minutes. Write, then self-check before marking done.</div>
+    <div id="review-cards"></div>
+  </div>
+
+  </div><!-- /content-wrap -->
+</main>
+</div><!-- /shell -->
+
+<!-- Writing workspace (full-screen overlay) -->
+<div id="ws-overlay" style="display:none;position:fixed;inset:54px 0 0 240px;z-index:10">
+  <div class="ws">
+    <div class="ws-pane ws-left">
+      <div class="ws-lbl">Prompt</div>
+      <select class="p-sel" id="ws-sel" onchange="wsChangePrompt()"></select>
+      <div class="ptype" id="ws-ptype">OPINION ESSAY</div>
+      <div class="prompt-block" id="ws-prompt-text"></div>
+
+      <div class="ws-lbl" style="margin-top:14px">Structure checklist</div>
+      <div class="cl-item" id="cl-intro"><div class="cl-dot"></div>Introduction + thesis</div>
+      <div class="cl-item" id="cl-b1"><div class="cl-dot"></div>Body 1: Topic → Reason → HOW → Example</div>
+      <div class="cl-item" id="cl-b2"><div class="cl-dot"></div>Body 2: Topic → Reason → HOW → Example</div>
+      <div class="cl-item" id="cl-conc"><div class="cl-dot"></div>Conclusion</div>
+
+      <div class="ws-lbl" style="margin-top:14px">Quick templates</div>
+      <div class="tip-row"><b>Mechanism:</b> "When [A], this leads to [B], causing [C]."</div>
+      <div class="tip-row"><b>Example:</b> "For instance, in [country], [evidence], demonstrating that [link]."</div>
+      <div class="tip-row"><b>Conclusion:</b> "Therefore, it is clear that [restate point]."</div>
+    </div>
+
+    <div class="ws-pane ws-mid">
+      <div class="timer-row" style="margin:12px 12px 0;border-radius:var(--rs)">
         <div>
-          <div class="timer-label">IELTS TIMER</div>
-          <div class="timer-value" id="timer-val">40:00</div>
+          <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--t3);margin-bottom:2px">TIMER</div>
+          <div class="timer-val" id="ws-timer">40:00</div>
         </div>
-        <div style="display:flex; gap:6px">
-          <button class="timer-btn" onclick="toggleTimer()" id="timer-toggle-btn">▶ Start</button>
-          <button class="timer-btn" onclick="resetTimer()">↺</button>
+        <div class="timer-btns">
+          <button class="t-btn" onclick="toggleTimer()" id="timer-btn">▶ Start</button>
+          <button class="t-btn" onclick="resetTimer()">↺</button>
         </div>
       </div>
-      <div class="word-count-bar">
-        <span>Words: <span class="wc-num" id="wc">0</span></span>
-        <span style="color:var(--text3)">|</span>
-        <span>Target: <span style="color:var(--accent2)">250–300</span></span>
-        <span style="color:var(--text3)">|</span>
-        <span>Draft <span id="draft-num">1</span></span>
+      <div class="wc-bar">
+        Words: <span class="wc-n" id="ws-wc">0</span>
+        <span style="color:var(--t3)">·</span>
+        Target: <span style="color:var(--bl)">250–300</span>
       </div>
-      <textarea 
-        class="editor-area" 
-        id="essay-editor"
-        placeholder="Begin writing your essay here...&#10;&#10;Tip: Start with your introduction and thesis statement. Then build each paragraph using the structure: Topic → Reason → Mechanism → Example → Conclusion."
-        oninput="updateWordCount(); updateChecklist()"
-      ></textarea>
+      <textarea class="editor" id="ws-editor"
+        placeholder="Start writing your essay here.&#10;&#10;Use the structure checklist on the left. Even 3 solid paragraphs with clear sentence types beats 5 vague ones."
+        oninput="wsUpdate()"></textarea>
       <div class="ws-actions">
-        <button class="btn btn-primary btn-sm" onclick="getFeedback()" id="feedback-btn">✦ Get AI Feedback</button>
-        <button class="btn btn-secondary btn-sm" onclick="saveDraft()">💾 Save</button>
-        <button class="btn btn-secondary btn-sm" onclick="clearEssay()">✕ Clear</button>
+        <button class="btn btn-p btn-sm" onclick="openSelfCheck()">Self-Check →</button>
+        <button class="btn btn-s btn-sm" onclick="wsSave()">💾 Save</button>
+        <button class="btn btn-s btn-sm" onclick="wsClear()">✕ Clear</button>
       </div>
     </div>
 
-    <!-- Feedback panel -->
-    <div class="ws-panel ws-feedback">
-      <div class="ws-label">✦ AI Feedback</div>
-      <div id="feedback-panel">
-        <div class="feedback-waiting">
-          <div class="icon">✦</div>
-          <p>Write at least 50 words, then click <strong>Get AI Feedback</strong> for sentence-level analysis and a band estimate.</p>
-        </div>
+    <div class="ws-pane ws-right" id="ws-right-panel">
+      <div class="ws-lbl">Self-Evaluation</div>
+      <div style="font-size:12px;color:var(--t3);line-height:1.6">
+        Write something first. Then click <strong style="color:var(--t2)">Self-Check</strong> to evaluate your own writing before marking it Done.
       </div>
     </div>
   </div>
 </div>
 
-<!-- SETTINGS MODAL -->
-<div class="modal-overlay" id="settings-modal">
-  <div class="modal">
-    <div class="modal-title">⚙ Settings</div>
-    <div class="ws-label" style="margin-bottom:8px">Anthropic API Key</div>
-    <div class="api-input-wrap">
-      <input type="password" class="api-input" id="api-key-input" placeholder="sk-ant-..." />
-      <button class="btn btn-primary btn-sm" onclick="saveKey()">Save</button>
+<!-- Self-Check Modal -->
+<div class="mo-bg" id="selfcheck-modal">
+  <div class="mo" style="max-width:540px">
+    <div class="mo-title">Self-Evaluation</div>
+    <div style="font-size:12px;color:var(--t2);margin-bottom:18px">Be honest. Ticking boxes you haven't earned defeats the purpose.</div>
+    <div id="modal-checklist"></div>
+    <div class="done-row">
+      <div style="font-size:11px;color:var(--t3)" id="modal-tally">0 / 10 checked</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-s btn-sm" onclick="closeSelfCheck()">Cancel</button>
+        <button class="btn btn-gr" onclick="markWritingDone()" id="modal-done-btn" disabled>Mark Done ✓</button>
+      </div>
     </div>
-    <div style="font-size:11px; color:var(--text3); margin-bottom:20px">
-      Your key is stored only in your browser. Get one at console.anthropic.com.
-    </div>
-    <div class="ws-label" style="margin-bottom:8px">Target Band Score</div>
-    <div style="display:flex; gap:8px; margin-bottom:20px">
-      <button class="btn btn-secondary btn-sm" onclick="setTarget(7)">7.0</button>
-      <button class="btn btn-primary btn-sm" onclick="setTarget(7.5)">7.5</button>
-      <button class="btn btn-secondary btn-sm" onclick="setTarget(8)">8.0</button>
-    </div>
-    <button class="btn btn-secondary btn-full" onclick="closeSettings()">Close</button>
   </div>
 </div>
 
-<!-- TOAST -->
+<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════════
-const STATE = {
-  streak: parseInt(localStorage.getItem('streak') || '5'),
-  essays: parseInt(localStorage.getItem('essays') || '7'),
-  skillProgress: JSON.parse(localStorage.getItem('skillProgress') || 
-    '{"thesis":100,"topic":85,"reason":70,"mechanism":30,"example":0,"conclusion":0}'),
-  currentSkill: 'mechanism',
-  currentTab: 'learn',
-  timerRunning: false,
-  timerSeconds: 40 * 60,
-  timerInterval: null,
-  draftNum: 1,
-};
+// ════════════════════════════════════
+// DATA
+// ════════════════════════════════════
 
-// ══════════════════════════════════════════════
-// LESSON DATA (from Đinh Thắng + 30-Day System)
-// ══════════════════════════════════════════════
 const LESSONS = {
-  mechanism: {
-    name: 'Mechanism Sentence (HOW)',
-    tag: 'LEVEL 1 · THE BAND 6→7 DIFFERENTIATOR',
-    concept: `The <strong>mechanism sentence</strong> is what separates Band 6 from Band 7. After you give a reason (WHY), you explain the exact process or chain of events (HOW). This shows deeper thinking and sophisticated analysis. Many students skip this step — that is a Band 6 mistake. A strong mechanism creates a logical chain: A → B → C → outcome.`,
-    templates: [
-      { t: 'Specifically, when [A happens], this leads to [B], which ultimately causes [C].', hint: 'Best for causal chains' },
-      { t: 'In practical terms, this means that [concrete explanation of how it works].', hint: 'Use for economic/social mechanisms' },
-      { t: 'The process operates as follows: [A] → [B] → [C], resulting in [outcome].', hint: 'Explicit chain format — high marks' },
-      { t: 'More precisely, [explain the step-by-step mechanism in one clear sentence].', hint: 'Good as a follow-up to reason' },
-      { t: 'When [action is taken], [group/system] [respond in this way], leading to [specific outcome].', hint: 'Policy/government topics' },
+  mechanism:{
+    name:'Mechanism Sentence (HOW)',
+    tag:'LEVEL 1 · THE BAND 6→7 DIFFERENTIATOR',
+    concept:`The <strong>mechanism sentence</strong> is what separates Band 6 from Band 7+. After your reason sentence explains WHY your claim is true, the mechanism explains exactly HOW that process works — the chain of events from cause to effect. Most students skip this. Examiners reward it every time.`,
+    templates:[
+      {t:'Specifically, when [A happens], this leads to [B], which ultimately causes [C].',hint:'Best for causal chains — use this most'},
+      {t:'The process operates as follows: [A] → [B] → [C], resulting in [outcome].',hint:'Make the chain explicit'},
+      {t:'In practical terms, this means that [concrete explanation of how it works].',hint:'Good for economic or policy arguments'},
+      {t:'When [action is taken], [group] [respond in this way], leading to [specific outcome].',hint:'Policy and government topics'},
+      {t:'More precisely, [explain the mechanism step by step in one sentence].',hint:'Follow-up after a reason'},
     ],
-    comparisons: [
+    comparisons:[
       {
-        bad: 'Social media causes stress. Many people feel anxious because of it.',
-        badNote: 'No mechanism — WHY stress? HOW does social media produce anxiety? The logic is absent.',
-        good: 'This is because constant notifications and social comparison trigger the release of cortisol, a stress hormone, which — when elevated chronically — impairs sleep and concentration.',
-        goodNote: 'Shows the biochemical mechanism: notifications → cortisol → impaired sleep. Examiners can follow the logic.',
+        bad:'Social media causes stress. There are many reasons for this.',
+        badNote:'No mechanism. WHY does social media cause stress? HOW does that happen? The logic ends at the claim.',
+        good:'This is because constant exposure to curated images of others\' lives triggers a cycle of social comparison, which — over time — erodes self-esteem and elevates cortisol, producing chronic low-grade anxiety.',
+        goodNote:'Full chain: curated images → comparison → eroded self-esteem → elevated cortisol → anxiety. Each step is logical.'
       },
       {
-        bad: 'Renewable energy helps the economy. Countries that use it do better.',
-        badNote: 'Vague claim with no mechanism. "Do better" is meaningless without explaining HOW.',
-        good: 'Specifically, when a government invests in solar infrastructure, it creates domestic manufacturing jobs and reduces fuel import costs, freeing budget capital for healthcare and education.',
-        goodNote: 'A → B → C chain: investment → jobs + cost reduction → reallocation of funds. Each step is logical and specific.',
-      },
+        bad:'Renewable energy helps the economy. Countries that invest in it do better.',
+        badNote:'"Do better" is not a mechanism. HOW do they do better? Through what process?',
+        good:'Specifically, government investment in solar infrastructure generates domestic manufacturing and installation jobs, while simultaneously reducing fuel import costs — freeing budget capital for public services.',
+        goodNote:'Chain: investment → jobs created + import costs fall → budget freed. Clear, specific, arguable.'
+      }
     ],
-    practicePrompt: `Topic: "Online learning improves access to education."\nReason: "This is because students in remote areas can access world-class courses."\n\n→ Write the HOW mechanism sentence. Start with: "Specifically, when..."`,
-    modelAnswer: `Specifically, when a student in a rural village gains internet access, platforms such as Coursera or Khan Academy connect them directly to university-level instruction, eliminating the geographic and financial barriers that previously made higher education unavailable to them.`,
+    practicePrompt:`Topic: "Online learning improves access to education."
+Reason: "This is because students in remote areas can access world-class courses."
+
+→ Now write the mechanism sentence. Explain exactly HOW online access leads to improved outcomes. Start with: "Specifically, when..."`,
+    modelAnswer:`Specifically, when a student in a rural area gains broadband access, platforms such as Coursera or edX connect them directly to university-level instruction — eliminating the geographic distance and financial cost of campus attendance that previously made higher education inaccessible.`
   },
-  thesis: {
-    name: 'Thesis Statement',
-    tag: 'LEVEL 1 · INTRODUCTION MASTERY',
-    concept: `The <strong>thesis sentence</strong> appears at the end of your introduction. It tells the examiner your position on the topic. A strong thesis is specific, direct, and signals your main argument. It is NOT a question. It is NOT vague. Band 6 theses describe the topic; Band 7 theses <em>commit</em> to a clear stance.`,
-    templates: [
-      { t: 'I strongly believe that [position], because [brief reason].', hint: 'Agree/disagree questions' },
-      { t: 'Although some argue [opposing view], I contend that [your position] for the reasons outlined below.', hint: 'Balanced opener with a clear stance' },
-      { t: 'This essay will argue that [position], primarily due to [1–2 key factors].', hint: 'Formal academic register' },
-      { t: 'While [acknowledging complexity], I firmly hold that [your clear stance].', hint: 'Shows nuance + commitment' },
-      { t: 'It is my view that [position], and this essay will demonstrate that [what you will show].', hint: 'Maps the essay\'s argument' },
+  thesis:{
+    name:'Thesis Statement',
+    tag:'LEVEL 1 · INTRODUCTION',
+    concept:`The <strong>thesis statement</strong> closes your introduction. It states your position clearly and signals what the essay will argue. A Band 7 thesis is specific, direct, and commits to a stance. A Band 6 thesis describes the debate without taking one.`,
+    templates:[
+      {t:'I strongly believe that [position], because [brief reason].',hint:'Agree/disagree questions'},
+      {t:'Although some argue [opposing view], I contend that [your position] for the reasons outlined below.',hint:'Shows nuance before committing'},
+      {t:'This essay will argue that [position], primarily due to [1–2 key factors].',hint:'Formal academic register'},
+      {t:'While [acknowledging complexity], I firmly hold that [your clear stance].',hint:'Balanced opener with commitment'},
+      {t:'It is my view that [position], and this essay will demonstrate that [what you will show].',hint:'Maps the essay structure'},
     ],
-    comparisons: [
+    comparisons:[
       {
-        bad: 'In my opinion there are many advantages and disadvantages to this topic.',
-        badNote: 'No real position. Vague. Could apply to any essay on any topic.',
-        good: 'I strongly believe that governments should invest in renewable energy, as it addresses both the climate crisis and long-term energy security simultaneously.',
-        goodNote: 'Clear position + specific reason. Confident. Tells the examiner exactly what will follow.',
-      },
-      {
-        bad: 'People have different opinions about whether social media is good or bad.',
-        badNote: 'Describes the debate instead of taking a stance. This is a Band 5 move.',
-        good: 'Although social media enables global connection, I contend that its negative impact on mental health outweighs its benefits, particularly among young users.',
-        goodNote: 'Acknowledges complexity, then commits to a clear position. Examiners reward this structure.',
-      },
+        bad:'In my opinion there are many advantages and disadvantages to this topic.',
+        badNote:'No position. Could apply to any essay. The examiner learns nothing about your argument.',
+        good:'I strongly believe that governments should invest heavily in renewable energy, as it simultaneously addresses the climate crisis and reduces long-term energy costs.',
+        goodNote:'Clear position + specific reasons. The examiner knows exactly what this essay will argue.'
+      }
     ],
-    practicePrompt: `Prompt: "Some people think university education should be free for all students. Do you agree or disagree?"\n\n→ Write a strong thesis statement. Take a clear position and give 1–2 reasons.`,
-    modelAnswer: `I strongly believe that university education should be free for all qualified students, as removing the financial barrier would produce a more educated workforce and reduce long-term social inequality.`,
+    practicePrompt:`Prompt: "Some people think university education should be free for all students. Do you agree or disagree?"
+
+→ Write a strong thesis statement. Take a clear position and give 1–2 specific reasons. Do not sit on the fence.`,
+    modelAnswer:`I strongly believe that university education should be free for all qualified students, as removing the financial barrier would produce a more skilled workforce and reduce the intergenerational cycle of inequality.`
   },
-  topic: {
-    name: 'Topic Sentence',
-    tag: 'LEVEL 1 · PARAGRAPH OPENER',
-    concept: `The <strong>topic sentence</strong> opens each body paragraph. It tells the reader exactly what point this paragraph makes. Think of it as a 'mini thesis' for that paragraph. It should be arguable (not just a fact), specific, and match your paragraph's content completely. Band 6 topic sentences are vague or just repeat the thesis; Band 7 topic sentences introduce a precise, new argument.`,
-    templates: [
-      { t: 'One major reason why [thesis position] is that [point].', hint: 'The gold standard opener' },
-      { t: 'Perhaps the most significant benefit/drawback of [topic] is [point].', hint: 'Signals hierarchy in your argument' },
-      { t: 'A key argument in favour of [position] concerns [specific area].', hint: 'Academic register' },
-      { t: 'From an economic/social/environmental perspective, [topic] has a profound impact on [point].', hint: 'Use the perspective frame' },
-      { t: 'The primary reason why [group] should/should not [action] is [point].', hint: 'Strong for policy topics' },
+  topic:{
+    name:'Topic Sentence',
+    tag:'LEVEL 1 · PARAGRAPH OPENER',
+    concept:`The <strong>topic sentence</strong> is the first sentence of each body paragraph. It announces exactly what that paragraph argues — one clear, arguable idea. Think of it as a mini-thesis. Band 6 topic sentences are vague or just repeat the thesis. Band 7 topic sentences introduce a precise new argument.`,
+    templates:[
+      {t:'One major reason why [thesis position] is that [specific point].',hint:'Gold standard — use this by default'},
+      {t:'Perhaps the most significant [benefit/drawback] of [topic] is [specific point].',hint:'Signals argument hierarchy'},
+      {t:'A key argument in favour of [position] concerns [specific area].',hint:'Academic register'},
+      {t:'From an [economic/social/environmental] perspective, [topic] has a profound impact on [point].',hint:'Use the angle frame'},
+      {t:'The primary reason why [group] should [action] is [specific point].',hint:'Strong for policy topics'},
     ],
-    comparisons: [
+    comparisons:[
       {
-        bad: 'There are many benefits of exercise for people.',
-        badNote: '"Many benefits" tells us nothing. What benefit? Which people? This paragraph has no direction.',
-        good: 'One major reason why regular exercise improves mental health is that physical activity stimulates the production of endorphins, which directly reduce anxiety.',
-        goodNote: 'The topic sentence already tells us: exercise → mental health → endorphins → anxiety reduction. The paragraph has a thesis.',
-      },
+        bad:'There are many benefits of technology for communication.',
+        badNote:'"Many benefits" tells the reader nothing. What benefit? Which communication? The paragraph has no direction.',
+        good:'One major reason why technology has improved human relationships is that video calling allows families separated by migration to maintain daily, face-to-face contact.',
+        goodNote:'Specific claim, specific mechanism implied, clear direction. The paragraph can now follow logically.'
+      }
     ],
-    practicePrompt: `Prompt: "Technology is making people less sociable. To what extent do you agree?"\n\n→ Write a topic sentence for a paragraph arguing AGAINST this claim (i.e., technology improves sociability).`,
-    modelAnswer: `One major reason why technology has actually enhanced human connection is that platforms such as video calling allow people to maintain close relationships across great distances.`,
+    practicePrompt:`Prompt: "Technology is making people less sociable. To what extent do you agree?"
+
+→ Write a topic sentence for a paragraph DISAGREEING — arguing that technology increases sociability.`,
+    modelAnswer:`One major reason why technology has enhanced rather than diminished human connection is that messaging and video platforms allow people to maintain close relationships across geographical distances that would have previously severed them entirely.`
   },
-  reason: {
-    name: 'Reason Sentence (WHY)',
-    tag: 'LEVEL 1 · ARGUMENT BUILDER',
-    concept: `After your topic sentence makes a claim, the <strong>reason sentence</strong> explains WHY that claim is true. This is where you build your logical argument. Weak writers often skip this and jump straight to examples — this is a Band 6 mistake. The reason must logically connect to the topic sentence and use clear causal language.`,
-    templates: [
-      { t: 'This is because [reason that explains WHY the claim is true].', hint: 'Simplest and most effective' },
-      { t: 'The reason for this is that [logical explanation].', hint: 'Slightly more formal' },
-      { t: 'Such [outcome] arises primarily because [cause].', hint: 'Good for consequence-based arguments' },
-      { t: 'This occurs due to the fact that [cause or mechanism].', hint: 'Academic register' },
-      { t: 'The underlying cause of this is [explanation], which leads to [consequence].', hint: 'Bridges reason and mechanism' },
+  reason:{
+    name:'Reason Sentence (WHY)',
+    tag:'LEVEL 1 · ARGUMENT CORE',
+    concept:`After your topic sentence makes a claim, the <strong>reason sentence</strong> explains WHY that claim is true. This is your logical backbone. Weak writers skip directly to examples — that is a Band 6 error. The reason must answer "why is this true?" using clear causal language.`,
+    templates:[
+      {t:'This is because [reason that explains WHY the claim is true].',hint:'Simplest and most reliable'},
+      {t:'The reason for this is that [logical explanation].',hint:'Slightly more formal'},
+      {t:'Such [outcome] arises primarily because [cause].',hint:'Good for consequence-based arguments'},
+      {t:'This occurs due to the fact that [cause or mechanism].',hint:'Academic register'},
+      {t:'The underlying cause of this is [explanation], which leads to [consequence].',hint:'Bridges reason and mechanism naturally'},
     ],
-    comparisons: [
+    comparisons:[
       {
-        bad: 'Social media causes stress. There are many reasons for this.',
-        badNote: '"Many reasons" is not a reason. You have told the examiner nothing about WHY.',
-        good: 'Social media causes significant psychological stress. This is because users are constantly exposed to curated images of others\' lives, generating persistent feelings of inadequacy.',
-        goodNote: 'The reason is specific: curated images → comparison → inadequacy. The examiner can follow the logic.',
-      },
+        bad:'Social media causes stress. There are many reasons for this.',
+        badNote:'"Many reasons" is not a reason. You have stated nothing about WHY.',
+        good:'This is because users are consistently exposed to carefully curated images of others\' lives, generating persistent feelings of inadequacy and social comparison.',
+        goodNote:'Specific cause: curated images → comparison → inadequacy. The examiner can follow the logic.'
+      }
     ],
-    practicePrompt: `Topic sentence: "Public transport investment reduces urban traffic congestion."\n\n→ Write the reason sentence. Use "This is because..." or "The reason for this is that..."`,
-    modelAnswer: `This is because when a city expands its bus and rail network, a significant proportion of private car users shift to public transit, directly reducing the volume of vehicles on roads.`,
+    practicePrompt:`Topic sentence: "Investment in public transport reduces urban traffic congestion."
+
+→ Write the reason sentence. Use "This is because..." — be specific about the causal mechanism.`,
+    modelAnswer:`This is because when a reliable metro or bus network exists, a significant proportion of daily commuters choose to abandon their private vehicles, directly reducing the total number of cars on city roads.`
   },
-  example: {
-    name: 'Example Sentence',
-    tag: 'LEVEL 1 · REAL-WORLD GROUNDING',
-    concept: `The <strong>example sentence</strong> makes your argument concrete. It shows the examiner that your ideas connect to the real world. IELTS does NOT require official statistics — reasonable, plausible real-world examples are perfectly acceptable. The key structure is: <strong>introduce → present the example → link it back to your point</strong>. Never drop an example without explaining what it proves.`,
-    templates: [
-      { t: 'For instance, in [country/field/context], [describe what happened or what exists], demonstrating that [link to your point].', hint: 'The safest, most complete format' },
-      { t: 'A clear example of this can be seen in [context], where [specific situation], which confirms that [your argument].', hint: 'Slightly more formal' },
-      { t: 'Consider [specific case]: [describe it briefly]. This illustrates that [your point].', hint: 'Direct and punchy' },
-      { t: 'This is evident in [specific field or location], where [evidence], proving that [claim].', hint: 'Good for policy or research contexts' },
-      { t: 'Research in [field] consistently shows that [finding], supporting the claim that [your argument].', hint: 'For academic/scientific topics' },
+  example:{
+    name:'Example Sentence',
+    tag:'LEVEL 1 · REAL-WORLD GROUNDING',
+    concept:`The <strong>example sentence</strong> grounds your argument in the real world. IELTS does NOT require statistics — plausible, realistic examples are fully acceptable. The critical rule: every example must be introduced, presented, and linked back to your point. An example that floats without a link is a Band 6 move.`,
+    templates:[
+      {t:'For instance, in [country/field], [describe the situation], demonstrating that [link to your point].',hint:'Complete format — use this by default'},
+      {t:'A clear example of this can be seen in [context], where [evidence], which confirms that [argument].',hint:'Slightly more formal'},
+      {t:'Consider [specific case]: [describe briefly]. This illustrates that [your point].',hint:'Direct and punchy'},
+      {t:'This is evident in [location/field], where [evidence], proving that [claim].',hint:'Good for policy or research contexts'},
+      {t:'Research in [field] consistently shows that [finding], supporting the claim that [argument].',hint:'For academic/scientific topics'},
     ],
-    comparisons: [
+    comparisons:[
       {
-        bad: 'For example, many countries use solar power.',
-        badNote: 'Too vague. Which countries? What scale? How does this prove your point? This is a Band 6 example.',
-        good: 'For instance, Germany\'s Energiewende policy, launched in 2000, has led to renewable energy accounting for over 40% of the country\'s electricity, demonstrating that sustained government investment can successfully transition a major economy away from fossil fuels.',
-        goodNote: 'Specific country, specific policy, specific statistic (approximate), clear link to the argument.',
-      },
+        bad:'For example, many countries use solar power.',
+        badNote:'Which countries? What scale? How does this prove your point? This is a non-example.',
+        good:'For instance, Germany\'s Energiewende policy has led to renewables accounting for over 40% of national electricity production, demonstrating that sustained government investment can successfully decarbonise a major industrial economy.',
+        goodNote:'Specific country, specific policy, specific result, clear link. This is what an example is for.'
+      }
     ],
-    practicePrompt: `Claim: "Physical education in schools improves long-term health outcomes."\n\n→ Write an example sentence. Use "For instance..." and make sure to link it back to the claim at the end.`,
-    modelAnswer: `For instance, in Finland, where schools mandate daily physical activity and structured sports programmes, national health surveys report significantly lower rates of childhood obesity compared to countries with minimal PE requirements, demonstrating that early investment in physical education yields measurable health dividends.`,
+    practicePrompt:`Claim: "Physical education in schools improves long-term health outcomes."
+
+→ Write an example sentence. Use "For instance..." and end with a link that explicitly connects the example to the claim.`,
+    modelAnswer:`For instance, in Finland, where schools mandate daily physical activity alongside structured sports programmes, national health surveys show significantly lower rates of childhood obesity compared to countries with minimal PE requirements, demonstrating that early investment in physical education produces measurable health dividends.`
   },
-  conclusion: {
-    name: 'Concluding Sentence',
-    tag: 'LEVEL 1 · PARAGRAPH CLOSURE',
-    concept: `The <strong>concluding sentence</strong> closes the paragraph by reinforcing your point and connecting back to your main argument or thesis. It signals to the examiner that the paragraph is complete and its purpose has been fulfilled. Do NOT introduce a new idea here. The concluding sentence should restate the main point in different words, then gesture toward the broader significance.`,
-    templates: [
-      { t: 'Therefore, it is clear that [restate the paragraph\'s main point in different words].', hint: 'Clean and effective' },
-      { t: 'This evidence strongly suggests that [your argument], highlighting the importance of [broader implication].', hint: 'Signals significance' },
-      { t: 'Consequently, [restate main point], reinforcing the view that [thesis-level idea].', hint: 'Connects back to thesis' },
-      { t: 'Taken together, these points demonstrate that [argument], making [position] difficult to dispute.', hint: 'Confident and assertive' },
-      { t: 'It is thus evident that [main point], which underscores [connection to thesis].', hint: 'Academic register' },
+  conclusion:{
+    name:'Concluding Sentence',
+    tag:'LEVEL 1 · PARAGRAPH CLOSURE',
+    concept:`The <strong>concluding sentence</strong> closes the paragraph by restating the main point in different words and gesturing toward its broader significance. It signals to the examiner that the paragraph has served its purpose. Rule: do not introduce a new idea here. Rule: do not just copy your topic sentence.`,
+    templates:[
+      {t:'Therefore, it is clear that [restate the main point in new words].',hint:'Clean and reliable'},
+      {t:'This evidence strongly suggests that [argument], highlighting the importance of [broader implication].',hint:'Signals significance beyond the paragraph'},
+      {t:'Consequently, [restate main point], reinforcing the view that [thesis-level idea].',hint:'Connects back to thesis'},
+      {t:'Taken together, these points demonstrate that [argument], making [position] difficult to dispute.',hint:'Confident and assertive'},
+      {t:'It is thus evident that [main point], which underscores [connection to thesis or broader context].',hint:'Academic register'},
     ],
-    comparisons: [
+    comparisons:[
       {
-        bad: 'In conclusion, renewable energy is very important for countries.',
-        badNote: 'Just repeats the topic sentence in vague language. Adds no value.',
-        good: 'Therefore, it is clear that government investment in renewable energy generates simultaneous economic and environmental benefits, making it one of the most strategically sound policies available to modern states.',
-        goodNote: 'Restates the paragraph\'s argument precisely, then adds a broader significance claim.',
-      },
+        bad:'In conclusion, renewable energy is very important for countries.',
+        badNote:'Just repeats the topic sentence in vaguer language. Adds nothing.',
+        good:'Therefore, it is clear that government investment in renewable infrastructure generates simultaneous economic and environmental returns, making it one of the most strategically rational policies available to modern states.',
+        goodNote:'Restates the argument precisely, then adds a broader significance claim. The paragraph feels complete.'
+      }
     ],
-    practicePrompt: `You have argued: "Public transport reduces pollution because it decreases car usage, which leads to lower emissions."\n\n→ Write a concluding sentence that restates this point and connects to a broader implication.`,
-    modelAnswer: `Therefore, it is clear that investment in public transport infrastructure is one of the most effective policy tools for reducing urban air pollution, with long-term benefits for both public health and environmental sustainability.`,
-  },
+    practicePrompt:`You have argued: "Public transport reduces pollution because it decreases car usage, which lowers urban emissions."
+
+→ Write a concluding sentence that restates this argument and adds a broader implication.`,
+    modelAnswer:`Therefore, it is clear that investment in public transport infrastructure is among the most cost-effective policy tools for reducing urban air pollution, with long-term benefits for both public health and environmental sustainability.`
+  }
 };
 
 const PROMPTS = [
-  { type: 'DISCUSS BOTH VIEWS', text: 'Some people believe that technology has made communication easier, while others argue it has made people less sociable. Discuss both views and give your own opinion.' },
-  { type: 'OPINION ESSAY', text: 'Some people think that university education should be free for all students. To what extent do you agree or disagree?' },
-  { type: 'PROBLEM & SOLUTION', text: 'In many cities, increasing traffic congestion is a serious problem. What are the main causes of this problem and what measures could be taken to solve it?' },
-  { type: 'OPINION ESSAY', text: 'Some people believe that governments should spend money on fast food advertising bans. Do you agree or disagree?' },
-  { type: 'TWO-PART QUESTION', text: 'The number of people who work from home has increased significantly. Why has this happened? Is this a positive or negative development?' },
+  {type:'DISCUSS BOTH VIEWS', text:'Some people believe that technology has made communication easier, while others argue it has made people less sociable. Discuss both views and give your own opinion.'},
+  {type:'OPINION ESSAY', text:'Some people think that university education should be free for all students. To what extent do you agree or disagree?'},
+  {type:'PROBLEM & SOLUTION', text:'In many cities, increasing traffic congestion is a serious problem. What are the main causes, and what measures could be taken to address them?'},
+  {type:'OPINION ESSAY', text:'Governments should ban fast food advertising. Do you agree or disagree?'},
+  {type:'TWO-PART QUESTION', text:'The number of people working from home has increased significantly. Why has this happened? Is this a positive or negative development?'},
+  {type:'OPINION ESSAY', text:'Some people believe that children should be taught to be competitive at school. Others feel cooperation is more important. Discuss both views.'},
 ];
 
-// ══════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════
-window.onload = function() {
-  renderStreak();
-  renderSkillBars();
-  loadLesson('mechanism');
-  buildWorkspace();
-  loadApiKey();
+const IDEA_ANGLES = {
+  economic:{name:'Economic',ic:'💰',
+    examples:['reduces government spending on X','creates employment in the Y sector','increases GDP through Z','raises the cost of living for low-income groups','improves trade balance by reducing imports of X']},
+  social:{name:'Social',ic:'👥',
+    examples:['strengthens community bonds through shared activity','increases inequality between groups','changes family structure and dynamics','reduces social mobility for certain populations','normalises certain behaviours over time']},
+  psychological:{name:'Psychological',ic:'🧠',
+    examples:['increases anxiety through constant comparison','reduces motivation by removing natural incentive','builds resilience through repeated challenge','creates dependency on external validation','improves self-efficacy when mastery is achieved']},
+  environmental:{name:'Environmental',ic:'🌱',
+    examples:['reduces carbon emissions from X','increases waste generation in landfills','degrades natural habitats through urbanisation','accelerates resource depletion','contributes to biodiversity loss over time']},
+  practical:{name:'Practical',ic:'⚙️',
+    examples:['saves time by automating repetitive tasks','increases convenience for remote populations','reduces commuting time and associated stress','creates logistical challenges for implementation','improves efficiency of existing systems']}
 };
 
-function renderStreak() {
-  const dots = document.getElementById('streak-dots');
-  const days = ['M','T','W','T','F','S','S'];
-  dots.innerHTML = days.map((d, i) => 
-    `<div class="streak-dot ${i < 4 ? 'done' : i === 4 ? 'today' : ''}">${d}</div>`
-  ).join('');
-  document.getElementById('streak-num').textContent = STATE.streak;
+const IDEA_BANK = {
+  technology:[
+    {idea:'Technology creates social isolation by replacing face-to-face interaction with digital communication.',angle:'social',expand:'Topic: One major drawback of digital communication is that it erodes the depth of human connection. Reason: This is because text-based exchanges lack the non-verbal cues — facial expression, tone, physical presence — that make in-person interaction emotionally meaningful. Mechanism: Specifically, when people rely primarily on messaging apps rather than meeting in person, the absence of these cues produces shallower relationships, reducing the social support available during times of stress.'},
+    {idea:'Automation displaces low-skilled workers, widening the income gap.',angle:'economic',expand:'Topic: One major economic consequence of automation is the acceleration of income inequality. Reason: This is because automated systems replace the repetitive, low-wage jobs that entry-level workers depend on most. Mechanism: Specifically, when factories or service industries automate tasks such as assembly or data entry, workers without specialist skills lose employment with few comparable alternatives available to them.'},
+    {idea:'Constant smartphone use undermines concentration and deep thinking.',angle:'psychological',expand:'Topic: One major psychological cost of smartphone dependency is the erosion of sustained attention. Reason: This is because repeated notification interruptions fragment cognitive focus before deep thinking can occur. Mechanism: Specifically, each notification triggers a brief orienting response, which — when repeated dozens of times daily — prevents the brain from entering the focused state required for complex problem-solving or creative work.'},
+  ],
+  education:[
+    {idea:'Free university education removes the financial barrier that prevents talented low-income students from attending.',angle:'social',expand:'Topic: One major benefit of free university education is its capacity to correct entrenched social inequality. Reason: This is because tuition fees act as a deterrent disproportionately affecting students from low-income backgrounds, regardless of their academic ability. Mechanism: Specifically, when fees are removed, students from disadvantaged families can enrol without accumulating debt — enabling social mobility that fee-based systems systematically block.'},
+    {idea:'Competitive schooling motivates students to develop discipline and resilience.',angle:'psychological',expand:'Topic: One key argument for competitive education is that it builds psychological resilience in children. Reason: This is because experiencing and recovering from failure within a structured academic environment teaches children that effort determines outcomes. Mechanism: Specifically, when students face graded assessments and compare results with peers, those who perform poorly are challenged to identify weaknesses and improve — a process that, over time, builds self-regulation and persistence.'},
+    {idea:'Overcrowded schools in developing countries reduce the quality of education per student.',angle:'practical',expand:'Topic: A critical obstacle to educational quality in developing nations is the problem of classroom overcrowding. Reason: This is because when teacher-to-student ratios exceed manageable levels, individualised instruction becomes impossible. Mechanism: Specifically, in classrooms with 50 or more students per teacher, educators are forced to teach at the pace of the average learner — leaving struggling students unsupported and advanced students unchallenged.'},
+  ],
+  environment:[
+    {idea:'Governments that subsidise renewable energy reduce long-term energy costs for citizens.',angle:'economic',expand:'Topic: One major economic argument for renewable energy subsidies is their capacity to reduce household energy costs over time. Reason: This is because once solar and wind infrastructure is built, the fuel source — sunlight and wind — costs nothing. Mechanism: Specifically, as renewable capacity expands and battery storage improves, the cost per kilowatt-hour falls, reducing electricity bills for consumers even after the subsidy programme ends.'},
+    {idea:'Urban green spaces improve mental health and community cohesion.',angle:'psychological',expand:'Topic: One underappreciated benefit of urban green spaces is their measurable positive effect on mental health. Reason: This is because exposure to natural environments reduces cortisol levels and interrupts the cycle of urban stress. Mechanism: Specifically, when parks and green corridors are available within walking distance, residents incorporate brief daily exposure to nature into their routines, which research consistently associates with reduced anxiety and improved mood.'},
+    {idea:'Fast fashion generates enormous textile waste that cannot be sustainably managed.',angle:'environmental',expand:'Topic: One critical environmental cost of the fast fashion industry is the scale of textile waste it produces. Reason: This is because garments designed for short-term use are discarded after minimal wear, filling landfills with synthetic fibres that decompose over centuries. Mechanism: Specifically, when synthetic materials such as polyester break down, they release microplastics into soil and groundwater, entering the food chain and accumulating in human tissue over time.'},
+  ],
+  health:[
+    {idea:'Banning fast food advertising near schools reduces childhood obesity rates.',angle:'practical',expand:'Topic: One practical policy for addressing childhood obesity is restricting fast food advertising near schools. Reason: This is because children are particularly susceptible to advertising, and repeated exposure to high-calorie food imagery normalises its consumption. Mechanism: Specifically, when advertising for processed food is removed from areas children frequent daily, the frequency of impulse requests to parents decreases — reducing household purchases of these products over time.'},
+    {idea:'Sedentary work culture increases the risk of cardiovascular disease.',angle:'psychological',expand:'Topic: One major health risk associated with modern office culture is its contribution to cardiovascular disease. Reason: This is because prolonged sitting reduces circulation, raises blood pressure, and promotes abdominal fat accumulation. Mechanism: Specifically, when workers sit for six or more hours per day without movement breaks, metabolic processes associated with fat burning slow significantly — increasing the risk of hypertension and arterial plaque formation over years.'},
+  ],
+  work:[
+    {idea:'Remote work increases productivity by eliminating commute time and office distractions.',angle:'practical',expand:'Topic: One significant benefit of remote work is its documented positive effect on employee productivity. Reason: This is because eliminating the daily commute recovers one to two hours that workers can redirect into focused effort. Mechanism: Specifically, when commute time is removed, workers arrive at their desks less fatigued and begin the working day earlier, while the absence of open-plan office noise reduces interruptions that fragment concentrated work.'},
+    {idea:'Gig economy employment undermines workers\' financial security and access to benefits.',angle:'economic',expand:'Topic: A critical drawback of gig economy employment is its systematic erosion of worker financial security. Reason: This is because gig contracts classify workers as self-employed, exempting employers from providing sick pay, pensions, or guaranteed hours. Mechanism: Specifically, when a driver or delivery worker is injured or ill, they receive no sick pay — forcing them to either work while unwell or face immediate income loss, with no safety net to bridge the gap.'},
+  ],
+};
+
+const DRILLS = [
+  {claim:'Social media causes stress in young users.',why:'users are constantly exposed to curated portrayals of others\' lives, generating social comparison and feelings of inadequacy',how:'repeated exposure → perceived inferiority → sustained cortisol elevation → chronic low-level anxiety'},
+  {claim:'Governments should invest in public transport.',why:'private car usage is a primary driver of urban air pollution and carbon emissions',how:'more investment → expanded network → commuters switch from cars → fewer vehicles on roads → lower emissions'},
+  {claim:'Free university education benefits society.',why:'removing financial barriers allows talented students from all backgrounds to enrol',how:'tuition removed → low-income students enrol → larger graduate workforce → higher average productivity → economic growth'},
+  {claim:'Screen time harms children\'s development.',why:'excessive screen use displaces physical play, social interaction, and sleep',how:'more screens → less outdoor play → reduced motor development + social skills → weaker school readiness'},
+  {claim:'Automation increases unemployment in low-skill sectors.',why:'machines can perform repetitive tasks faster and cheaper than human workers',how:'automation adopted → low-skill jobs eliminated → workers lack transferable skills → structural unemployment rises'},
+  {claim:'Urban green spaces improve mental health.',why:'natural environments reduce the physiological stress response in humans',how:'exposure to green space → cortisol decreases → reduced anxiety → improved mood and cognitive function'},
+];
+
+const SELF_CHECK_ITEMS = [
+  {sec:'📐 Structure',items:[
+    'I have a clear thesis that commits to a position',
+    'Each paragraph makes ONE clear main idea',
+    'My paragraphs follow a logical order',
+  ]},
+  {sec:'🔗 Logic',items:[
+    'I explained WHY my claim is true (not just stated it)',
+    'I explained HOW the mechanism works (the chain of events)',
+    'I did not jump from claim directly to example',
+  ]},
+  {sec:'💡 Example',items:[
+    'I gave at least one specific, realistic example',
+    'I linked the example back to my argument',
+  ]},
+  {sec:'📚 Vocabulary',items:[
+    'I avoided overused basic words (very, many, good, bad)',
+    'I used at least 2 academic or specific phrases',
+  ]},
+];
+
+// ════════════════════════════════════
+// STATE
+// ════════════════════════════════════
+const S = {
+  streak: parseInt(localStorage.getItem('streak')||'0'),
+  freezes: parseInt(localStorage.getItem('freezes')||'2'),
+  freezesUsed: parseInt(localStorage.getItem('freezesUsed')||'0'),
+  sessions: parseInt(localStorage.getItem('sessions')||'0'),
+  skillProg: JSON.parse(localStorage.getItem('skillProg')||'{"thesis":0,"topic":0,"reason":0,"mechanism":0,"example":0,"conclusion":0}'),
+  activeDays: JSON.parse(localStorage.getItem('activeDays')||'[]'),
+  activeWeek: localStorage.getItem('activeWeek')||'',
+  lastActive: localStorage.getItem('lastActive')||'',
+  doneDays: JSON.parse(localStorage.getItem('doneDays')||'[]'),
+  currentSkill: 'mechanism',
+  drillIdx: 0,
+  timer: {running:false, secs:40*60, iv:null},
+  drillTimer: {iv:null, secs:180},
+  ideaList: [],
+  checkStates: {},
+  bankTopic: 'technology',
+};
+
+// ════════════════════════════════════
+// STREAK SYSTEM
+// ════════════════════════════════════
+function getWeekKey(){
+  const d=new Date(), j=new Date(d.getFullYear(),0,1);
+  return d.getFullYear()+'-W'+Math.ceil(((d-j)/864e5+j.getDay()+1)/7);
 }
 
-function renderSkillBars() {
-  const skills = [
-    { name: 'Thesis', key: 'thesis', color: '#7c6fff' },
-    { name: 'Topic', key: 'topic', color: '#4cc9f0' },
-    { name: 'Reason', key: 'reason', color: '#06d6a0' },
-    { name: 'Mechanism', key: 'mechanism', color: '#ffd166' },
-    { name: 'Example', key: 'example', color: '#ff6b6b' },
-    { name: 'Conclusion', key: 'conclusion', color: '#ff6b6b' },
-  ];
-  document.getElementById('skill-bars').innerHTML = skills.map(s => `
-    <div class="bar-row">
-      <div class="bar-name">${s.name}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${STATE.skillProgress[s.key]}%; background:${s.color}"></div></div>
-      <div class="bar-pct">${STATE.skillProgress[s.key]}%</div>
-    </div>
-  `).join('');
+function markDone(){
+  const today = new Date().toDateString();
+  const todayIdx = (new Date().getDay()+6)%7;
+  const thisWeek = getWeekKey();
 
-  document.getElementById('freq-chart').innerHTML = `
-    <div style="margin-top:12px">
-      ${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map((d,i) => {
-        const h = [30,60,90,45,80,20,0][i];
-        return `<div class="bar-row">
-          <div class="bar-name">${d}</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${h}%; background:var(--accent2)"></div></div>
-          <div class="bar-pct">${h ? h+'m' : '—'}</div>
-        </div>`;
-      }).join('')}
-    </div>
-  `;
-}
-
-// ══════════════════════════════════════════════
-// NAVIGATION
-// ══════════════════════════════════════════════
-function showPage(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  
-  const titles = { dashboard: 'Dashboard', path: 'Learning Path', lessons: 'Lessons', workspace: 'Writing Lab', review: 'Review Queue', analytics: 'Analytics' };
-  document.getElementById('page-title').textContent = titles[page] || page;
-
-  if (page === 'workspace') {
-    document.getElementById('workspace-full').style.display = 'block';
-    document.getElementById('page-workspace').classList.add('active');
-  } else {
-    document.getElementById('workspace-full').style.display = 'none';
-    const el = document.getElementById('page-' + page);
-    if (el) el.classList.add('active');
+  // Reset week dots if new week
+  if(S.activeWeek !== thisWeek){
+    S.activeDays=[];
+    S.activeWeek=thisWeek;
+    localStorage.setItem('activeWeek',thisWeek);
   }
 
-  const navItems = document.querySelectorAll('.nav-item');
-  navItems.forEach(n => {
-    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes(`'${page}'`)) {
-      n.classList.add('active');
+  // Mark day active (dots)
+  if(!S.activeDays.includes(todayIdx)){
+    S.activeDays.push(todayIdx);
+    localStorage.setItem('activeDays',JSON.stringify(S.activeDays));
+  }
+
+  // Increment streak only once per calendar day
+  if(S.lastActive !== today){
+    const yest = new Date(); yest.setDate(yest.getDate()-1);
+    const yestStr = yest.toDateString();
+    if(!S.lastActive || S.lastActive === yestStr){
+      S.streak++;
+    } else {
+      S.streak=1; // broken — reset
     }
+    S.lastActive=today;
+    localStorage.setItem('lastActive',today);
+    localStorage.setItem('streak',S.streak);
+  }
+
+  S.sessions++;
+  localStorage.setItem('sessions',S.sessions);
+  document.getElementById('d-sessions').textContent=S.sessions;
+
+  renderStreak();
+  toast('🔥 Done. Streak: '+S.streak+' day'+(S.streak!==1?'s':''),'ok');
+}
+
+function useFreeze(){
+  if(S.freezesUsed>=2){toast('No freezes left','err');return}
+  const today=new Date().toDateString();
+  const todayIdx=(new Date().getDay()+6)%7;
+  const thisWeek=getWeekKey();
+  if(S.activeWeek!==thisWeek){S.activeDays=[];S.activeWeek=thisWeek;localStorage.setItem('activeWeek',thisWeek)}
+
+  // Mark today as "hit" without incrementing streak count
+  if(!S.activeDays.includes(todayIdx)){
+    S.activeDays.push(todayIdx);
+    localStorage.setItem('activeDays',JSON.stringify(S.activeDays));
+  }
+  if(S.lastActive!==today){
+    S.lastActive=today;
+    localStorage.setItem('lastActive',today);
+    // Don't increment streak, just don't break it
+  }
+
+  S.freezesUsed++;
+  localStorage.setItem('freezesUsed',S.freezesUsed);
+  renderStreak();
+  toast('❄️ Freeze used. Streak protected. '+(2-S.freezesUsed)+' left.','ok');
+}
+
+function renderStreak(){
+  document.getElementById('s-num').textContent=S.streak;
+  const days=['M','T','W','T','F','S','S'];
+  const todayIdx=(new Date().getDay()+6)%7;
+  document.getElementById('s-dots').innerHTML=days.map((d,i)=>{
+    const hit=S.activeDays.includes(i);
+    const cls=hit&&i===todayIdx?'now':hit?'hit':'';
+    return `<div class="sd ${cls}">${d}</div>`;
+  }).join('');
+  const used=S.freezesUsed;
+  document.getElementById('freeze-count').textContent=`${2-used} / 2 left`;
+  document.getElementById('freeze-btn').disabled=used>=2;
+  document.getElementById('d-days').textContent=S.streak;
+}
+
+// ════════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════════
+const PAGE_LABELS={dashboard:'Dashboard',path:'30-Day Path',lessons:'Sentence Skills','idea-lab':'Idea Lab',drills:'WHY/HOW Drills','idea-bank':'Idea Bank',workspace:'Writing Lab',review:'Review Queue'};
+
+function go(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('on'));
+  document.getElementById('pg-title').textContent=PAGE_LABELS[page]||page;
+
+  if(page==='workspace'){
+    document.getElementById('ws-overlay').style.display='block';
+    document.getElementById('pg-workspace').classList.add('on');
+    wsInit();
+  } else {
+    document.getElementById('ws-overlay').style.display='none';
+    const el=document.getElementById('pg-'+page);
+    if(el) el.classList.add('on');
+  }
+
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    const oc=n.getAttribute('onclick')||'';
+    if(oc.includes(`'${page}'`)) n.classList.add('on');
   });
 }
 
-// ══════════════════════════════════════════════
-// LESSON SYSTEM
-// ══════════════════════════════════════════════
-function loadLesson(skill) {
-  STATE.currentSkill = skill;
-  const lesson = LESSONS[skill];
-  if (!lesson) return;
+function switchTab(id, page){
+  const parent=document.getElementById('pg-'+page)||document.getElementById('ws-overlay');
+  parent.querySelectorAll('.tc').forEach(t=>t.classList.remove('on'));
+  parent.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  const el=document.getElementById('tc-'+id);
+  if(el) el.classList.add('on');
+  // Find matching tab button
+  parent.querySelectorAll('.tab').forEach(t=>{
+    if(t.getAttribute('onclick')&&t.getAttribute('onclick').includes(`'${id}'`)) t.classList.add('on');
+  });
+}
 
-  showPage('lessons');
-  document.getElementById('lesson-tag').textContent = lesson.tag;
-  document.getElementById('lesson-title').textContent = lesson.name;
-  document.getElementById('concept-text').innerHTML = lesson.concept;
+// ════════════════════════════════════
+// INIT
+// ════════════════════════════════════
+window.onload=function(){
+  renderStreak();
+  buildDashSkills();
+  buildPath();
+  buildSkillNav();
+  loadLesson('mechanism');
+  buildReview();
+  loadDrills();
+  renderIdeaBank('technology');
+  renderBankTopics();
+  wsInitPromptSel();
+  renderExpandPrompt();
+  document.getElementById('d-sessions').textContent=S.sessions;
+  document.getElementById('d-skills').innerHTML=Object.values(S.skillProg).filter(v=>v>=80).length+'<span style="font-size:16px;color:var(--t2)">/6</span>';
+};
+
+// ════════════════════════════════════
+// DASHBOARD
+// ════════════════════════════════════
+function buildDashSkills(){
+  const order=['thesis','topic','reason','mechanism','example','conclusion'];
+  const icons={thesis:'🎯',topic:'📌',reason:'❓',mechanism:'⚙️',example:'💡',conclusion:'✅'};
+  document.getElementById('dash-skills').innerHTML=order.map(k=>`
+    <div class="skill-row ${S.skillProg[k]>=80?'done':''}" onclick="loadLesson('${k}');go('lessons')">
+      <div class="skill-ic">${icons[k]}</div>
+      <div class="skill-info">
+        <div class="skill-name">${LESSONS[k].name}</div>
+        <div class="prog-bar"><div class="prog-fill" style="width:${S.skillProg[k]}%"></div></div>
+      </div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--t2)">${S.skillProg[k]}%</div>
+    </div>`).join('');
+}
+
+// ════════════════════════════════════
+// PATH
+// ════════════════════════════════════
+function buildPath(){
+  const phases=[{id:'dg-1',days:[1,10]},{id:'dg-2',days:[11,18]},{id:'dg-3',days:[19,24]},{id:'dg-4',days:[25,30]}];
+  phases.forEach(ph=>{
+    let html='';
+    for(let d=ph.days[0];d<=ph.days[1];d++){
+      const done=S.doneDays.includes(d);
+      const now=d===5;
+      const lock=d>10&&!done;
+      html+=`<div class="dc ${done?'done':now?'now':lock?'lock':''}" onclick="handleDayClick(${d})">${d}</div>`;
+    }
+    document.getElementById(ph.id).innerHTML=html;
+  });
+}
+function handleDayClick(d){go('lessons')}
+
+// ════════════════════════════════════
+// LESSONS
+// ════════════════════════════════════
+function buildSkillNav(){
+  const skills=[['mechanism','⚙️'],['thesis','🎯'],['topic','📌'],['reason','❓'],['example','💡'],['conclusion','✅']];
+  document.getElementById('skill-nav').innerHTML=skills.map(([k,ic])=>`
+    <div class="topic-btn ${k===S.currentSkill?'on':''}" onclick="loadLesson('${k}')">${ic} ${LESSONS[k].name.split(' ')[0]}</div>`).join('');
+}
+
+function loadLesson(skill){
+  S.currentSkill=skill;
+  const L=LESSONS[skill];
+  document.getElementById('l-tag').textContent=L.tag;
+  document.getElementById('l-title').textContent=L.name;
+  document.getElementById('l-concept').innerHTML=L.concept;
 
   // Templates
-  document.getElementById('templates-list').innerHTML = lesson.templates.map(t => `
-    <div class="template-box" onclick="copyTemplate(this)" title="Click to copy">
-      ${t.t.replace(/\[([^\]]+)\]/g, '<span class="blank">[$1]</span>')}
-      <div class="template-hint">💡 ${t.hint}</div>
-    </div>
-  `).join('');
+  document.getElementById('l-templates').innerHTML=L.templates.map(t=>`
+    <div class="tpl" onclick="copyTpl(this)">
+      ${t.t.replace(/\[([^\]]+)\]/g,'<span class="slot">[$1]</span>')}
+      <div class="tpl-hint">→ ${t.hint}</div>
+    </div>`).join('');
 
   // Comparisons
-  document.getElementById('comparisons-list').innerHTML = lesson.comparisons.map(c => `
-    <div class="comparison">
-      <div class="comp-col bad">
-        <div class="comp-header">❌ Band 6 — Weak</div>
-        <div class="comp-text">${c.bad}</div>
-        <div class="comp-note">${c.badNote}</div>
+  document.getElementById('l-comparisons').innerHTML=L.comparisons.map(c=>`
+    <div class="cmp">
+      <div class="cmp-col cmp-bad">
+        <div class="cmp-hd">❌ Band 6 — Weak</div>
+        <div class="cmp-txt">${c.bad}</div>
+        <div class="cmp-note">${c.badNote}</div>
       </div>
-      <div class="comp-col good">
-        <div class="comp-header">✅ Band 7 — Strong</div>
-        <div class="comp-text">${c.good}</div>
-        <div class="comp-note">${c.goodNote}</div>
+      <div class="cmp-col cmp-good">
+        <div class="cmp-hd">✅ Band 7 — Strong</div>
+        <div class="cmp-txt">${c.good}</div>
+        <div class="cmp-note">${c.goodNote}</div>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 
   // Practice
-  document.getElementById('practice-prompt').innerHTML = lesson.practicePrompt.replace(/\n/g, '<br>');
-  document.getElementById('practice-input').value = '';
-  document.getElementById('practice-feedback-area').innerHTML = '';
+  document.getElementById('l-practice-prompt').innerHTML=L.practicePrompt.replace(/\n/g,'<br>');
+  document.getElementById('l-practice-input').value='';
+  document.getElementById('l-model-area').innerHTML='';
 
-  // Update sub-nav
-  document.querySelectorAll('.sub-nav-item').forEach(item => {
-    item.classList.toggle('active', item.textContent.toLowerCase().includes(skill) || 
-      (skill === 'mechanism' && item.textContent.includes('⚙')) ||
-      (skill === 'thesis' && item.textContent.includes('🎯')) ||
-      (skill === 'topic' && item.textContent.includes('📌')) ||
-      (skill === 'reason' && item.textContent.includes('❓')) ||
-      (skill === 'example' && item.textContent.includes('💡')) ||
-      (skill === 'conclusion' && item.textContent.includes('✅'))
-    );
+  // Self-check for lesson
+  buildLessonChecklist();
+
+  // Update nav
+  document.querySelectorAll('#skill-nav .topic-btn').forEach(b=>{
+    b.classList.toggle('on', b.getAttribute('onclick')&&b.getAttribute('onclick').includes(`'${skill}'`));
   });
 
-  switchTab('learn');
+  switchTab('learn','lessons');
 }
 
-function switchSkill(skill) {
-  loadLesson(skill);
+function copyTpl(el){
+  const text=el.textContent.replace(/→.*$/,'').trim();
+  navigator.clipboard.writeText(text).catch(()=>{});
+  toast('Template copied','ok');
 }
 
-function switchTab(tab) {
-  STATE.currentTab = tab;
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.lesson-tab').forEach(t => t.classList.remove('active'));
-
-  const tabMap = { learn: 0, compare: 1, practice: 2, 'ai-check': 3 };
-  const tabs = document.querySelectorAll('.lesson-tab');
-  if (tabs[tabMap[tab]]) tabs[tabMap[tab]].classList.add('active');
-
-  const content = document.getElementById('tab-' + tab);
-  if (content) content.classList.add('active');
+function showModel(){
+  document.getElementById('l-model-area').innerHTML=`
+    <div class="card" style="margin-top:12px;border-color:var(--gr)">
+      <div class="sect-label">Model Answer (Band 7–8)</div>
+      <div style="font-size:13px;line-height:1.7;font-style:italic;color:var(--t2)">${LESSONS[S.currentSkill].modelAnswer}</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:8px">Compare: is your chain of logic as explicit? Are your examples as specific?</div>
+    </div>`;
 }
 
-function copyTemplate(el) {
-  const text = el.textContent.replace(/💡.*$/, '').trim();
-  navigator.clipboard.writeText(text).catch(() => {});
-  showToast('Template copied to clipboard', 'success');
-}
-
-// ══════════════════════════════════════════════
-// WORKSPACE
-// ══════════════════════════════════════════════
-function buildWorkspace() {
-  // Set initial prompt
-  changePrompt();
-}
-
-function changePrompt() {
-  const idx = parseInt(document.getElementById('prompt-select').value);
-  const p = PROMPTS[idx];
-  document.getElementById('prompt-text').textContent = p.text;
-  document.getElementById('prompt-badge').textContent = p.type;
-}
-
-function updateWordCount() {
-  const text = document.getElementById('essay-editor').value.trim();
-  const words = text ? text.split(/\s+/).length : 0;
-  document.getElementById('wc').textContent = words;
-}
-
-function updateChecklist() {
-  const text = document.getElementById('essay-editor').value.toLowerCase();
-  const check = (id, condition) => {
-    document.getElementById(id).textContent = (condition ? '☑' : '☐') + document.getElementById(id).textContent.slice(1);
-  };
-  check('check-intro', text.length > 50 && (text.includes('believe') || text.includes('argue') || text.includes('essay') || text.includes('view')));
-  check('check-body1', text.includes('one major') || text.includes('firstly') || text.includes('one reason') || text.includes('specifically'));
-  check('check-body2', text.includes('furthermore') || text.includes('additionally') || text.includes('another') || text.includes('secondly'));
-  check('check-conc', text.includes('conclusion') || text.includes('therefore') || text.includes('in summary') || text.includes('to conclude'));
-}
-
-function clearEssay() {
-  if (confirm('Clear the essay editor?')) {
-    document.getElementById('essay-editor').value = '';
-    updateWordCount();
-    document.getElementById('feedback-panel').innerHTML = `
-      <div class="feedback-waiting">
-        <div class="icon">✦</div>
-        <p>Write at least 50 words, then click <strong>Get AI Feedback</strong>.</p>
-      </div>`;
-  }
-}
-
-function saveDraft() {
-  const text = document.getElementById('essay-editor').value;
-  localStorage.setItem('draft_' + STATE.draftNum, text);
-  showToast('Draft saved ✓', 'success');
-  STATE.essays++;
-  document.getElementById('stat-essays').textContent = STATE.essays;
-  localStorage.setItem('essays', STATE.essays);
-}
-
-// ══════════════════════════════════════════════
-// TIMER
-// ══════════════════════════════════════════════
-function toggleTimer() {
-  if (STATE.timerRunning) {
-    clearInterval(STATE.timerInterval);
-    STATE.timerRunning = false;
-    document.getElementById('timer-toggle-btn').textContent = '▶ Resume';
-  } else {
-    STATE.timerRunning = true;
-    document.getElementById('timer-toggle-btn').textContent = '⏸ Pause';
-    STATE.timerInterval = setInterval(() => {
-      STATE.timerSeconds--;
-      if (STATE.timerSeconds <= 0) {
-        clearInterval(STATE.timerInterval);
-        STATE.timerRunning = false;
-        document.getElementById('timer-toggle-btn').textContent = '▶ Start';
-        showToast('⏰ Time is up! Your essay is complete.', 'success');
-      }
-      const m = Math.floor(STATE.timerSeconds / 60);
-      const s = STATE.timerSeconds % 60;
-      document.getElementById('timer-val').textContent = `${m}:${s.toString().padStart(2,'0')}`;
-      if (STATE.timerSeconds <= 300) document.getElementById('timer-val').style.color = 'var(--warn)';
-    }, 1000);
-  }
-}
-
-function resetTimer() {
-  clearInterval(STATE.timerInterval);
-  STATE.timerRunning = false;
-  STATE.timerSeconds = 40 * 60;
-  document.getElementById('timer-val').textContent = '40:00';
-  document.getElementById('timer-val').style.color = 'var(--gold)';
-  document.getElementById('timer-toggle-btn').textContent = '▶ Start';
-}
-
-function loadDay(n) {
-  showPage('lessons');
-  showToast(`Loading Day ${n} content...`, 'success');
-}
-
-// ══════════════════════════════════════════════
-// AI FEEDBACK (Anthropic API)
-// ══════════════════════════════════════════════
-function getApiKey() {
-  return localStorage.getItem('anthropic_key') || '';
-}
-
-async function callClaude(systemPrompt, userMessage) {
-  const key = getApiKey();
-  if (!key) {
-    showToast('Please add your Anthropic API key in Settings ⚙', 'error');
-    openSettings();
-    return null;
-  }
-
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': key,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userMessage }],
-    }),
-  });
-
-  if (!response.ok) {
-    const err = await response.json();
-    showToast('API error: ' + (err.error?.message || response.status), 'error');
-    return null;
-  }
-
-  const data = await response.json();
-  return data.content[0].text;
-}
-
-async function getFeedback() {
-  const essay = document.getElementById('essay-editor').value.trim();
-  if (essay.length < 50) { showToast('Write at least 50 words first', 'error'); return; }
-
-  const btn = document.getElementById('feedback-btn');
-  btn.disabled = true;
-  btn.textContent = 'Analysing...';
-
-  const panel = document.getElementById('feedback-panel');
-  panel.innerHTML = `<div class="loading-feedback">
-    <div class="skeleton" style="width:60%; height:10px"></div>
-    <div class="skeleton" style="width:90%"></div>
-    <div class="skeleton" style="width:75%"></div>
-    <div class="skeleton" style="width:85%"></div>
-    <div class="skeleton" style="width:55%; height:10px; margin-top:12px"></div>
-    <div class="skeleton" style="width:80%"></div>
-    <div class="skeleton" style="width:90%"></div>
-  </div>`;
-
-  const system = `You are an expert IELTS Writing examiner. Give concise, actionable feedback structured as JSON with these keys:
-- band: estimated band score (number, e.g. 6.5)
-- structure: one paragraph on paragraph structure (thesis, topic sentences, mechanism sentences)
-- vocab: one paragraph on vocabulary and academic phrases
-- logic: one paragraph on argument development and logical flow
-- topSuggestion: the single most important thing to improve (1 sentence)
-Respond ONLY with valid JSON.`;
-
-  const result = await callClaude(system, `Essay prompt: "${document.getElementById('prompt-text').textContent}"\n\nStudent essay:\n${essay}`);
-
-  btn.disabled = false;
-  btn.textContent = '✦ Get AI Feedback';
-
-  if (!result) return;
-
-  let data;
-  try {
-    data = JSON.parse(result.replace(/```json|```/g, '').trim());
-  } catch {
-    panel.innerHTML = `<div class="feedback-block"><div class="fb-label">Analysis</div>${result}</div>`;
-    return;
-  }
-
-  panel.innerHTML = `
-    <div class="feedback-block fb-overall">
-      <div class="fb-label">⭐ Estimated Band</div>
-      <div class="fb-band">${data.band}</div>
-      <div style="font-size:12px; color:var(--text2); text-align:center">Keep pushing → 7.5 target</div>
-    </div>
-    <div class="feedback-block fb-structure">
-      <div class="fb-label">📐 Structure</div>
-      <div>${data.structure}</div>
-    </div>
-    <div class="feedback-block fb-vocab">
-      <div class="fb-label">📚 Vocabulary</div>
-      <div>${data.vocab}</div>
-    </div>
-    <div class="feedback-block fb-logic">
-      <div class="fb-label">🔗 Logic & Flow</div>
-      <div>${data.logic}</div>
-    </div>
-    <div class="feedback-block" style="border-left:2px solid var(--gold)">
-      <div class="fb-label" style="color:var(--gold)">⚡ Top Priority</div>
-      <div>${data.topSuggestion}</div>
-    </div>
-    <button class="btn btn-secondary btn-sm btn-full" style="margin-top:8px" onclick="saveDraft()">💾 Save this essay</button>
-  `;
-
-  // Update streak
-  STATE.streak++;
-  document.getElementById('streak-num').textContent = STATE.streak;
-  localStorage.setItem('streak', STATE.streak);
-  showToast('🔥 Streak updated! Keep going.', 'success');
-}
-
-async function checkPractice() {
-  const text = document.getElementById('practice-input').value.trim();
-  if (!text) { showToast('Write your practice sentence first', 'error'); return; }
-
-  const area = document.getElementById('practice-feedback-area');
-  area.innerHTML = `<div class="feedback-block"><div class="fb-label">Checking...</div><div class="loading-feedback"><div class="skeleton"></div><div class="skeleton" style="width:75%"></div></div></div>`;
-
-  const lesson = LESSONS[STATE.currentSkill];
-  const system = `You are an IELTS examiner. The student is practising writing a "${lesson.name}". 
-Give concise feedback as JSON with keys: rating (1-5 stars), strength (one sentence on what's good), improvement (one sentence on main issue), revised (a rewritten version of their sentence at Band 7 level).
-Respond ONLY with valid JSON.`;
-
-  const result = await callClaude(system, `Context: ${lesson.practicePrompt}\n\nStudent sentence: ${text}`);
-  if (!result) { area.innerHTML = ''; return; }
-
-  let data;
-  try { data = JSON.parse(result.replace(/```json|```/g, '').trim()); }
-  catch { area.innerHTML = `<div class="feedback-block">${result}</div>`; return; }
-
-  const stars = '★'.repeat(Math.round(data.rating)) + '☆'.repeat(5 - Math.round(data.rating));
-  area.innerHTML = `
-    <div class="feedback-block fb-overall" style="margin-top:16px">
-      <div class="fb-label">Result</div>
-      <div style="font-size:22px; color:var(--gold); margin:6px 0">${stars}</div>
-      <div style="font-size:13px; margin-bottom:8px; color:var(--accent3)">✓ ${data.strength}</div>
-      <div style="font-size:13px; color:var(--warn)">⚡ ${data.improvement}</div>
-    </div>
-    <div class="feedback-block fb-logic">
-      <div class="fb-label">Band 7 Version</div>
-      <div style="font-style:italic">${data.revised}</div>
-    </div>
-  `;
-
-  // Update skill progress
-  const key = STATE.currentSkill;
-  STATE.skillProgress[key] = Math.min(100, STATE.skillProgress[key] + 10);
-  localStorage.setItem('skillProgress', JSON.stringify(STATE.skillProgress));
-  document.getElementById('stat-skills').textContent = Object.values(STATE.skillProgress).filter(v => v >= 80).length;
-}
-
-function showModel() {
-  const lesson = LESSONS[STATE.currentSkill];
-  document.getElementById('practice-feedback-area').innerHTML = `
-    <div class="feedback-block fb-logic" style="margin-top:16px">
-      <div class="fb-label">📖 Model Answer (Band 7–8)</div>
-      <div style="font-style:italic; line-height:1.7">${lesson.modelAnswer}</div>
-      <div class="comp-note">Compare your sentence structure to this. Focus on the logical chain and specificity.</div>
-    </div>
-  `;
-}
-
-async function analyzeText() {
-  const text = document.getElementById('ai-check-input').value.trim();
-  if (!text) { showToast('Paste your text first', 'error'); return; }
-
-  const result_area = document.getElementById('ai-check-result');
-  result_area.innerHTML = `<div class="concept-card"><div class="loading-feedback"><div class="skeleton"></div><div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:60%"></div></div></div>`;
-
-  const system = `You are an expert IELTS Writing coach. Analyse the student's writing and identify:
-1. Which of the 6 sentence types are present: Thesis, Topic, Reason (WHY), Mechanism (HOW), Example, Conclusion
-2. Which are missing
-3. Specific improvement for the weakest area
-Format response as JSON: { present: [list], missing: [list], analysis: "2-3 sentences", keyFix: "one actionable instruction" }
-Respond ONLY with valid JSON.`;
-
-  const result = await callClaude(system, text);
-  if (!result) { result_area.innerHTML = ''; return; }
-
-  let data;
-  try { data = JSON.parse(result.replace(/```json|```/g, '').trim()); }
-  catch { result_area.innerHTML = `<div class="concept-card">${result}</div>`; return; }
-
-  result_area.innerHTML = `
-    <div class="concept-card" style="margin-top:16px">
-      <div class="concept-label">✅ Sentence Types Found</div>
-      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px">
-        ${(data.present || []).map(s => `<span style="background:rgba(6,214,160,0.15); border:1px solid rgba(6,214,160,0.4); padding:4px 10px; border-radius:20px; font-size:11px; color:var(--accent3)">${s}</span>`).join('')}
-      </div>
-      <div class="concept-label">❌ Missing Types</div>
-      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px">
-        ${(data.missing || []).map(s => `<span style="background:rgba(255,107,107,0.1); border:1px solid rgba(255,107,107,0.3); padding:4px 10px; border-radius:20px; font-size:11px; color:var(--warn)">${s}</span>`).join('')}
-      </div>
-      <div class="concept-label">📊 Analysis</div>
-      <div style="font-size:13px; line-height:1.6; margin-bottom:12px">${data.analysis}</div>
-      <div style="background:rgba(124,111,255,0.1); border:1px solid rgba(124,111,255,0.3); padding:12px; border-radius:8px; font-size:13px">
-        <strong style="color:var(--accent)">⚡ Key Fix:</strong> ${data.keyFix}
-      </div>
-    </div>
-  `;
-}
-
-function clearAnalysis() {
-  document.getElementById('ai-check-input').value = '';
-  document.getElementById('ai-check-result').innerHTML = '';
-}
-
-async function reviewSubmit(btn) {
-  const card = btn.closest('.review-card');
-  const textarea = card.querySelector('textarea');
-  const text = textarea.value.trim();
-  if (!text) { showToast('Write your answer first', 'error'); return; }
-
-  btn.disabled = true;
-  btn.textContent = 'Checking...';
-
-  const prompt = card.querySelector('.review-prompt').textContent;
-  const system = `You are an IELTS examiner. Rate this review answer briefly. JSON: { stars: 1-5, feedback: "2 sentences max" }`;
-  const result = await callClaude(system, `Task: ${prompt}\nAnswer: ${text}`);
-
-  btn.disabled = false;
-  btn.textContent = 'Submit';
-
-  if (!result) return;
-  try {
-    const data = JSON.parse(result.replace(/```json|```/g, '').trim());
-    const stars = '★'.repeat(data.stars) + '☆'.repeat(5-data.stars);
-    showToast(`${stars} ${data.feedback}`, data.stars >= 4 ? 'success' : 'error');
-  } catch {
-    showToast('Reviewed ✓', 'success');
-  }
-}
-
-function revealAnswer(btn) {
-  const card = btn.closest('.review-card');
-  const existing = card.querySelector('.reveal-answer');
-  if (existing) { existing.remove(); return; }
-  
-  const answers = [
-    'Specifically, when commuters switch from private cars to buses and trains, fewer vehicles emit exhaust fumes on city roads, which directly reduces particulate matter and carbon dioxide levels in urban air.',
-    'One major reason why technology enhances sociability is that video calling platforms enable people to maintain close, meaningful relationships with friends and family across vast geographic distances.',
-    'I strongly believe that fast food advertising directed at children should be banned, as such marketing exploits cognitive vulnerabilities in young audiences and directly contributes to rising rates of childhood obesity.',
+function buildLessonChecklist(){
+  const items=[
+    'I read the concept and can explain it in my own words',
+    'I studied both the Band 6 and Band 7 examples',
+    'I identified exactly what makes the Band 7 version stronger',
+    'I wrote a practice sentence using a template',
+    'I compared my sentence to the model answer and noted the gap',
   ];
-  
-  const index = Array.from(document.querySelectorAll('.review-card')).indexOf(card);
-  const div = document.createElement('div');
-  div.className = 'reveal-answer feedback-block fb-logic';
-  div.style.marginTop = '12px';
-  div.innerHTML = `<div class="fb-label">Model Answer</div><div style="font-style:italic">${answers[index] || 'Model answer: build a clear logical chain using the templates you learned.'}</div>`;
-  card.appendChild(div);
+  S.checkStates={};
+  document.getElementById('lesson-checklist').innerHTML=items.map((item,i)=>`
+    <div class="check-item" id="lci-${i}" onclick="toggleLessonCheck(${i})">
+      <div class="check-box" id="lcb-${i}"></div>
+      ${item}
+    </div>`).join('');
+  updateLessonTally();
 }
 
-// ══════════════════════════════════════════════
-// SETTINGS
-// ══════════════════════════════════════════════
-function openSettings() {
-  document.getElementById('settings-modal').classList.add('open');
-  document.getElementById('api-key-input').value = getApiKey();
+function toggleLessonCheck(i){
+  S.checkStates[i]=!S.checkStates[i];
+  document.getElementById('lci-'+i).classList.toggle('checked',S.checkStates[i]);
+  document.getElementById('lcb-'+i).textContent=S.checkStates[i]?'✓':'';
+  updateLessonTally();
 }
 
-function closeSettings() {
-  document.getElementById('settings-modal').classList.remove('open');
+function updateLessonTally(){
+  const checked=Object.values(S.checkStates).filter(Boolean).length;
+  const total=5;
+  document.getElementById('check-tally').textContent=`${checked} / ${total} checked`;
+  document.getElementById('lesson-done-btn').disabled=checked<total;
 }
 
-function saveKey() {
-  const key = document.getElementById('api-key-input').value.trim();
-  localStorage.setItem('anthropic_key', key);
-  closeSettings();
-  showToast('API key saved ✓', 'success');
+function completLesson(){
+  S.skillProg[S.currentSkill]=Math.min(100,S.skillProg[S.currentSkill]+20);
+  localStorage.setItem('skillProg',JSON.stringify(S.skillProg));
+  document.getElementById('d-skills').innerHTML=Object.values(S.skillProg).filter(v=>v>=80).length+'<span style="font-size:16px;color:var(--t2)">/6</span>';
+  buildDashSkills();
+  markDone();
 }
 
-function loadApiKey() {
-  const key = localStorage.getItem('anthropic_key');
-  if (!key) setTimeout(() => showToast('Add your API key in Settings to enable AI feedback ⚙', 'error'), 1500);
+// ════════════════════════════════════
+// IDEA LAB
+// ════════════════════════════════════
+const ANGLE_DETAIL={
+  economic:{label:'ECONOMIC ANGLE',content:`<div style="font-size:13px;line-height:1.7;margin-bottom:12px">Use this angle when your argument is about <strong>money, cost, jobs, trade, or financial impact</strong>. It is one of the strongest angles for IELTS because it is concrete and measurable.</div><div class="sect-label">Example ideas</div>${['Reduces government spending on healthcare','Creates employment in manufacturing','Increases the cost of living for low-income households','Improves trade balance by reducing fuel imports','Drives economic growth through innovation'].map(e=>`<div style="font-size:12px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b)">${e}</div>`).join('')}`},
+  social:{label:'SOCIAL ANGLE',content:`<div style="font-size:13px;line-height:1.7;margin-bottom:12px">Use this angle when your argument is about <strong>people, communities, relationships, behaviour, or social structures</strong>.</div><div class="sect-label">Example ideas</div>${['Weakens community bonds through isolation','Changes family dynamics and roles','Increases social inequality between groups','Normalises harmful behaviours over time','Creates new forms of social connection'].map(e=>`<div style="font-size:12px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b)">${e}</div>`).join('')}`},
+  psychological:{label:'PSYCHOLOGICAL ANGLE',content:`<div style="font-size:13px;line-height:1.7;margin-bottom:12px">Use this angle when your argument is about <strong>emotions, mental health, motivation, stress, or cognitive effects</strong>. Particularly strong for technology, education, and social media topics.</div><div class="sect-label">Example ideas</div>${['Increases anxiety through comparison','Reduces intrinsic motivation','Builds resilience through challenge','Creates dependency on external validation','Impairs concentration and deep thinking'].map(e=>`<div style="font-size:12px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b)">${e}</div>`).join('')}`},
+  environmental:{label:'ENVIRONMENTAL ANGLE',content:`<div style="font-size:13px;line-height:1.7;margin-bottom:12px">Use this angle when your argument is about <strong>nature, climate, pollution, sustainability, or resources</strong>.</div><div class="sect-label">Example ideas</div>${['Reduces carbon emissions from transportation','Increases waste in landfills','Degrades natural habitats through urbanisation','Accelerates resource depletion','Contributes to biodiversity loss'].map(e=>`<div style="font-size:12px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b)">${e}</div>`).join('')}`},
+  practical:{label:'PRACTICAL ANGLE',content:`<div style="font-size:13px;line-height:1.7;margin-bottom:12px">Use this angle when your argument is about <strong>time, convenience, efficiency, logistics, or everyday life</strong>. Good when other angles feel abstract.</div><div class="sect-label">Example ideas</div>${['Saves time by automating repetitive tasks','Increases convenience for remote populations','Creates logistical challenges for implementation','Reduces commuting time and stress','Improves efficiency of existing systems'].map(e=>`<div style="font-size:12px;color:var(--t2);padding:4px 0;border-bottom:1px solid var(--b)">${e}</div>`).join('')}`},
+};
+
+function selectAngle(el,name){
+  document.querySelectorAll('.angle-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  const d=document.getElementById('angle-detail');
+  const det=ANGLE_DETAIL[name];
+  if(!det){d.style.display='none';return}
+  document.getElementById('angle-detail-label').textContent=det.label;
+  document.getElementById('angle-detail-content').innerHTML=det.content;
+  d.style.display='block';
 }
 
-function setTarget(band) {
-  document.querySelector('.band-badge').textContent = `🎯 Target: Band ${band}`;
-  showToast(`Target set to Band ${band}`, 'success');
-  closeSettings();
+const EXPAND_PROMPTS=[
+  'Social media is harmful to society',
+  'Governments should invest in renewable energy',
+  'University education should be free',
+  'Technology is making people less sociable',
+  'Fast food advertising should be banned',
+];
+function renderExpandPrompt(){
+  const i=parseInt(document.getElementById('expand-prompt-sel').value);
+  document.getElementById('expand-prompt-text').textContent=EXPAND_PROMPTS[i];
 }
 
-// Close modal on overlay click
-document.getElementById('settings-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeSettings();
-});
-
-// ══════════════════════════════════════════════
-// TOAST
-// ══════════════════════════════════════════════
-let toastTimeout;
-function showToast(msg, type = 'success') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = `toast show ${type}`;
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => t.classList.remove('show'), 3500);
+function addIdea(){
+  const val=document.getElementById('idea-inp').value.trim();
+  const angle=document.getElementById('idea-angle-sel').value;
+  if(!val){toast('Write an idea first','err');return}
+  if(S.ideaList.length>=3){toast('3 ideas max for this exercise','err');return}
+  S.ideaList.push({val,angle});
+  document.getElementById('idea-inp').value='';
+  renderIdeaList();
 }
 
-// ══════════════════════════════════════════════
-// HELPERS
-// ══════════════════════════════════════════════
-function loadLesson(skill) {
-  STATE.currentSkill = skill;
-  const lesson = LESSONS[skill];
-  if (!lesson) return;
+function renderIdeaList(){
+  const angleIc={economic:'💰',social:'👥',psychological:'🧠',environmental:'🌱',practical:'⚙️'};
+  document.getElementById('idea-list').innerHTML=S.ideaList.map((it,i)=>`
+    <div class="idea-pill">
+      ${angleIc[it.angle]||'◆'} ${it.val}
+      <span class="rm" onclick="removeIdea(${i})" style="cursor:pointer;margin-left:4px">✕</span>
+    </div>`).join('');
 
-  showPage('lessons');
-  document.getElementById('lesson-tag').textContent = lesson.tag;
-  document.getElementById('lesson-title').textContent = lesson.name;
-  document.getElementById('concept-text').innerHTML = lesson.concept;
+  const expandArea=document.getElementById('expand-area');
+  if(S.ideaList.length>=1){
+    expandArea.style.display='block';
+    document.getElementById('expand-selected-idea').innerHTML=`
+      <div class="expand-label">Idea you're expanding</div>
+      <div style="font-size:13px;color:var(--t1)">${S.ideaList[0].val}</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:4px">${angleIc[S.ideaList[0].angle]} ${S.ideaList[0].angle}</div>`;
+  } else {
+    expandArea.style.display='none';
+  }
+}
 
-  document.getElementById('templates-list').innerHTML = lesson.templates.map(t => `
-    <div class="template-box" onclick="copyTemplate(this)" title="Click to copy">
-      ${t.t.replace(/\[([^\]]+)\]/g, '<span class="blank">[$1]</span>')}
-      <div class="template-hint">💡 ${t.hint}</div>
-    </div>
-  `).join('');
+function removeIdea(i){
+  S.ideaList.splice(i,1);
+  renderIdeaList();
+}
 
-  document.getElementById('comparisons-list').innerHTML = lesson.comparisons.map(c => `
-    <div class="comparison">
-      <div class="comp-col bad">
-        <div class="comp-header">❌ Band 6 — Weak</div>
-        <div class="comp-text">${c.bad}</div>
-        <div class="comp-note">${c.badNote}</div>
+function completeExpand(){
+  const t=document.getElementById('exp-topic').value.trim();
+  const r=document.getElementById('exp-reason').value.trim();
+  const m=document.getElementById('exp-mechanism').value.trim();
+  if(!t||!r||!m){toast('Complete all three parts first','err');return}
+  S.ideaList=[];
+  document.getElementById('exp-topic').value='';
+  document.getElementById('exp-reason').value='';
+  document.getElementById('exp-mechanism').value='';
+  document.getElementById('idea-list').innerHTML='';
+  document.getElementById('expand-area').style.display='none';
+  markDone();
+}
+
+// Idea Drill
+const DRILL_TOPICS=['Governments should control social media','Climate change is the biggest global threat','Children should learn a second language from age 5','Cities are better places to live than the countryside','Automation will eliminate more jobs than it creates'];
+const DRILL_ANGLES=[['economic','psychological','practical'],['environmental','social','economic'],['psychological','practical','social'],['practical','social','psychological'],['economic','social','practical']];
+
+let drillTimerIv=null;
+function startIdeaDrill(){
+  const topicIdx=Math.floor(Math.random()*DRILL_TOPICS.length);
+  const angles=DRILL_ANGLES[topicIdx];
+  document.getElementById('drill-idea-topic').textContent=DRILL_TOPICS[topicIdx];
+  document.getElementById('drill-a1').textContent=angles[0];
+  document.getElementById('drill-a2').textContent=angles[1];
+  document.getElementById('drill-a3').textContent=angles[2];
+  document.getElementById('drill-idea-inputs').style.display='block';
+  document.getElementById('drill-i1').value='';
+  document.getElementById('drill-i2').value='';
+  document.getElementById('drill-i3').value='';
+  let secs=180;
+  clearInterval(drillTimerIv);
+  drillTimerIv=setInterval(()=>{
+    secs--;
+    const m=Math.floor(secs/60), s=secs%60;
+    document.getElementById('drill-timer').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+    if(secs<=0){clearInterval(drillTimerIv);toast('Time\'s up — submit what you have','err')}
+  },1000);
+}
+
+function submitIdeaDrill(){
+  clearInterval(drillTimerIv);
+  const i1=document.getElementById('drill-i1').value.trim();
+  const i2=document.getElementById('drill-i2').value.trim();
+  const i3=document.getElementById('drill-i3').value.trim();
+  if(!i1&&!i2&&!i3){toast('Write at least one idea','err');return}
+  document.getElementById('drill-idea-inputs').style.display='none';
+  document.getElementById('drill-idea-topic').textContent='Click Start to get your topic';
+  markDone();
+}
+
+// ════════════════════════════════════
+// WHY/HOW DRILLS
+// ════════════════════════════════════
+function loadDrills(){
+  const shuffled=[...DRILLS].sort(()=>Math.random()-.5).slice(0,3);
+  document.getElementById('drill-set').innerHTML=shuffled.map((d,i)=>`
+    <div class="card" style="margin-bottom:14px">
+      <div class="sect-label">Drill ${i+1}</div>
+      <div class="drill-prompt"><strong>Claim:</strong> "${d.claim}"</div>
+      <div class="drill-step">
+        <div class="drill-num why">WHY</div>
+        <div style="flex:1">
+          <div style="font-size:11px;color:var(--t2);margin-bottom:5px">Why is this claim true? (Explain the cause)</div>
+          <textarea class="txt" id="why-${i}" rows="2" placeholder="This is because..."></textarea>
+          <div class="cmp-note" style="margin-top:4px;display:none" id="why-model-${i}">Model: ${d.why}</div>
+        </div>
       </div>
-      <div class="comp-col good">
-        <div class="comp-header">✅ Band 7 — Strong</div>
-        <div class="comp-text">${c.good}</div>
-        <div class="comp-note">${c.goodNote}</div>
+      <div class="drill-step">
+        <div class="drill-num how">HOW</div>
+        <div style="flex:1">
+          <div style="font-size:11px;color:var(--t2);margin-bottom:5px">How does that mechanism work? (Write the chain: A → B → C)</div>
+          <textarea class="txt" id="how-${i}" rows="2" placeholder="Specifically, when [A] happens, this leads to [B], which causes [C]..."></textarea>
+          <div class="cmp-note" style="margin-top:4px;display:none" id="how-model-${i}">Model: ${d.how}</div>
+        </div>
       </div>
-    </div>
-  `).join('');
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn btn-s btn-sm" onclick="showDrillModel(${i})">Show model</button>
+        <button class="btn btn-gr btn-sm" onclick="markDrillDone(${i},this)">Done ✓</button>
+      </div>
+    </div>`).join('');
+}
 
-  document.getElementById('practice-prompt').innerHTML = lesson.practicePrompt.replace(/\n/g, '<br>');
-  document.getElementById('practice-input').value = '';
-  document.getElementById('practice-feedback-area').innerHTML = '';
+function showDrillModel(i){
+  document.getElementById('why-model-'+i).style.display='block';
+  document.getElementById('how-model-'+i).style.display='block';
+}
 
-  document.querySelectorAll('.sub-nav-item').forEach((item, i) => {
-    const skills = ['mechanism','thesis','topic','reason','example','conclusion'];
-    item.classList.toggle('active', skills[i] === skill);
+function markDrillDone(i,btn){
+  const why=document.getElementById('why-'+i).value.trim();
+  const how=document.getElementById('how-'+i).value.trim();
+  if(!why||!how){toast('Write both WHY and HOW first','err');return}
+  btn.disabled=true;btn.textContent='Done ✓';
+  markDone();
+}
+
+// ════════════════════════════════════
+// IDEA BANK
+// ════════════════════════════════════
+const TAG_CLASS={economic:'tag-ec',social:'tag-sc',psychological:'tag-ps',environmental:'tag-en',practical:'tag-pr'};
+const TAG_LABEL={economic:'Economic',social:'Social',psychological:'Psychological',environmental:'Environmental',practical:'Practical'};
+
+function renderBankTopics(){
+  const topics=Object.keys(IDEA_BANK);
+  document.getElementById('bank-topics').innerHTML=topics.map(t=>`
+    <button class="topic-btn ${t===S.bankTopic?'on':''}" onclick="renderIdeaBank('${t}')">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('');
+}
+
+function renderIdeaBank(topic){
+  S.bankTopic=topic;
+  document.querySelectorAll('.topic-btn').forEach(b=>{
+    b.classList.toggle('on',b.textContent.toLowerCase()===topic);
   });
+  const entries=IDEA_BANK[topic]||[];
+  document.getElementById('bank-entries').innerHTML=entries.map((e,i)=>`
+    <div class="idea-entry" id="be-${i}">
+      <div class="idea-entry-top">
+        <div class="idea-main">${e.idea}</div>
+        <div class="idea-tag ${TAG_CLASS[e.angle]||''}">${TAG_LABEL[e.angle]||e.angle}</div>
+      </div>
+      <button class="idea-expand-btn" onclick="toggleBankEntry(${i})">▼ See full argument chain</button>
+      <div class="idea-expand">${e.expand.split('.').map((s,si)=>`<div style="margin-bottom:6px;font-size:12px;color:var(--t2)">${s.trim()&&s.trim()+'.'}</div>`).join('')}</div>
+    </div>`).join('');
+}
 
-  switchTab('learn');
+function toggleBankEntry(i){
+  const el=document.getElementById('be-'+i);
+  const open=el.classList.contains('open');
+  el.classList.toggle('open');
+  el.querySelector('.idea-expand-btn').textContent=open?'▼ See full argument chain':'▲ Hide';
+}
+
+// ════════════════════════════════════
+// WRITING WORKSPACE
+// ════════════════════════════════════
+function wsInitPromptSel(){
+  const sel=document.getElementById('ws-sel');
+  sel.innerHTML=PROMPTS.map((p,i)=>`<option value="${i}">${p.type}: ${p.text.slice(0,50)}...</option>`).join('');
+  wsChangePrompt();
+}
+
+function wsInit(){wsChangePrompt()}
+
+function wsChangePrompt(){
+  const i=parseInt(document.getElementById('ws-sel').value);
+  const p=PROMPTS[i];
+  document.getElementById('ws-prompt-text').textContent=p.text;
+  document.getElementById('ws-ptype').textContent=p.type;
+}
+
+function wsUpdate(){
+  const text=document.getElementById('ws-editor').value;
+  const wc=text.trim()?text.trim().split(/\s+/).length:0;
+  document.getElementById('ws-wc').textContent=wc;
+  const tl=text.toLowerCase();
+  const cl=(id,cond)=>{document.getElementById(id).classList.toggle('ok',cond)};
+  cl('cl-intro',tl.length>50&&(tl.includes('believe')||tl.includes('argue')||tl.includes('essay')||tl.includes('view')||tl.includes('contend')));
+  cl('cl-b1',(tl.includes('one major')||tl.includes('firstly')||tl.includes('one reason'))&&tl.includes('because'));
+  cl('cl-b2',(tl.includes('furthermore')||tl.includes('additionally')||tl.includes('secondly')||tl.includes('another'))&&tl.includes('specifically'));
+  cl('cl-conc',tl.includes('therefore')||tl.includes('in conclusion')||tl.includes('to conclude')||tl.includes('in summary'));
+}
+
+function wsSave(){
+  const text=document.getElementById('ws-editor').value;
+  localStorage.setItem('saved_essay_'+Date.now(),text);
+  toast('Essay saved ✓','ok');
+}
+
+function wsClear(){
+  if(!confirm('Clear the editor?'))return;
+  document.getElementById('ws-editor').value='';
+  wsUpdate();
+  document.getElementById('ws-right-panel').innerHTML=`<div class="ws-lbl">Self-Evaluation</div><div style="font-size:12px;color:var(--t3);line-height:1.6">Write something first. Then click <strong style="color:var(--t2)">Self-Check</strong>.</div>`;
+}
+
+// Timer
+function toggleTimer(){
+  const T=S.timer;
+  if(T.running){
+    clearInterval(T.iv);T.running=false;
+    document.getElementById('timer-btn').textContent='▶ Resume';
+  } else {
+    T.running=true;
+    document.getElementById('timer-btn').textContent='⏸ Pause';
+    T.iv=setInterval(()=>{
+      T.secs--;
+      if(T.secs<=0){clearInterval(T.iv);T.running=false;document.getElementById('timer-btn').textContent='▶ Start';toast('⏰ Time up.','ok')}
+      const m=Math.floor(T.secs/60),s=T.secs%60;
+      document.getElementById('ws-timer').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+      if(T.secs<=300) document.getElementById('ws-timer').style.color='var(--rd)';
+    },1000);
+  }
+}
+function resetTimer(){
+  clearInterval(S.timer.iv);S.timer.running=false;S.timer.secs=40*60;
+  document.getElementById('ws-timer').textContent='40:00';
+  document.getElementById('ws-timer').style.color='var(--gd)';
+  document.getElementById('timer-btn').textContent='▶ Start';
+}
+
+// Self-check modal
+let modalCheckState={};
+function openSelfCheck(){
+  const wc=document.getElementById('ws-editor').value.trim().split(/\s+/).length;
+  if(wc<30){toast('Write at least 30 words before self-checking','err');return}
+  modalCheckState={};
+  let html='';
+  SELF_CHECK_ITEMS.forEach((sec,si)=>{
+    html+=`<div style="margin-bottom:14px">
+      <div class="check-title">${sec.sec}</div>
+      ${sec.items.map((item,ii)=>{
+        const key=`${si}-${ii}`;
+        return `<div class="check-item" id="mci-${key}" onclick="toggleModalCheck('${key}')">
+          <div class="check-box" id="mcb-${key}"></div>${item}
+        </div>`;
+      }).join('')}
+    </div>`;
+  });
+  document.getElementById('modal-checklist').innerHTML=html;
+  updateModalTally();
+  document.getElementById('selfcheck-modal').classList.add('on');
+}
+
+function toggleModalCheck(key){
+  modalCheckState[key]=!modalCheckState[key];
+  document.getElementById('mci-'+key).classList.toggle('checked',modalCheckState[key]);
+  document.getElementById('mcb-'+key).textContent=modalCheckState[key]?'✓':'';
+  updateModalTally();
+}
+
+function updateModalTally(){
+  const total=10, checked=Object.values(modalCheckState).filter(Boolean).length;
+  document.getElementById('modal-tally').textContent=`${checked} / ${total} checked`;
+  document.getElementById('modal-done-btn').disabled=checked<6;
+}
+
+function closeSelfCheck(){document.getElementById('selfcheck-modal').classList.remove('on')}
+
+function markWritingDone(){
+  closeSelfCheck();
+  const checked=Object.values(modalCheckState).filter(Boolean).length;
+  // Show score in right panel
+  const pct=Math.round(checked/10*100);
+  const msg=checked>=8?'Strong self-evaluation. The discipline of honest checking is half the work.'
+    :checked>=6?'Decent. The items you didn\'t tick are your next focus areas.'
+    :'Some honesty. Focus specifically on the unchecked items in your next draft.';
+  document.getElementById('ws-right-panel').innerHTML=`
+    <div class="ws-lbl">Session Complete</div>
+    <div class="check-score" style="margin-bottom:12px">
+      <div class="score-num" style="color:${pct>=70?'var(--gr)':'var(--gd)'}">${checked}/10</div>
+      <div class="score-lbl">self-check score</div>
+      <div class="score-msg">${msg}</div>
+    </div>
+    ${SELF_CHECK_ITEMS.map(sec=>`
+      <div style="margin-bottom:10px">
+        <div class="sect-label">${sec.sec}</div>
+        ${sec.items.map((item,ii)=>`
+          <div style="font-size:11px;color:var(--t3);padding:3px 0;border-bottom:1px solid var(--b)">${item}</div>
+        `).join('')}
+      </div>`).join('')}`;
+  markDone();
+}
+
+// ════════════════════════════════════
+// REVIEW
+// ════════════════════════════════════
+const REVIEW_Q=[
+  {skill:'Mechanism',prompt:'"Governments should invest in public transport."\nReason: "This is because private car usage drives urban pollution."\n\n→ Complete the mechanism: "Specifically, when more commuters switch to buses and trains, ___"',model:'...the total volume of private vehicles on city roads falls, directly reducing exhaust emissions and improving air quality, particularly during peak commuting hours.'},
+  {skill:'Topic Sentence',prompt:'Essay: "Technology is making people less sociable. To what extent do you agree?"\n\n→ Write a topic sentence for a paragraph AGREEING with this view.',model:'One major reason why technology erodes sociability is that messaging apps enable people to substitute shallow digital exchanges for the deeper engagement of face-to-face conversation.'},
+  {skill:'Thesis',prompt:'"Some people believe fast food advertising should be banned. Do you agree or disagree?"\n\n→ Write a strong, specific thesis statement.',model:'I strongly believe that fast food advertising should be banned from all media targeting children, as such campaigns exploit cognitive vulnerabilities in young audiences and directly contribute to rising rates of childhood obesity.'},
+];
+
+function buildReview(){
+  document.getElementById('review-cards').innerHTML=REVIEW_Q.map((q,i)=>`
+    <div class="card" style="margin-bottom:14px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div class="sect-label" style="margin:0">↺ ${q.skill}</div>
+        <div style="font-size:10px;color:var(--t3);font-family:'DM Mono',monospace">Card ${i+1} of ${REVIEW_Q.length}</div>
+      </div>
+      <div style="font-size:13px;line-height:1.6;color:var(--t2);margin-bottom:12px;white-space:pre-line">${q.prompt}</div>
+      <textarea class="txt" id="rv-${i}" rows="3" placeholder="Write your answer..."></textarea>
+      <div style="display:flex;gap:7px;margin-top:10px">
+        <button class="btn btn-s btn-sm" onclick="revealReview(${i})">Show model</button>
+        <button class="btn btn-gr btn-sm" onclick="doneReview(${i},this)">Done ✓</button>
+      </div>
+      <div class="cmp-note" id="rv-model-${i}" style="display:none;margin-top:8px">Model: ${q.model}</div>
+    </div>`).join('');
+}
+
+function revealReview(i){document.getElementById('rv-model-'+i).style.display='block'}
+function doneReview(i,btn){
+  if(!document.getElementById('rv-'+i).value.trim()){toast('Write your answer first','err');return}
+  btn.disabled=true;btn.textContent='Done ✓';
+  markDone();
+  const left=document.querySelectorAll('.review-cards button[disabled]').length;
+  document.getElementById('rv-badge').textContent=Math.max(0,REVIEW_Q.length-left);
+}
+
+// ════════════════════════════════════
+// TOAST
+// ════════════════════════════════════
+let toastT;
+function toast(msg,type='ok'){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.className=`toast on ${type}`;
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>el.classList.remove('on'),3000);
 }
 </script>
 </body>
