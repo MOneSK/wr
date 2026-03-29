@@ -1106,15 +1106,15 @@ const SELF_CHECK_ITEMS = [
 // STATE
 // ════════════════════════════════════
 const S = {
-  streak: parseInt(localStorage.getItem('streak')||'0'),
-  freezes: parseInt(localStorage.getItem('freezes')||'2'),
-  freezesUsed: parseInt(localStorage.getItem('freezesUsed')||'0'),
-  sessions: parseInt(localStorage.getItem('sessions')||'0'),
-  skillProg: JSON.parse(localStorage.getItem('skillProg')||'{"thesis":0,"topic":0,"reason":0,"mechanism":0,"example":0,"conclusion":0}'),
-  activeDays: JSON.parse(localStorage.getItem('activeDays')||'[]'),
-  activeWeek: localStorage.getItem('activeWeek')||'',
-  lastActive: localStorage.getItem('lastActive')||'',
-  doneDays: JSON.parse(localStorage.getItem('doneDays')||'[]'),
+  streak: 0,
+  freezes: 2,
+  freezesUsed: 0,
+  sessions: 0,
+  skillProg: {"thesis":0,"topic":0,"reason":0,"mechanism":0,"example":0,"conclusion":0},
+  activeDays: [],
+  activeWeek: '',
+  lastActive: '',
+  doneDays: [],
   currentSkill: 'mechanism',
   drillIdx: 0,
   timer: {running:false, secs:40*60, iv:null},
@@ -1123,6 +1123,29 @@ const S = {
   checkStates: {},
   bankTopic: 'technology',
 };
+
+// ════════════════════════════════════
+// SHARED STORAGE HELPERS
+// ════════════════════════════════════
+async function storageGet(key, fallback) {
+  try {
+    const r = await window.storage.get(key, true);
+    return r ? r.value : fallback;
+  } catch(e) { return fallback; }
+}
+async function storageSet(key, value) {
+  try { await window.storage.set(key, value, true); } catch(e) {}
+}
+async function loadState() {
+  S.streak       = parseInt(await storageGet('streak','0'));
+  S.freezesUsed  = parseInt(await storageGet('freezesUsed','0'));
+  S.sessions     = parseInt(await storageGet('sessions','0'));
+  S.skillProg    = JSON.parse(await storageGet('skillProg','{"thesis":0,"topic":0,"reason":0,"mechanism":0,"example":0,"conclusion":0}'));
+  S.activeDays   = JSON.parse(await storageGet('activeDays','[]'));
+  S.activeWeek   = await storageGet('activeWeek','');
+  S.lastActive   = await storageGet('lastActive','');
+  S.doneDays     = JSON.parse(await storageGet('doneDays','[]'));
+}
 
 // ════════════════════════════════════
 // STREAK SYSTEM
@@ -1141,13 +1164,13 @@ function markDone(){
   if(S.activeWeek !== thisWeek){
     S.activeDays=[];
     S.activeWeek=thisWeek;
-    localStorage.setItem('activeWeek',thisWeek);
+    storageSet('activeWeek',thisWeek);
   }
 
   // Mark day active (dots)
   if(!S.activeDays.includes(todayIdx)){
     S.activeDays.push(todayIdx);
-    localStorage.setItem('activeDays',JSON.stringify(S.activeDays));
+    storageSet('activeDays',JSON.stringify(S.activeDays));
   }
 
   // Increment streak only once per calendar day
@@ -1160,12 +1183,12 @@ function markDone(){
       S.streak=1; // broken — reset
     }
     S.lastActive=today;
-    localStorage.setItem('lastActive',today);
-    localStorage.setItem('streak',S.streak);
+    storageSet('lastActive',today);
+    storageSet('streak',String(S.streak));
   }
 
   S.sessions++;
-  localStorage.setItem('sessions',S.sessions);
+  storageSet('sessions',String(S.sessions));
   document.getElementById('d-sessions').textContent=S.sessions;
 
   renderStreak();
@@ -1177,21 +1200,21 @@ function useFreeze(){
   const today=new Date().toDateString();
   const todayIdx=(new Date().getDay()+6)%7;
   const thisWeek=getWeekKey();
-  if(S.activeWeek!==thisWeek){S.activeDays=[];S.activeWeek=thisWeek;localStorage.setItem('activeWeek',thisWeek)}
+  if(S.activeWeek!==thisWeek){S.activeDays=[];S.activeWeek=thisWeek;storageSet('activeWeek',thisWeek)}
 
   // Mark today as "hit" without incrementing streak count
   if(!S.activeDays.includes(todayIdx)){
     S.activeDays.push(todayIdx);
-    localStorage.setItem('activeDays',JSON.stringify(S.activeDays));
+    storageSet('activeDays',JSON.stringify(S.activeDays));
   }
   if(S.lastActive!==today){
     S.lastActive=today;
-    localStorage.setItem('lastActive',today);
+    storageSet('lastActive',today);
     // Don't increment streak, just don't break it
   }
 
   S.freezesUsed++;
-  localStorage.setItem('freezesUsed',S.freezesUsed);
+  storageSet('freezesUsed',String(S.freezesUsed));
   renderStreak();
   toast('❄️ Freeze used. Streak protected. '+(2-S.freezesUsed)+' left.','ok');
 }
@@ -1252,7 +1275,8 @@ function switchTab(id, page){
 // ════════════════════════════════════
 // INIT
 // ════════════════════════════════════
-window.onload=function(){
+window.onload=async function(){
+  await loadState();
   renderStreak();
   buildDashSkills();
   buildPath();
@@ -1405,7 +1429,7 @@ function updateLessonTally(){
 
 function completLesson(){
   S.skillProg[S.currentSkill]=Math.min(100,S.skillProg[S.currentSkill]+20);
-  localStorage.setItem('skillProg',JSON.stringify(S.skillProg));
+  storageSet('skillProg',JSON.stringify(S.skillProg));
   document.getElementById('d-skills').innerHTML=Object.values(S.skillProg).filter(v=>v>=80).length+'<span style="font-size:16px;color:var(--t2)">/6</span>';
   buildDashSkills();
   markDone();
@@ -1644,7 +1668,7 @@ function wsUpdate(){
 
 function wsSave(){
   const text=document.getElementById('ws-editor').value;
-  localStorage.setItem('saved_essay_'+Date.now(),text);
+  storageSet('saved_essay_'+Date.now(),text);
   toast('Essay saved ✓','ok');
 }
 
