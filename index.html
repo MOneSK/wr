@@ -423,12 +423,39 @@ pointer-events:none;
 /* MODAL */
 .mo-bg{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .mo-bg.on{display:flex}
+.mo-bg.on{display:flex}
 .mo{background:var(–s1);border:1px solid var(–b);border-radius:var(–r);padding:26px;max-width:480px;width:90%;max-height:85vh;overflow-y:auto}
 .mo-title{font-family:var(–font-serif);font-size:20px;margin-bottom:16px}
 
 /* Done button row */
 .done-row{margin-top:16px;padding-top:16px;border-top:1px solid var(–b);display:flex;align-items:center;justify-content:space-between}
 .done-note{font-size:11px;color:var(–t3)}
+
+/* Hamburger */
+.hamburger{background:none;border:none;cursor:pointer;padding:6px;color:var(–t1);font-size:20px;line-height:1}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+.sb{transform:translateX(-100%);transition:transform .25s;z-index:300}
+.sb.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:299}
+.sb-overlay.open{display:block}
+.main{margin-left:0}
+.topbar{padding:0 12px;gap:8px}
+.content{padding:14px}
+.g3{grid-template-columns:1fr}
+.g2{grid-template-columns:1fr}
+.cmp{grid-template-columns:1fr}
+.angle-grid{grid-template-columns:1fr}
+#ws-overlay{left:0}
+.ws{grid-template-columns:1fr}
+.ws-pane.ws-left,.ws-pane.ws-right{display:none}
+.ws-pane.ws-mid{height:calc(100vh - 54px)}
+}
+@media(min-width:769px){
+.hamburger{display:none}
+.sb-overlay{display:none!important}
+}
 </style>
 
 </head>
@@ -486,9 +513,10 @@ pointer-events:none;
 
 <main class="main">
   <div class="topbar">
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
     <div class="topbar-title">/ <b id="pg-title">Dashboard</b></div>
     <div id="sync-status" style="font-family:var(--font-mono);font-size:10px;color:var(--t3);margin-left:auto;margin-right:8px">Connecting...</div>
-    <div class="target-pill" id="target-pill">🎯 Target: Band 7.5</div>
+    <div class="target-pill" id="target-pill">🎯 Band 7.5</div>
   </div>
 
   <div class="content" id="content-wrap">
@@ -832,6 +860,8 @@ pointer-events:none;
   </div><!-- /content-wrap -->
 </main>
 </div><!-- /shell -->
+
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
 
 <!-- Writing workspace (full-screen overlay) -->
 
@@ -1318,8 +1348,23 @@ function closeSyncModal(){ closeUsernameModal(); }
 
 
 // ════════════════════════════════════
-// STREAK SYSTEM
+// SIDEBAR (MOBILE)
 // ════════════════════════════════════
+function toggleSidebar(){
+  document.querySelector('.sb').classList.toggle('open');
+  document.getElementById('sb-overlay').classList.toggle('open');
+}
+function closeSidebar(){
+  document.querySelector('.sb').classList.remove('open');
+  document.getElementById('sb-overlay').classList.remove('open');
+}
+
+// Close sidebar when nav item clicked on mobile
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    n.addEventListener('click', closeSidebar);
+  });
+});
 function getWeekKey(){
   const d=new Date(), j=new Date(d.getFullYear(),0,1);
   return d.getFullYear()+'-W'+Math.ceil(((d-j)/864e5+j.getDay()+1)/7);
@@ -1445,12 +1490,13 @@ window.onload=function(){
 
   const u = getUsername();
   if(u){
-    // Username already set — pull cloud data silently in background
     cloudPull();
   } else {
-    // First time — ask for username before anything else
-    setSyncStatus('Set username to sync','warn');
-    setTimeout(showUsernamePrompt, 800);
+    setSyncStatus('☁ Tap to set username','warn');
+    // Don't auto-open modal on load — too disruptive on mobile
+    // User can tap sync status or ☁ in sidebar
+    document.getElementById('sync-status').style.cursor='pointer';
+    document.getElementById('sync-status').onclick=showUsernamePrompt;
   }
 };
 
