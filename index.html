@@ -327,7 +327,9 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);min-heigh
 }
 .idea-expand-btn:hover{color:var(--ac)}
 
-/* WRITING WORKSPACE */
+.bc-type-btn.on{border-color:var(--ac);color:var(--ac);background:rgba(124,111,255,.1)}
+
+
 .ws{display:grid;grid-template-columns:260px 1fr 300px;height:calc(100vh - 54px);overflow:hidden}
 .ws-pane{overflow-y:auto;padding:18px;border-right:1px solid var(--b)}
 .ws-pane:last-child{border-right:none}
@@ -479,6 +481,11 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);min-heigh
     <div class="nav-item" onclick="go('drills')"><span class="nav-ic">⚡</span>WHY/HOW Drills</div>
     <div class="nav-item" onclick="go('idea-bank')"><span class="nav-ic">◆</span>Idea Bank</div>
 
+    <div class="nav-sect">Structure</div>
+    <div class="nav-item" onclick="go('paragraph')"><span class="nav-ic">¶</span>Paragraph Builder</div>
+    <div class="nav-item" onclick="go('intro-conc')"><span class="nav-ic">⊡</span>Intro & Conclusion</div>
+    <div class="nav-item" onclick="go('band-compare')"><span class="nav-ic">⇌</span>Band Comparisons</div>
+
     <div class="nav-sect">Practice</div>
     <div class="nav-item" onclick="go('workspace')"><span class="nav-ic">✎</span>Writing Lab</div>
     <div class="nav-item" onclick="go('review')"><span class="nav-ic">↺</span>Review Queue<span class="nav-chip" id="rv-badge">3</span></div>
@@ -564,6 +571,23 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);min-heigh
         <div style="font-size:18px;margin-bottom:6px">✎</div>
         <div style="font-size:13px;font-weight:600">Writing Lab</div>
         <div style="font-size:11px;color:var(--t2);margin-top:3px">Even 3 sentences counts as Done</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:10px">
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('paragraph')">
+        <div style="font-size:18px;margin-bottom:6px">¶</div>
+        <div style="font-size:13px;font-weight:600">Paragraph Builder</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">TS → Reason → HOW → Example → Close</div>
+      </div>
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('intro-conc')">
+        <div style="font-size:18px;margin-bottom:6px">⊡</div>
+        <div style="font-size:13px;font-weight:600">Intro & Conclusion</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">2 sentences. That's all an intro needs.</div>
+      </div>
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('band-compare')">
+        <div style="font-size:18px;margin-bottom:6px">⇌</div>
+        <div style="font-size:13px;font-weight:600">Band Comparisons</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">See exactly why Band 6 ≠ Band 8</div>
       </div>
     </div>
 
@@ -986,6 +1010,266 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);min-heigh
     <div class="pg-title">Review Queue</div>
     <div class="pg-sub">3 cards. Each takes under 2 minutes. Write, then self-check before marking done.</div>
     <div id="review-cards"></div>
+  </div>
+
+  <!-- ══ PARAGRAPH BUILDER ══ -->
+  <div class="page" id="pg-paragraph">
+    <div class="pg-title">Paragraph Builder</div>
+    <div class="pg-sub">Every Band 7+ body paragraph follows one structure: Topic → Reason → Mechanism → Example → Concluding Sentence. Build it sentence by sentence, then see the full result.</div>
+
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab('pb-study','paragraph')">① Study the Model</div>
+      <div class="tab" onclick="switchTab('pb-guided','paragraph')">② Guided Practice</div>
+      <div class="tab" onclick="switchTab('pb-freewrite','paragraph')">③ Build Your Own</div>
+    </div>
+
+    <!-- Study -->
+    <div class="tc on" id="tc-pb-study">
+      <div class="card" style="margin-bottom:14px">
+        <div class="sect-label">What makes a Band 5–6 paragraph fail</div>
+        <div class="cmp cmp-bad" style="border-radius:var(--rs);padding:14px;margin-bottom:0">
+          <div class="cmp-hd" style="border-color:rgba(255,107,107,.2)">❌ Band 5–6 Example — Topic: Should governments invest in renewable energy?</div>
+          <div style="font-size:13px;line-height:1.9;color:var(--t1)">
+            There are many benefits of renewable energy. <span style="color:var(--rd);font-family:var(--font-mono);font-size:10px">[VAGUE TOPIC]</span><br>
+            It is good for the environment. <span style="color:var(--rd);font-family:var(--font-mono);font-size:10px">[NO REASON]</span><br>
+            Many countries use solar power now. <span style="color:var(--rd);font-family:var(--font-mono);font-size:10px">[WEAK EXAMPLE]</span><br>
+            This shows that renewable energy is important. <span style="color:var(--rd);font-family:var(--font-mono);font-size:10px">[REPEATS TOPIC]</span><br>
+            Governments should invest in it. <span style="color:var(--rd);font-family:var(--font-mono);font-size:10px">[NO LOGIC]</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--t2);line-height:1.7">
+          <strong style="color:var(--rd)">Problems:</strong> Vague topic sentence · No reason WHY · No HOW mechanism · Unnamed example · Conclusion repeats the opener.
+        </div>
+      </div>
+
+      <div class="sect-label">The Band 7–8 structure — annotated</div>
+      <div id="pb-annotated-model"></div>
+    </div>
+
+    <!-- Guided Practice -->
+    <div class="tc" id="tc-pb-guided">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div class="sect-label" style="margin:0">Choose a practice task</div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-s btn-sm" id="pb-task-1-btn" onclick="selectPBTask(1)" style="border-color:var(--ac);color:var(--ac)">Task 1</button>
+          <button class="btn btn-s btn-sm" id="pb-task-2-btn" onclick="selectPBTask(2)">Task 2</button>
+          <button class="btn btn-s btn-sm" id="pb-task-3-btn" onclick="selectPBTask(3)">Task 3</button>
+        </div>
+      </div>
+      <div id="pb-task-display" class="card" style="margin-bottom:16px"></div>
+      <div id="pb-guided-form"></div>
+      <div id="pb-assembled" style="display:none"></div>
+    </div>
+
+    <!-- Free Write -->
+    <div class="tc" id="tc-pb-freewrite">
+      <div class="pg-sub" style="margin-bottom:14px">Choose any topic. Write all five sentences. The platform assembles them into a complete paragraph and checks your structure.</div>
+      <div style="margin-bottom:12px">
+        <div class="sect-label">Your topic / argument</div>
+        <input class="inp" id="fw-topic" placeholder="e.g. Stricter regulations on fast food advertising would reduce childhood obesity">
+      </div>
+      <div id="fw-form">
+        <div style="margin-bottom:10px">
+          <div class="expand-label">① Topic Sentence — make a specific, arguable claim</div>
+          <textarea class="txt" id="fw-ts" rows="2" placeholder="One major reason why [position] is that [specific point]..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">② Reason — explain WHY the claim is true</div>
+          <textarea class="txt" id="fw-re" rows="2" placeholder="This is because [cause/explanation]..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">③ Mechanism — explain HOW it works (the chain)</div>
+          <textarea class="txt" id="fw-me" rows="2" placeholder="Specifically, when [A], this leads to [B], which causes [C]..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">④ Example — real-world, named, specific, with a link back</div>
+          <textarea class="txt" id="fw-ex" rows="2" placeholder="For instance, in [country/context], [evidence], demonstrating that [link]..."></textarea>
+        </div>
+        <div style="margin-bottom:14px">
+          <div class="expand-label">⑤ Concluding Sentence — restate the point, gesture to significance</div>
+          <textarea class="txt" id="fw-co" rows="2" placeholder="Therefore, it is clear that [restate], highlighting [broader implication]..."></textarea>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button class="btn btn-p" onclick="assembleFreewrite()">Assemble paragraph →</button>
+        <button class="btn btn-s btn-sm" onclick="clearFreewrite()">Clear</button>
+      </div>
+      <div id="fw-result" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- ══ INTRO & CONCLUSION ══ -->
+  <div class="page" id="pg-intro-conc">
+    <div class="pg-title">Introduction & Conclusion</div>
+    <div class="pg-sub">A Band 7+ introduction is exactly two sentences. A conclusion is two to three. This section teaches you the template, shows what good looks like, and drills you on both.</div>
+
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab('ic-intro','intro-conc')">① Introduction</div>
+      <div class="tab" onclick="switchTab('ic-conc','intro-conc')">② Conclusion</div>
+      <div class="tab" onclick="switchTab('ic-practice','intro-conc')">③ Practice</div>
+    </div>
+
+    <!-- Intro tab -->
+    <div class="tc on" id="tc-ic-intro">
+      <div class="card ac-top" style="margin-bottom:14px">
+        <div class="sect-label">The rule</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px">Two sentences. That's it.</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.7">
+          <strong style="color:var(--t1)">Sentence 1 (Background):</strong> Paraphrase the question in your own words. Do not copy the prompt.<br>
+          <strong style="color:var(--t1)">Sentence 2 (Thesis):</strong> State your position clearly. Commit to a stance.
+        </div>
+      </div>
+
+      <div class="sect-label">Background sentence templates — click to copy</div>
+      <div id="ic-bg-templates"></div>
+
+      <div class="sect-label" style="margin-top:16px">Thesis sentence templates — click to copy</div>
+      <div id="ic-thesis-templates"></div>
+
+      <div class="sect-label" style="margin-top:16px">Strong vs Weak — study these carefully</div>
+      <div class="cmp">
+        <div class="cmp-col cmp-bad">
+          <div class="cmp-hd">❌ Band 5 Introduction</div>
+          <div class="cmp-txt">Nowadays social media is very popular all over the world. Many people use it every day. There are many advantages and disadvantages of social media. Some people think it is good and some think it is bad. In this essay I will discuss both sides.</div>
+          <div class="cmp-note">Five vague sentences · No real thesis · "I will discuss both sides" is not a position</div>
+        </div>
+        <div class="cmp-col cmp-good">
+          <div class="cmp-hd">✓ Band 7–8 Introduction</div>
+          <div class="cmp-txt">As digital technology becomes increasingly embedded in everyday life, the question of whether social media causes more harm than good to young people has generated significant public debate. I strongly believe that, while these platforms offer certain social benefits, their overall impact on young users' mental health is predominantly negative, primarily due to the culture of comparison they actively encourage.</div>
+          <div class="cmp-note">Paraphrases the question · Commits to a clear position · Gives a specific reason in the thesis</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="sect-label">Do / Don't checklist</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--gr);letter-spacing:1px;margin-bottom:8px">✓ DO</div>
+            <div style="font-size:12px;color:var(--t2);line-height:2">Paraphrase the question in your own words<br>State your position clearly in the thesis<br>Keep to 2 sentences (40–60 words total)</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--rd);letter-spacing:1px;margin-bottom:8px">✗ DON'T</div>
+            <div style="font-size:12px;color:var(--t2);line-height:2">Copy words directly from the question<br>Write "In this essay I will..."<br>Include evidence or reasons in the intro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusion tab -->
+    <div class="tc" id="tc-ic-conc">
+      <div class="card gr-top" style="margin-bottom:14px">
+        <div class="sect-label">The rule</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:8px">2–3 sentences. Never introduce new ideas.</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.7">
+          <strong style="color:var(--t1)">Sentence 1:</strong> Signal the end + restate your thesis in new words.<br>
+          <strong style="color:var(--t1)">Sentence 2:</strong> Summarise your two main points briefly.<br>
+          <strong style="color:var(--t1)">Sentence 3 (optional):</strong> A final broader observation or recommendation.
+        </div>
+      </div>
+
+      <div class="sect-label">Conclusion templates — click to copy</div>
+      <div id="ic-conc-templates"></div>
+
+      <div class="sect-label" style="margin-top:16px">Strong vs Weak</div>
+      <div class="cmp">
+        <div class="cmp-col cmp-bad">
+          <div class="cmp-hd">❌ Band 5 Conclusion</div>
+          <div class="cmp-txt">In conclusion, there are many advantages and disadvantages. People should think carefully about this issue. I hope society finds a good solution in the future.</div>
+          <div class="cmp-note">No position restated · No key points summarised · "I hope" is meaningless filler</div>
+        </div>
+        <div class="cmp-col cmp-good">
+          <div class="cmp-hd">✓ Band 7–8 Conclusion</div>
+          <div class="cmp-txt">In conclusion, I firmly maintain that social media is more harmful than beneficial to young people's mental health, primarily because it promotes unhealthy comparison and reduces face-to-face social interaction. While platforms can be valuable communication tools, these psychological harms outweigh any social benefits, suggesting that stricter regulation of social media use among minors is urgently needed.</div>
+          <div class="cmp-note">Restates thesis · Summarises both main points · Ends with a broader recommendation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice tab -->
+    <div class="tc" id="tc-ic-practice">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div class="sect-label" style="margin:0">Choose a prompt</div>
+        <select class="p-sel" id="ic-prompt-sel" onchange="renderICPrompt()" style="width:240px"></select>
+      </div>
+      <div class="prompt-block" id="ic-prompt-display"></div>
+
+      <div class="card" style="margin-top:14px">
+        <div class="expand-label">Your Introduction (2 sentences)</div>
+        <textarea class="txt" id="ic-intro-input" rows="3" placeholder="Sentence 1: Paraphrase the question...&#10;Sentence 2: State your position..."></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn btn-s btn-sm" onclick="checkIC('intro')">Check intro</button>
+          <button class="btn btn-s btn-sm" onclick="showICModel('intro')">Show model</button>
+        </div>
+        <div id="ic-intro-feedback" style="display:none;margin-top:12px"></div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <div class="expand-label">Your Conclusion (2–3 sentences)</div>
+        <textarea class="txt" id="ic-conc-input" rows="3" placeholder="Signal the end + restate thesis...&#10;Summarise your main points...&#10;(Optional) Final observation..."></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn btn-s btn-sm" onclick="checkIC('conc')">Check conclusion</button>
+          <button class="btn btn-s btn-sm" onclick="showICModel('conc')">Show model</button>
+        </div>
+        <div id="ic-conc-feedback" style="display:none;margin-top:12px"></div>
+      </div>
+
+      <div style="text-align:center;margin-top:16px">
+        <button class="btn btn-gr" onclick="markICDone()">Mark Done ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BAND COMPARISON TRAINING ══ -->
+  <div class="page" id="pg-band-compare">
+    <div class="pg-title">Band Comparison Training</div>
+    <div class="pg-sub">If you can't see what makes writing weak, you can't fix your own. Study the exact gap between Band 6 and Band 8, then rewrite the weak version before looking at the answer.</div>
+
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab('bc-study','band-compare')">① Study</div>
+      <div class="tab" onclick="switchTab('bc-rewrite','band-compare')">② Rewrite Drill</div>
+      <div class="tab" onclick="switchTab('bc-ai','band-compare')">③ AI Feedback</div>
+    </div>
+
+    <!-- Study -->
+    <div class="tc on" id="tc-bc-study">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px" id="bc-filter-row"></div>
+      <div id="bc-study-cards"></div>
+    </div>
+
+    <!-- Rewrite Drill -->
+    <div class="tc" id="tc-bc-rewrite">
+      <div style="font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.6">Read the Band 6 version. <strong style="color:var(--t1)">Without looking at the Band 8 version</strong>, rewrite it. Then reveal and compare.</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div id="bc-drill-label" style="font-family:var(--font-mono);font-size:9px;color:var(--t3);letter-spacing:1px"></div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-s btn-sm" onclick="prevBCDrill()">← Prev</button>
+          <button class="btn btn-s btn-sm" onclick="nextBCDrill()">Next →</button>
+        </div>
+      </div>
+      <div id="bc-drill-content"></div>
+    </div>
+
+    <!-- AI Feedback -->
+    <div class="tc" id="tc-bc-ai">
+      <div class="card" style="margin-bottom:14px">
+        <div class="sect-label">Paste any sentence or paragraph</div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:10px;line-height:1.6">The AI will identify whether it reads like Band 6 or Band 7–8, explain exactly why, and suggest a rewrite.</div>
+        <textarea class="txt" id="bc-ai-input" rows="5" placeholder="Paste your sentence or paragraph here..."></textarea>
+        <div style="margin-top:10px">
+          <div class="sect-label">What type of sentence is this?</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap" id="bc-ai-type-row">
+            <button class="btn btn-s btn-sm bc-type-btn on" data-type="any" onclick="selectBCType(this)">Any / Not sure</button>
+            <button class="btn btn-s btn-sm bc-type-btn" data-type="thesis" onclick="selectBCType(this)">Thesis</button>
+            <button class="btn btn-s btn-sm bc-type-btn" data-type="topic" onclick="selectBCType(this)">Topic Sentence</button>
+            <button class="btn btn-s btn-sm bc-type-btn" data-type="mechanism" onclick="selectBCType(this)">Mechanism</button>
+            <button class="btn btn-s btn-sm bc-type-btn" data-type="example" onclick="selectBCType(this)">Example</button>
+            <button class="btn btn-s btn-sm bc-type-btn" data-type="paragraph" onclick="selectBCType(this)">Full Paragraph</button>
+          </div>
+        </div>
+        <button class="btn btn-p" onclick="runBCAI()" style="margin-top:14px;width:100%;justify-content:center" id="bc-ai-btn">Get AI Feedback →</button>
+      </div>
+      <div id="bc-ai-result" style="display:none"></div>
+    </div>
   </div>
 
   </div><!-- /content-wrap -->
@@ -1553,7 +1837,7 @@ function renderStreak(){
 // ════════════════════════════════════
 // NAVIGATION
 // ════════════════════════════════════
-const PAGE_LABELS={dashboard:'Dashboard',path:'30-Day Path',lessons:'Sentence Skills','idea-lab':'Idea Lab','idea-mode':'Idea Mode',drills:'WHY/HOW Drills','idea-bank':'Idea Bank',workspace:'Writing Lab',review:'Review Queue'};
+const PAGE_LABELS={dashboard:'Dashboard',path:'30-Day Path',lessons:'Sentence Skills','idea-lab':'Idea Lab','idea-mode':'Idea Mode',drills:'WHY/HOW Drills','idea-bank':'Idea Bank',workspace:'Writing Lab',review:'Review Queue',paragraph:'Paragraph Builder','intro-conc':'Intro & Conclusion','band-compare':'Band Comparisons'};
 
 function go(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
@@ -1603,6 +1887,9 @@ window.onload=function(){
   renderBankTopics();
   wsInitPromptSel();
   renderExpandPrompt();
+  initParagraphBuilder();
+  initIntroConc();
+  initBandCompare();
   document.getElementById('d-sessions').textContent=S.sessions;
   document.getElementById('d-skills').innerHTML=Object.values(S.skillProg).filter(v=>v>=80).length+'<span style="font-size:16px;color:var(--t2)">/6</span>';
 
@@ -2579,6 +2866,621 @@ function nextFix(){
   IM.fixIdx++;
   renderFix();
   markDone();
+}
+
+// ════════════════════════════════════
+// PARAGRAPH BUILDER
+// ════════════════════════════════════
+
+const PB_TASKS = [
+  {
+    id:1,
+    label:'Task 1 — Complete the paragraph',
+    topicSentence:'One primary benefit of learning a second language from a young age is the positive effect it has on cognitive development.',
+    hint:'Think about HOW early language learning changes the brain, and find a named country or study as your example.',
+    model:{
+      reason:'This is because children\'s brains are significantly more plastic in early development, allowing them to absorb new linguistic structures without the cognitive interference that slows adult learners.',
+      mechanism:'Specifically, when young learners are immersed in a second language environment, they form new neural pathways for each language simultaneously, strengthening executive function — the mental skill governing attention, task-switching, and problem-solving.',
+      example:'For instance, research conducted by the University of Edinburgh found that bilingual children consistently outperform monolingual peers on tasks requiring sustained attention and cognitive flexibility, demonstrating the measurable academic advantages of early language acquisition.',
+      conclusion:'Therefore, it is clear that introducing a second language in early childhood produces far-reaching cognitive benefits that extend well beyond simple communication skills, making it one of the most valuable investments in a child\'s long-term development.'
+    }
+  },
+  {
+    id:2,
+    label:'Task 2 — Complete the paragraph',
+    topicSentence:'Perhaps the most significant problem with urban overcrowding is its severe impact on the quality and availability of housing.',
+    hint:'Focus on WHY demand outstrips supply, HOW that price spiral unfolds, and use a specific city as your example.',
+    model:{
+      reason:'This is because when population density increases faster than housing construction, demand for accommodation rapidly outstrips supply, driving prices to levels that ordinary workers can no longer afford.',
+      mechanism:'Specifically, as property values rise, landlords convert affordable rental units into high-end apartments or short-term lets, systematically reducing the pool of low-cost housing available to lower-income residents — pushing them further from employment centres and essential services.',
+      example:'For instance, in London, the ratio of median house price to median annual salary now exceeds twelve to one, meaning that a typical worker would require over a decade of total salary simply to cover the deposit on an average property, demonstrating how extreme urban overcrowding converts housing from a right into an unattainable luxury.',
+      conclusion:'Therefore, it is evident that urban overcrowding does not merely inconvenience residents but fundamentally undermines their economic security and quality of life, making strategic housing expansion an urgent policy priority for any rapidly growing city.'
+    }
+  },
+  {
+    id:3,
+    label:'Task 3 — Build from scratch',
+    topicSentence:null,
+    topic:'Why stricter regulations on fast food advertising would reduce childhood obesity.',
+    hint:'Write all 5 sentences yourself. Start with a specific, arguable topic sentence about advertising and its effect on children\'s food choices.',
+    model:{
+      topicSentence:'One major reason why stricter regulations on fast food advertising would reduce childhood obesity is that children are uniquely susceptible to marketing and lack the critical thinking skills to evaluate it.',
+      reason:'This is because children under the age of twelve have not yet developed the capacity for persuasion knowledge — the understanding that advertising exists to influence behaviour rather than inform — making them disproportionately vulnerable to its effects.',
+      mechanism:'Specifically, repeated exposure to high-calorie food imagery triggers cravings and shapes food preference over time, leading children to persistently request advertised products from parents — normalising these foods as everyday choices rather than occasional treats.',
+      example:'For instance, Chile\'s comprehensive ban on cartoon mascots and celebrity endorsements in food advertising directed at children led to measurable reductions in purchases of restricted products within two years of implementation, demonstrating that regulatory intervention can directly alter children\'s dietary habits at scale.',
+      conclusion:'Therefore, it is clear that fast food advertising regulation is not merely a censorship measure but a targeted, evidence-based public health intervention with the capacity to reshape childhood eating behaviour at a population level.'
+    }
+  }
+];
+
+const PB_SENTENCE_TYPES = [
+  {key:'reason', label:'Reason (WHY)', color:'var(--bl)', desc:'Explain why the topic sentence claim is true', placeholder:'This is because [cause / logical explanation]...'},
+  {key:'mechanism', label:'Mechanism (HOW)', color:'var(--ac)', desc:'Show the chain of events — A → B → C', placeholder:'Specifically, when [A], this leads to [B], which ultimately causes [C]...'},
+  {key:'example', label:'Example', color:'var(--gd)', desc:'Named, specific, real-world — with a link back', placeholder:'For instance, in [country/context], [evidence], demonstrating that [link]...'},
+  {key:'conclusion', label:'Concluding Sentence', color:'var(--gr)', desc:'Restate the point in new words, add significance', placeholder:'Therefore, it is clear that [restate], highlighting [implication]...'}
+];
+
+const PB_MODEL_ANNOTATED = [
+  {type:'Topic Sentence', color:'var(--ac)', tag:'TS', text:'One major reason why governments should invest in renewable energy is its capacity to simultaneously reduce carbon emissions and create economic growth.', why:'Makes a specific, arguable claim — not just "there are benefits."'},
+  {type:'Reason', color:'var(--bl)', tag:'R', text:'This is because fossil fuel dependency not only accelerates climate change but also exposes national economies to volatile oil prices, making the transition to clean energy both an environmental and financial necessity.', why:'Explains WHY with a logical cause-and-effect chain.'},
+  {type:'Mechanism', color:'var(--ac)', tag:'M', text:'Specifically, when a government invests in solar or wind infrastructure, it generates thousands of domestic jobs in manufacturing and installation, while simultaneously reducing dependence on imported fuels — creating a dual economic and ecological benefit.', why:'Shows HOW the investment produces both economic and environmental results.'},
+  {type:'Example', color:'var(--gd)', tag:'E', text:"A compelling example is Germany's Energiewende policy, which invested heavily in wind and solar power over two decades, resulting in renewable energy accounting for over 40% of national electricity production while creating hundreds of thousands of clean-energy jobs.", why:'Uses a named, real-world case with specific details and links back.'},
+  {type:'Concluding Sentence', color:'var(--gr)', tag:'C', text:'Therefore, it is evident that investing in renewable energy is not merely an environmental measure but a strategically sound economic policy that supports long-term national resilience.', why:'Reinforces the point and elevates to a bigger claim.'}
+];
+
+let pbTask = 1;
+let pbRevealedKeys = {};
+
+function initParagraphBuilder(){
+  // Build annotated model
+  const el = document.getElementById('pb-annotated-model');
+  if(!el) return;
+  el.innerHTML = PB_MODEL_ANNOTATED.map(s=>`
+    <div style="display:flex;gap:10px;margin-bottom:8px;align-items:flex-start">
+      <div style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:${s.color};display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:9px;color:#000;font-weight:700">${s.tag}</div>
+      <div style="flex:1">
+        <div style="font-family:var(--font-mono);font-size:9px;color:${s.color};letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">${s.type}</div>
+        <div style="background:var(--s2);border:1px solid var(--b);border-left:3px solid ${s.color};border-radius:var(--rs);padding:10px 12px;font-size:13px;line-height:1.7;margin-bottom:4px">${s.text}</div>
+        <div style="font-size:11px;color:var(--t3);padding-left:4px">↑ ${s.why}</div>
+      </div>
+    </div>`).join('');
+
+  selectPBTask(1);
+}
+
+function selectPBTask(n){
+  pbTask = n;
+  pbRevealedKeys = {};
+  [1,2,3].forEach(i=>{
+    const btn = document.getElementById('pb-task-'+i+'-btn');
+    if(btn) btn.style.borderColor = i===n ? 'var(--ac)' : 'var(--b)';
+    if(btn) btn.style.color = i===n ? 'var(--ac)' : 'var(--t2)';
+  });
+  renderPBTask();
+}
+
+function renderPBTask(){
+  const task = PB_TASKS[pbTask-1];
+  const disp = document.getElementById('pb-task-display');
+  const form = document.getElementById('pb-guided-form');
+  const assembled = document.getElementById('pb-assembled');
+  if(assembled) assembled.style.display='none';
+
+  if(disp){
+    disp.innerHTML = `
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--ac);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">${task.label}</div>
+      ${task.topicSentence ? `
+        <div style="font-size:11px;color:var(--t3);margin-bottom:6px">Topic Sentence (given)</div>
+        <div style="font-size:13px;line-height:1.7;color:var(--t1);background:rgba(124,111,255,.07);border:1px solid rgba(124,111,255,.2);border-radius:var(--rs);padding:10px 12px;margin-bottom:10px">${task.topicSentence}</div>
+        <div style="font-size:12px;color:var(--t2)">Write the remaining 4 sentences below.</div>
+      ` : `
+        <div style="font-size:13px;line-height:1.7;color:var(--t2)">Topic: <strong style="color:var(--t1)">${task.topic}</strong></div>
+        <div style="font-size:12px;color:var(--t2);margin-top:4px">Write all 5 sentences from scratch.</div>
+      `}
+      <div style="margin-top:8px;font-size:11px;color:var(--t3)">💡 ${task.hint}</div>`;
+  }
+
+  if(form){
+    const fields = task.topicSentence ? PB_SENTENCE_TYPES : [{key:'topicSentence', label:'Topic Sentence', color:'var(--ac)', desc:'Make a specific, arguable claim', placeholder:'One major reason why [position] is that [specific point]...'}, ...PB_SENTENCE_TYPES];
+    form.innerHTML = fields.map(f=>`
+      <div class="card" style="margin-bottom:10px;border-left:3px solid ${f.color}">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:${f.color};letter-spacing:1px;text-transform:uppercase">${f.label}</div>
+            <div style="font-size:11px;color:var(--t3);margin-top:2px">${f.desc}</div>
+          </div>
+          <button class="btn btn-s btn-sm" onclick="revealPBModel('${f.key}')" id="pb-reveal-${f.key}" style="flex-shrink:0">Show model</button>
+        </div>
+        <textarea class="txt" id="pb-inp-${f.key}" rows="2" placeholder="${f.placeholder}"></textarea>
+        <div id="pb-model-${f.key}" style="display:none;margin-top:8px">
+          <div class="cmp-col cmp-good" style="padding:10px">
+            <div class="cmp-hd">✓ Model</div>
+            <div class="cmp-txt" style="font-size:12px;line-height:1.7">${task.model[f.key]||''}</div>
+          </div>
+        </div>
+      </div>`).join('');
+    form.innerHTML += `<div style="display:flex;gap:8px;margin-top:4px"><button class="btn btn-p" onclick="assemblePBGuided()">Assemble paragraph →</button></div>
+    <div id="pb-assembled" style="display:none;margin-top:16px"></div>`;
+  }
+}
+
+function revealPBModel(key){
+  const el = document.getElementById('pb-model-'+key);
+  if(el){ el.style.display = el.style.display==='none'?'block':'none'; }
+}
+
+function assemblePBGuided(){
+  const task = PB_TASKS[pbTask-1];
+  const fields = task.topicSentence ? PB_SENTENCE_TYPES : [{key:'topicSentence', label:'Topic Sentence', color:'var(--ac)'}, ...PB_SENTENCE_TYPES];
+  const sentences = [];
+  let missing = false;
+  fields.forEach(f=>{
+    const el = document.getElementById('pb-inp-'+f.key);
+    if(el && el.value.trim()) sentences.push({label:f.label, color:f.color, text:el.value.trim()});
+    else missing = true;
+  });
+
+  if(task.topicSentence){
+    sentences.unshift({label:'Topic Sentence (given)', color:'var(--ac)', text:task.topicSentence});
+  }
+
+  const el = document.getElementById('pb-assembled');
+  if(!el) return;
+  el.style.display='block';
+
+  if(missing){ toast('Write all sentences before assembling','err'); }
+
+  el.innerHTML = `
+    <div class="sect-label">Your assembled paragraph</div>
+    <div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:18px;font-size:14px;line-height:2;margin-bottom:12px">
+      ${sentences.map(s=>`<span style="border-bottom:2px solid ${s.color}" title="${s.label}">${s.text}</span> `).join('')}
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+      ${sentences.map(s=>`<span style="font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,.05);border:1px solid ${s.color};color:${s.color}">${s.label}</span>`).join('')}
+    </div>
+    <div style="font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:12px">Read it aloud. Does each sentence follow logically from the previous one? Does the mechanism explain HOW, not just repeat WHY?</div>
+    <button class="btn btn-gr" onclick="markDone()">Mark Done ✓</button>`;
+}
+
+function assembleFreewrite(){
+  const ts = document.getElementById('fw-ts').value.trim();
+  const re = document.getElementById('fw-re').value.trim();
+  const me = document.getElementById('fw-me').value.trim();
+  const ex = document.getElementById('fw-ex').value.trim();
+  const co = document.getElementById('fw-co').value.trim();
+
+  if(!ts||!re||!me||!ex||!co){ toast('Complete all five sentences first','err'); return; }
+
+  const parts = [
+    {label:'Topic Sentence', color:'var(--ac)', text:ts},
+    {label:'Reason', color:'var(--bl)', text:re},
+    {label:'Mechanism', color:'var(--ac)', text:me},
+    {label:'Example', color:'var(--gd)', text:ex},
+    {label:'Concluding Sentence', color:'var(--gr)', text:co}
+  ];
+
+  const wc = [ts,re,me,ex,co].join(' ').split(/\s+/).length;
+
+  // Quick checks
+  const checks = [
+    {ok: ts.toLowerCase().match(/\b(reason|because|benefit|problem|drawback|argument|way)\b/), label:'Topic sentence signals a specific point'},
+    {ok: re.toLowerCase().includes('because') || re.toLowerCase().includes('due to') || re.toLowerCase().includes('since'), label:'Reason uses causal language (because / due to)'},
+    {ok: me.toLowerCase().match(/\b(specifically|when|leads to|causes|results in|this means)\b/), label:'Mechanism explains HOW with a chain'},
+    {ok: ex.toLowerCase().match(/\b(for instance|for example|in [a-z]+|research|study|evidence)\b/i), label:'Example is introduced with a signpost phrase'},
+    {ok: co.toLowerCase().match(/\b(therefore|thus|it is clear|evident|consequently|this suggests)\b/), label:'Conclusion signals closure'}
+  ];
+
+  const passed = checks.filter(c=>c.ok).length;
+
+  const el = document.getElementById('fw-result');
+  el.style.display='block';
+  el.innerHTML = `
+    <div class="sect-label">Your assembled paragraph</div>
+    <div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:18px;font-size:14px;line-height:2;margin-bottom:12px">
+      ${parts.map(p=>`<span style="border-bottom:2px solid ${p.color}" title="${p.label}">${p.text}</span> `).join('')}
+    </div>
+    <div style="margin-bottom:14px">
+      <div class="sect-label">Quick structure check — ${passed}/5</div>
+      ${checks.map(c=>`
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:${c.ok?'var(--gr)':'var(--rd)'};margin-bottom:5px">
+          <span>${c.ok?'✓':'✗'}</span><span>${c.label}</span>
+        </div>`).join('')}
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--t2)">Word count: <strong style="color:${wc>=80&&wc<=130?'var(--gr)':'var(--gd)'}">${wc}</strong></div>
+      <div style="font-size:11px;color:var(--t3)">Target: 80–130 words per body paragraph</div>
+    </div>
+    <button class="btn btn-gr" onclick="markDone()">Mark Done ✓</button>`;
+}
+
+function clearFreewrite(){
+  ['fw-ts','fw-re','fw-me','fw-ex','fw-co'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  const r=document.getElementById('fw-result'); if(r) r.style.display='none';
+}
+
+// ════════════════════════════════════
+// INTRODUCTION & CONCLUSION
+// ════════════════════════════════════
+
+const IC_BG_TEMPLATES = [
+  {t:'In recent years, [topic] has become an increasingly [debated/important/controversial] issue in many countries.', hint:'Safe, reliable opener for most topics'},
+  {t:'The question of whether [paraphrased version of question] has generated significant debate among [groups].', hint:'Good for two-sided questions'},
+  {t:'As [topic] becomes more prominent in modern society, growing attention is being paid to [specific issue].', hint:'Highlights a trend — effective for technology/environment topics'},
+  {t:'[Topic] is widely regarded as one of the most [significant/pressing/complex] challenges facing [context] today.', hint:'Strong for problem-focused prompts'},
+];
+
+const IC_THESIS_TEMPLATES = [
+  {t:'I strongly believe that [position], because [brief reason].', hint:'Agree/disagree questions — most common'},
+  {t:'Although some argue [opposing view], I contend that [your position] for the reasons outlined below.', hint:'Shows nuance before committing'},
+  {t:'This essay will argue that [position], primarily due to [1–2 key factors].', hint:'Formal academic register'},
+  {t:'While [acknowledging complexity], I firmly hold that [your clear stance].', hint:'Balanced opener with clear commitment'},
+];
+
+const IC_CONC_TEMPLATES = [
+  {t:'In conclusion, I firmly maintain that [restated thesis position], primarily because [key reason 1] and [key reason 2].', hint:'Cleanest and most reliable'},
+  {t:'To summarise, while [acknowledge opposing view], it remains my view that [your position] due to [key argument].', hint:'Shows nuance in the conclusion'},
+  {t:'In light of the arguments above, it is clear that [restate main point], and I believe that [final recommendation or observation].', hint:'Good for problem-solution essays'},
+  {t:'Overall, the evidence strongly suggests that [thesis], a conclusion supported by both [reason 1] and [reason 2].', hint:'Evidence-based register'},
+];
+
+const IC_PROMPTS = [
+  {
+    prompt:'The internet has transformed the way people communicate. Discuss the advantages and disadvantages of this change.',
+    type:'DISCUSS BOTH VIEWS',
+    intro:'The rise of digital communication networks has fundamentally altered how individuals exchange information and maintain relationships in contemporary society. While the internet offers undeniable advantages in terms of speed and reach, I believe its disadvantages — particularly the erosion of meaningful face-to-face interaction — ultimately outweigh these benefits.',
+    conclusion:'In conclusion, I firmly maintain that while the internet has made communication faster and more accessible, it has simultaneously weakened the depth and quality of human relationships. These twin forces — greater reach but shallower connection — suggest that individuals and institutions alike must develop conscious strategies for preserving meaningful interaction in a digitally mediated world.'
+  },
+  {
+    prompt:'Some people believe that children should not be given smartphones. To what extent do you agree?',
+    type:'OPINION ESSAY',
+    intro:'As smartphones become increasingly integrated into daily life, debate has intensified over whether children should be permitted to use these devices. I strongly agree that children under the age of thirteen should be restricted from smartphone access, primarily because unrestricted use poses measurable risks to their psychological development and academic focus.',
+    conclusion:'To summarise, while smartphones are indisputably powerful tools, their risks for developing children — including disrupted sleep, reduced concentration, and accelerated exposure to harmful content — outweigh any convenience they offer. Until robust evidence suggests otherwise, restricting access during childhood is the most prudent policy for parents and schools to adopt.'
+  },
+  {
+    prompt:'Governments should make public transport free for all citizens. Do you agree or disagree?',
+    type:'OPINION ESSAY',
+    intro:'In many countries, the cost and accessibility of public transport remains a significant barrier to urban mobility. I strongly believe that governments should eliminate fares for public transport, as this policy would simultaneously reduce traffic congestion, lower carbon emissions, and improve the financial situation of lower-income workers who depend on these services most.',
+    conclusion:'In conclusion, I firmly maintain that free public transport would generate substantial economic and environmental benefits, particularly by reducing car dependency and supporting lower-income citizens who allocate a disproportionate share of their income to commuting costs. While the initial fiscal cost to governments would be significant, the long-term gains in productivity, health, and environmental sustainability make this an investment rather than an expenditure.'
+  }
+];
+
+let icPromptIdx = 0;
+
+function initIntroConc(){
+  const bgEl = document.getElementById('ic-bg-templates');
+  if(bgEl) bgEl.innerHTML = IC_BG_TEMPLATES.map(t=>`
+    <div class="tpl" onclick="copyTpl(this,'${t.t.replace(/'/g,"\\'")}')">
+      ${t.t.replace(/\[([^\]]+)\]/g,'<span class="slot">[$1]</span>')}
+      <div class="tpl-hint">${t.hint}</div>
+    </div>`).join('');
+
+  const thEl = document.getElementById('ic-thesis-templates');
+  if(thEl) thEl.innerHTML = IC_THESIS_TEMPLATES.map(t=>`
+    <div class="tpl" onclick="copyTpl(this,'${t.t.replace(/'/g,"\\'")}')">
+      ${t.t.replace(/\[([^\]]+)\]/g,'<span class="slot">[$1]</span>')}
+      <div class="tpl-hint">${t.hint}</div>
+    </div>`).join('');
+
+  const coEl = document.getElementById('ic-conc-templates');
+  if(coEl) coEl.innerHTML = IC_CONC_TEMPLATES.map(t=>`
+    <div class="tpl" onclick="copyTpl(this,'${t.t.replace(/'/g,"\\'")}')">
+      ${t.t.replace(/\[([^\]]+)\]/g,'<span class="slot">[$1]</span>')}
+      <div class="tpl-hint">${t.hint}</div>
+    </div>`).join('');
+
+  // Practice prompts
+  const sel = document.getElementById('ic-prompt-sel');
+  if(sel){
+    sel.innerHTML = IC_PROMPTS.map((p,i)=>`<option value="${i}">${p.type}: ${p.prompt.substring(0,50)}...</option>`).join('');
+    renderICPrompt();
+  }
+}
+
+function renderICPrompt(){
+  const sel = document.getElementById('ic-prompt-sel');
+  icPromptIdx = parseInt(sel.value)||0;
+  const p = IC_PROMPTS[icPromptIdx];
+  const el = document.getElementById('ic-prompt-display');
+  if(el) el.innerHTML = `<span class="ptype">${p.type}</span><br>${p.prompt}`;
+  ['ic-intro-feedback','ic-conc-feedback'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.style.display='none';
+  });
+}
+
+function checkIC(type){
+  const id = type==='intro' ? 'ic-intro-input' : 'ic-conc-input';
+  const val = document.getElementById(id).value.trim();
+  if(!val){ toast('Write your '+type+' first','err'); return; }
+
+  const fbId = 'ic-'+type+'-feedback';
+  const el = document.getElementById(fbId);
+  el.style.display='block';
+
+  const wc = val.split(/\s+/).length;
+  const sentences = val.split(/[.!?]+/).filter(s=>s.trim().length>5).length;
+
+  let checks = [];
+  if(type==='intro'){
+    checks = [
+      {ok: sentences>=2, label:'Has at least 2 sentences'},
+      {ok: sentences<=3, label:'No more than 3 sentences'},
+      {ok: wc>=30 && wc<=70, label:`Word count in range (${wc} words — target 40–60)`},
+      {ok: !val.toLowerCase().includes('in this essay i will'), label:'Does not use "In this essay I will..."'},
+      {ok: val.toLowerCase().match(/\b(i believe|i strongly|i contend|this essay|i firmly|i argue)\b/i), label:'Thesis states a clear position'},
+    ];
+  } else {
+    checks = [
+      {ok: sentences>=2 && sentences<=4, label:`Has 2–3 sentences (you have ${sentences})`},
+      {ok: val.toLowerCase().match(/\b(in conclusion|to summarise|overall|in light of|taken together)\b/i), label:'Opens with a conclusion signal phrase'},
+      {ok: val.toLowerCase().match(/\b(primarily because|due to|because of|since|as|given that)\b/i), label:'Restates reasons, not just the thesis'},
+      {ok: !val.toLowerCase().match(/\b(firstly|secondly|in addition|furthermore|however)\b/), label:'Does not introduce new ideas or examples'},
+    ];
+  }
+
+  const passed = checks.filter(c=>c.ok).length;
+  el.innerHTML = `
+    <div style="margin-bottom:8px;font-size:12px;font-weight:600;color:${passed===checks.length?'var(--gr)':passed>=checks.length-1?'var(--gd)':'var(--rd)'}">
+      ${passed}/${checks.length} checks passed
+    </div>
+    ${checks.map(c=>`
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:${c.ok?'var(--gr)':'var(--rd)'};margin-bottom:5px;line-height:1.4">
+        <span style="flex-shrink:0">${c.ok?'✓':'✗'}</span><span>${c.label}</span>
+      </div>`).join('')}`;
+}
+
+function showICModel(type){
+  const p = IC_PROMPTS[icPromptIdx];
+  const fbId = 'ic-'+type+'-feedback';
+  const el = document.getElementById(fbId);
+  el.style.display='block';
+  const text = type==='intro' ? p.intro : p.conclusion;
+  el.innerHTML = `
+    <div class="cmp-col cmp-good" style="margin-top:0">
+      <div class="cmp-hd">✓ Model ${type==='intro'?'Introduction':'Conclusion'}</div>
+      <div class="cmp-txt" style="line-height:1.8">${text}</div>
+    </div>`;
+}
+
+function markICDone(){
+  const intro = document.getElementById('ic-intro-input').value.trim();
+  const conc = document.getElementById('ic-conc-input').value.trim();
+  if(!intro || !conc){ toast('Write both intro and conclusion first','err'); return; }
+  markDone();
+}
+
+// ════════════════════════════════════
+// BAND COMPARISON TRAINING
+// ════════════════════════════════════
+
+const BC_ITEMS = [
+  {
+    type:'Thesis Sentence',
+    topic:'Should governments make voting compulsory?',
+    bad:'In my opinion, voting is important and governments should do something about it.',
+    badNotes:['No specific position on the question','Vague — "do something about it" says nothing','Zero reasoning given'],
+    good:'I strongly believe that compulsory voting should be introduced, as it ensures that political decisions reflect the genuine will of the entire population rather than a motivated minority.',
+    goodNotes:['Clear, direct position stated','Gives a specific reason in the thesis itself','Sophisticated contrast (genuine will vs motivated minority)']
+  },
+  {
+    type:'Body Paragraph',
+    topic:'Technology has negatively affected human relationships.',
+    bad:'Technology has many bad effects on relationships. People use their phones too much. They don\'t talk to their family. This is a big problem. Technology should be controlled.',
+    badNotes:['5 separate disconnected statements','No reason sentence explaining WHY','No mechanism explaining HOW','No specific example with context','Concluding sentence is a vague opinion'],
+    good:'One significant way in which technology undermines human relationships is by reducing the quality of face-to-face communication. This is because devices create a state of constant partial attention, where individuals are physically present but mentally disengaged. Specifically, when people habitually check their phones during conversations, they signal to others that digital content is more valuable than human connection, gradually eroding the intimacy and trust that sustain close relationships. Research in behavioural psychology has demonstrated that even the visible presence of a smartphone on a dinner table significantly reduces the depth of personal conversations. Therefore, it is clear that unregulated technology use actively damages the relational bonds that form the foundation of personal well-being.',
+    goodNotes:['Strong topic sentence with specific claim','Clear reason sentence explaining why','Detailed mechanism showing the psychological process','Specific, credible example with context','Concluding sentence reinforces and elevates the point']
+  },
+  {
+    type:'Example Sentence',
+    topic:'Urban green spaces improve residents\' mental health.',
+    bad:'For example, many cities have parks and people feel better there.',
+    badNotes:['"Many cities" — no specific location','"Feel better there" — no specific outcome','No link back to the argument about mental health'],
+    good:'A compelling example is Singapore\'s Green Plan, a national policy that invested heavily in rooftop gardens, urban parks, and tree-lined streets throughout the city, resulting in measurable reductions in stress-related hospital admissions among residents in areas with increased green cover.',
+    goodNotes:['Named, specific case (Singapore\'s Green Plan)','Specific details about what was done','Specific measurable outcome','Explicitly links back to the mental health argument']
+  },
+  {
+    type:'Thesis Sentence',
+    topic:'Should children spend less time on screens?',
+    bad:'I think screens are bad for children and parents should do something.',
+    badNotes:['No specific claim or position','Vague — what should parents "do"?','No reasoning or nuance'],
+    good:'I strongly believe that children under the age of twelve should have their daily screen time strictly limited, as unrestricted access to digital devices demonstrably impairs sleep quality and reduces the sustained attention required for effective learning.',
+    goodNotes:['Specifies an age group — concrete','Uses a measurable outcome (sleep, attention)','The thesis is falsifiable — an examiner can evaluate it']
+  },
+  {
+    type:'Mechanism Sentence',
+    topic:'Fast food advertising increases childhood obesity.',
+    bad:'Children see fast food ads and then they want to eat it. This is bad.',
+    badNotes:['No chain of causation — just observation','No psychological or behavioural mechanism','Concludes with a vague value judgement'],
+    good:'Specifically, repeated exposure to high-calorie food imagery activates the dopaminergic reward pathways in children\'s developing brains, generating persistent cravings that override parental guidance and gradually normalise the consumption of processed foods as a regular dietary choice.',
+    goodNotes:['Names the precise mechanism (dopaminergic reward pathways)','Explains HOW the craving overrides rational choice','Links back to dietary outcomes — completes the chain']
+  },
+  {
+    type:'Topic Sentence',
+    topic:'Benefits of physical education in schools.',
+    bad:'Physical education has many benefits for students in school.',
+    badNotes:['"Many benefits" is vague — which benefit?','No direction for the paragraph','Could apply to almost any school subject'],
+    good:'One major benefit of mandatory physical education is its capacity to counteract the sedentary habits that now represent one of the leading drivers of childhood obesity in developed nations.',
+    goodNotes:['Names one specific benefit','Situates it within a broader real-world problem','Gives the paragraph a clear, arguable direction']
+  }
+];
+
+let bcDrillIdx = 0;
+let bcSelectedType = 'any';
+
+function initBandCompare(){
+  // Build filter row
+  const types = ['All', ...new Set(BC_ITEMS.map(i=>i.type))];
+  const fr = document.getElementById('bc-filter-row');
+  if(fr) fr.innerHTML = types.map((t,i)=>`
+    <button class="topic-btn ${i===0?'on':''}" onclick="filterBC(this,'${t}')">${t}</button>`).join('');
+
+  renderBCStudy('All');
+  renderBCDrill();
+}
+
+function filterBC(btn, type){
+  document.querySelectorAll('#bc-filter-row .topic-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderBCStudy(type);
+}
+
+function renderBCStudy(filter){
+  const items = filter==='All' ? BC_ITEMS : BC_ITEMS.filter(i=>i.type===filter);
+  const el = document.getElementById('bc-study-cards');
+  if(!el) return;
+  el.innerHTML = items.map(item=>`
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--ac);letter-spacing:1px;text-transform:uppercase;flex:1">${item.type}</div>
+        <div style="font-size:11px;color:var(--t3)">Topic: ${item.topic}</div>
+      </div>
+      <div class="cmp">
+        <div class="cmp-col cmp-bad">
+          <div class="cmp-hd">❌ Band 6</div>
+          <div class="cmp-txt">${item.bad}</div>
+          <div style="margin-top:10px">${item.badNotes.map(n=>`<div style="font-size:11px;color:var(--rd);padding:3px 0;border-top:1px solid rgba(255,107,107,.1)">• ${n}</div>`).join('')}</div>
+        </div>
+        <div class="cmp-col cmp-good">
+          <div class="cmp-hd">✓ Band 8</div>
+          <div class="cmp-txt">${item.good}</div>
+          <div style="margin-top:10px">${item.goodNotes.map(n=>`<div style="font-size:11px;color:var(--gr);padding:3px 0;border-top:1px solid rgba(6,214,160,.1)">• ${n}</div>`).join('')}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderBCDrill(){
+  const item = BC_ITEMS[bcDrillIdx % BC_ITEMS.length];
+  const lbl = document.getElementById('bc-drill-label');
+  if(lbl) lbl.textContent = `${item.type} · ${bcDrillIdx+1} of ${BC_ITEMS.length}`;
+
+  const el = document.getElementById('bc-drill-content');
+  if(!el) return;
+  el.innerHTML = `
+    <div class="card" style="margin-bottom:12px">
+      <div style="font-size:11px;color:var(--t3);margin-bottom:8px">Topic: ${item.topic}</div>
+      <div class="cmp-col cmp-bad" style="margin-bottom:14px">
+        <div class="cmp-hd">❌ Band 6 version — rewrite this</div>
+        <div class="cmp-txt">${item.bad}</div>
+        <div style="margin-top:8px">${item.badNotes.map(n=>`<div style="font-size:11px;color:var(--rd);padding:2px 0">• ${n}</div>`).join('')}</div>
+      </div>
+      <div class="expand-label">Your improved version</div>
+      <textarea class="txt" id="bc-rewrite-input" rows="${item.type==='Body Paragraph'?5:2}" placeholder="Write a Band 7–8 version..."></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn btn-s btn-sm" onclick="revealBCAnswer()">Reveal Band 8 →</button>
+      </div>
+      <div id="bc-answer-reveal" style="display:none;margin-top:12px">
+        <div class="cmp-col cmp-good">
+          <div class="cmp-hd">✓ Band 8 version</div>
+          <div class="cmp-txt">${item.good}</div>
+          <div style="margin-top:10px">${item.goodNotes.map(n=>`<div style="font-size:11px;color:var(--gr);padding:3px 0;border-top:1px solid rgba(6,214,160,.1)">• ${n}</div>`).join('')}</div>
+        </div>
+        <div style="font-size:12px;color:var(--t2);margin-top:10px;line-height:1.6">Compare your version to the model. Which elements did you include? Which did you miss?</div>
+        <button class="btn btn-gr btn-sm" onclick="markDone()" style="margin-top:10px">Mark Done ✓</button>
+      </div>
+    </div>`;
+}
+
+function revealBCAnswer(){
+  const val = document.getElementById('bc-rewrite-input').value.trim();
+  if(!val){ toast('Write your version first','err'); return; }
+  const el = document.getElementById('bc-answer-reveal');
+  if(el) el.style.display='block';
+}
+
+function prevBCDrill(){ bcDrillIdx = Math.max(0, bcDrillIdx-1); renderBCDrill(); }
+function nextBCDrill(){ bcDrillIdx = (bcDrillIdx+1) % BC_ITEMS.length; renderBCDrill(); }
+
+function selectBCType(btn){
+  document.querySelectorAll('.bc-type-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  bcSelectedType = btn.dataset.type;
+}
+
+async function runBCAI(){
+  const text = document.getElementById('bc-ai-input').value.trim();
+  if(!text){ toast('Paste some text first','err'); return; }
+
+  const btn = document.getElementById('bc-ai-btn');
+  btn.disabled = true;
+  btn.textContent = 'Analysing...';
+
+  const el = document.getElementById('bc-ai-result');
+  el.style.display='block';
+  el.innerHTML = `<div class="card" style="text-align:center;padding:30px"><div style="font-size:20px;margin-bottom:8px">⏳</div><div style="font-size:12px;color:var(--t2)">Analysing your writing...</div></div>`;
+
+  const typeContext = bcSelectedType !== 'any' ? `The student believes this is a ${bcSelectedType} sentence/paragraph.` : '';
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{
+          role:'user',
+          content:`You are an IELTS Writing examiner specialising in band score analysis. A student has submitted the following text for feedback. ${typeContext}
+
+Text submitted:
+"${text}"
+
+Respond in this exact JSON format (no markdown, no backticks):
+{
+  "bandEstimate": "Band 5-6" or "Band 6-7" or "Band 7-8",
+  "verdict": "one sentence summary of the main issue or strength",
+  "strengths": ["specific strength 1", "specific strength 2"],
+  "weaknesses": ["specific weakness 1", "specific weakness 2"],
+  "rewrite": "Your improved Band 7-8 version of the text",
+  "keyLesson": "The single most important lesson from this comparison"
+}`
+        }]
+      })
+    });
+
+    const data = await response.json();
+    const raw = data.content.map(i=>i.text||'').join('');
+    const clean = raw.replace(/```json|```/g,'').trim();
+    const result = JSON.parse(clean);
+
+    const bandColor = result.bandEstimate.includes('7-8') ? 'var(--gr)' : result.bandEstimate.includes('6-7') ? 'var(--gd)' : 'var(--rd)';
+
+    el.innerHTML = `
+      <div class="card" style="border-top:2px solid ${bandColor}">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+          <div style="font-family:var(--font-serif);font-size:28px;color:${bandColor};line-height:1">${result.bandEstimate}</div>
+          <div style="font-size:13px;color:var(--t2);line-height:1.5;flex:1">${result.verdict}</div>
+        </div>
+        <div class="cmp">
+          <div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--gr);letter-spacing:1px;margin-bottom:8px">✓ STRENGTHS</div>
+            ${result.strengths.map(s=>`<div style="font-size:12px;color:var(--t2);padding:5px 0;border-bottom:1px solid var(--b);line-height:1.5">• ${s}</div>`).join('')}
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:9px;color:var(--rd);letter-spacing:1px;margin-bottom:8px">✗ WEAKNESSES</div>
+            ${result.weaknesses.map(w=>`<div style="font-size:12px;color:var(--t2);padding:5px 0;border-bottom:1px solid var(--b);line-height:1.5">• ${w}</div>`).join('')}
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--ac);letter-spacing:1px;margin-bottom:8px">IMPROVED VERSION</div>
+          <div style="background:rgba(6,214,160,.05);border:1px solid rgba(6,214,160,.2);border-radius:var(--rs);padding:14px;font-size:13px;line-height:1.8;color:var(--t1)">${result.rewrite}</div>
+        </div>
+        <div style="margin-top:12px;background:rgba(124,111,255,.07);border:1px solid rgba(124,111,255,.2);border-radius:var(--rs);padding:12px">
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--ac);letter-spacing:1px;margin-bottom:6px">KEY LESSON</div>
+          <div style="font-size:12px;color:var(--t1);line-height:1.6">${result.keyLesson}</div>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:8px">
+          <button class="btn btn-gr btn-sm" onclick="markDone()">Mark Done ✓</button>
+          <button class="btn btn-s btn-sm" onclick="document.getElementById('bc-ai-input').value='';document.getElementById('bc-ai-result').style.display='none'">Try another</button>
+        </div>
+      </div>`;
+  } catch(e) {
+    el.innerHTML = `<div class="card" style="border-color:var(--rd)"><div style="font-size:13px;color:var(--rd)">Analysis failed. Check your connection and try again.</div></div>`;
+  } finally {
+    btn.disabled=false;
+    btn.textContent='Get AI Feedback →';
+  }
 }
 
 // ── Level 4: Speed ────────────────────────────────────────
