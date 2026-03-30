@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -42,193 +41,193 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);min-heigh
 
 /* SIDEBAR */
 .sb{
-width:240px;flex-shrink:0;background:var(–s1);
-border-right:1px solid var(–b);
-display:flex;flex-direction:column;
-position:fixed;top:0;left:0;bottom:0;z-index:100;
+  width:240px;flex-shrink:0;background:var(--s1);
+  border-right:1px solid var(--b);
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;bottom:0;z-index:100;
 }
-.sb-logo{padding:22px 18px 18px;border-bottom:1px solid var(–b)}
-.sb-logo-main{font-family:var(–font-serif);font-size:18px;line-height:1.2}
-.sb-logo-sub{font-family:var(–font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–ac);margin-top:4px}
+.sb-logo{padding:22px 18px 18px;border-bottom:1px solid var(--b)}
+.sb-logo-main{font-family:var(--font-serif);font-size:18px;line-height:1.2}
+.sb-logo-sub{font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-top:4px}
 
 .nav{flex:1;padding:12px 0;overflow-y:auto}
-.nav-sect{font-family:var(–font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–t3);padding:14px 18px 5px}
+.nav-sect{font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);padding:14px 18px 5px}
 .nav-item{
-display:flex;align-items:center;gap:10px;
-padding:9px 18px;cursor:pointer;
-font-size:13px;color:var(–t2);
-border-left:2px solid transparent;
-transition:all .15s;
+  display:flex;align-items:center;gap:10px;
+  padding:9px 18px;cursor:pointer;
+  font-size:13px;color:var(--t2);
+  border-left:2px solid transparent;
+  transition:all .15s;
 }
-.nav-item:hover{background:var(–s2);color:var(–t1)}
-.nav-item.on{background:var(–s2);border-left-color:var(–ac);color:var(–t1)}
+.nav-item:hover{background:var(--s2);color:var(--t1)}
+.nav-item.on{background:var(--s2);border-left-color:var(--ac);color:var(--t1)}
 .nav-ic{width:18px;text-align:center;font-size:15px}
 .nav-chip{
-margin-left:auto;font-family:var(–font-mono);
-font-size:9px;padding:2px 6px;border-radius:8px;
-background:var(–ac);color:#fff;
+  margin-left:auto;font-family:var(--font-mono);
+  font-size:9px;padding:2px 6px;border-radius:8px;
+  background:var(--ac);color:#fff;
 }
 
 /* STREAK WIDGET */
 .streak-box{
-margin:14px;background:var(–s2);
-border:1px solid var(–b);border-radius:var(–r);
-padding:14px;
+  margin:14px;background:var(--s2);
+  border:1px solid var(--b);border-radius:var(--r);
+  padding:14px;
 }
 .streak-row{display:flex;align-items:center;justify-content:space-between}
-.streak-n{font-family:var(–font-serif);font-size:28px;color:var(–gd);line-height:1}
-.streak-lbl{font-family:var(–font-mono);font-size:9px;color:var(–t2);margin-top:2px}
+.streak-n{font-family:var(--font-serif);font-size:28px;color:var(--gd);line-height:1}
+.streak-lbl{font-family:var(--font-mono);font-size:9px;color:var(--t2);margin-top:2px}
 .streak-dots{display:flex;gap:3px;margin-top:10px}
 .sd{
-flex:1;height:20px;border-radius:3px;
-background:var(–s3);display:flex;align-items:center;
-justify-content:center;font-family:var(–font-mono);
-font-size:9px;color:var(–t3);transition:background .3s;
+  flex:1;height:20px;border-radius:3px;
+  background:var(--s3);display:flex;align-items:center;
+  justify-content:center;font-family:var(--font-mono);
+  font-size:9px;color:var(--t3);transition:background .3s;
 }
-.sd.hit{background:var(–gd);color:#000}
-.sd.now{background:var(–ac);color:#fff}
+.sd.hit{background:var(--gd);color:#000}
+.sd.now{background:var(--ac);color:#fff}
 .freeze-row{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
-.freeze-lbl{font-size:10px;color:var(–t2)}
-.freeze-uses{font-family:var(–font-mono);font-size:10px;color:var(–bl)}
+.freeze-lbl{font-size:10px;color:var(--t2)}
+.freeze-uses{font-family:var(--font-mono);font-size:10px;color:var(--bl)}
 .btn-freeze{
-background:none;border:1px solid var(–b);color:var(–t2);
-padding:3px 8px;border-radius:4px;font-size:10px;cursor:pointer;
-transition:all .15s;font-family:var(–font-mono);
+  background:none;border:1px solid var(--b);color:var(--t2);
+  padding:3px 8px;border-radius:4px;font-size:10px;cursor:pointer;
+  transition:all .15s;font-family:var(--font-mono);
 }
-.btn-freeze:hover{border-color:var(–bl);color:var(–bl)}
+.btn-freeze:hover{border-color:var(--bl);color:var(--bl)}
 .btn-freeze:disabled{opacity:.3;cursor:not-allowed}
 
 /* MAIN */
 .main{margin-left:240px;flex:1;min-height:100vh;display:flex;flex-direction:column}
 .topbar{
-height:54px;background:var(–s1);border-bottom:1px solid var(–b);
-display:flex;align-items:center;padding:0 28px;gap:14px;
-position:sticky;top:0;z-index:50;
+  height:54px;background:var(--s1);border-bottom:1px solid var(--b);
+  display:flex;align-items:center;padding:0 28px;gap:14px;
+  position:sticky;top:0;z-index:50;
 }
-.topbar-title{font-family:var(–font-mono);font-size:12px;color:var(–t2)}
-.topbar-title b{color:var(–t1);font-weight:600}
+.topbar-title{font-family:var(--font-mono);font-size:12px;color:var(--t2)}
+.topbar-title b{color:var(--t1);font-weight:600}
 .target-pill{
-margin-left:auto;background:var(–s2);border:1px solid var(–b);
-border-radius:20px;padding:4px 12px;
-font-family:var(–font-mono);font-size:10px;color:var(–ac);
+  margin-left:auto;background:var(--s2);border:1px solid var(--b);
+  border-radius:20px;padding:4px 12px;
+  font-family:var(--font-mono);font-size:10px;color:var(--ac);
 }
 
 .content{padding:28px;flex:1}
 .page{display:none}.page.on{display:block}
 
 /* ── TYPOGRAPHY HELPERS ── */
-.pg-title{font-family:var(–font-serif);font-size:24px;margin-bottom:6px}
-.pg-sub{font-size:13px;color:var(–t2);line-height:1.6;margin-bottom:24px}
+.pg-title{font-family:var(--font-serif);font-size:24px;margin-bottom:6px}
+.pg-sub{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:24px}
 .sect-label{
-font-family:var(–font-mono);font-size:9px;
-letter-spacing:2px;text-transform:uppercase;
-color:var(–t3);margin-bottom:10px;
+  font-family:var(--font-mono);font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--t3);margin-bottom:10px;
 }
 
 /* CARDS */
-.card{background:var(–s1);border:1px solid var(–b);border-radius:var(–r);padding:20px;margin-bottom:14px}
-.card.ac-top{border-top:2px solid var(–ac)}
-.card.gr-top{border-top:2px solid var(–gr)}
-.card.gd-top{border-top:2px solid var(–gd)}
-.card.bl-top{border-top:2px solid var(–bl)}
+.card{background:var(--s1);border:1px solid var(--b);border-radius:var(--r);padding:20px;margin-bottom:14px}
+.card.ac-top{border-top:2px solid var(--ac)}
+.card.gr-top{border-top:2px solid var(--gr)}
+.card.gd-top{border-top:2px solid var(--gd)}
+.card.bl-top{border-top:2px solid var(--bl)}
 
 /* GRID HELPERS */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 
 /* STAT CARD */
-.stat-val{font-family:var(–font-serif);font-size:34px;color:var(–t1);line-height:1;margin:8px 0 4px}
-.stat-sub{font-size:11px;color:var(–t3)}
+.stat-val{font-family:var(--font-serif);font-size:34px;color:var(--t1);line-height:1;margin:8px 0 4px}
+.stat-sub{font-size:11px;color:var(--t3)}
 
 /* SKILL ITEMS */
 .skill-row{
-display:flex;align-items:center;gap:12px;
-padding:12px;background:var(–s2);border:1px solid var(–b);
-border-radius:var(–rs);margin-bottom:8px;cursor:pointer;
-transition:border-color .15s;
+  display:flex;align-items:center;gap:12px;
+  padding:12px;background:var(--s2);border:1px solid var(--b);
+  border-radius:var(--rs);margin-bottom:8px;cursor:pointer;
+  transition:border-color .15s;
 }
-.skill-row:hover{border-color:var(–ac)}
-.skill-row.done{border-color:var(–gr)}
+.skill-row:hover{border-color:var(--ac)}
+.skill-row.done{border-color:var(--gr)}
 .skill-ic{font-size:20px;width:28px;text-align:center;flex-shrink:0}
 .skill-info{flex:1;min-width:0}
 .skill-name{font-size:13px;font-weight:600}
-.skill-desc{font-size:11px;color:var(–t2);margin-top:2px}
-.prog-bar{width:100%;height:3px;background:var(–s3);border-radius:2px;margin-top:7px;overflow:hidden}
-.prog-fill{height:100%;border-radius:2px;background:var(–ac);transition:width .5s}
-.skill-row.done .prog-fill{background:var(–gr)}
+.skill-desc{font-size:11px;color:var(--t2);margin-top:2px}
+.prog-bar{width:100%;height:3px;background:var(--s3);border-radius:2px;margin-top:7px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;background:var(--ac);transition:width .5s}
+.skill-row.done .prog-fill{background:var(--gr)}
 
 /* TABS */
-.tabs{display:flex;gap:3px;background:var(–s2);border:1px solid var(–b);border-radius:var(–r);padding:3px;margin-bottom:18px}
+.tabs{display:flex;gap:3px;background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:3px;margin-bottom:18px}
 .tab{
-flex:1;padding:7px 10px;text-align:center;font-size:11px;
-cursor:pointer;border-radius:calc(var(–r) - 3px);
-transition:all .15s;color:var(–t2);font-family:var(–font-mono);
-letter-spacing:.5px;
+  flex:1;padding:7px 10px;text-align:center;font-size:11px;
+  cursor:pointer;border-radius:calc(var(--r) - 3px);
+  transition:all .15s;color:var(--t2);font-family:var(--font-mono);
+  letter-spacing:.5px;
 }
-.tab.on{background:var(–ac);color:#fff}
+.tab.on{background:var(--ac);color:#fff}
 .tc{display:none}.tc.on{display:block}
 
 /* TEMPLATE BOX */
 .tpl{
-background:var(–s2);border:1px solid var(–b);
-border-left:3px solid var(–ac);border-radius:var(–rs);
-padding:12px 14px;margin-bottom:8px;font-family:var(–font-mono);
-font-size:12px;line-height:1.6;cursor:pointer;transition:background .15s;
+  background:var(--s2);border:1px solid var(--b);
+  border-left:3px solid var(--ac);border-radius:var(--rs);
+  padding:12px 14px;margin-bottom:8px;font-family:var(--font-mono);
+  font-size:12px;line-height:1.6;cursor:pointer;transition:background .15s;
 }
-.tpl:hover{background:var(–s3)}
-.tpl .slot{color:var(–ac);font-style:italic}
-.tpl-hint{font-size:10px;color:var(–t3);margin-top:4px;font-family:var(–font-sans)}
+.tpl:hover{background:var(--s3)}
+.tpl .slot{color:var(--ac);font-style:italic}
+.tpl-hint{font-size:10px;color:var(--t3);margin-top:4px;font-family:var(--font-sans)}
 
 /* COMPARE */
 .cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.cmp-col{border-radius:var(–rs);padding:14px}
+.cmp-col{border-radius:var(--rs);padding:14px}
 .cmp-bad{background:rgba(255,107,107,.05);border:1px solid rgba(255,107,107,.25)}
 .cmp-good{background:rgba(6,214,160,.05);border:1px solid rgba(6,214,160,.25)}
-.cmp-hd{font-family:var(–font-mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid}
-.cmp-bad .cmp-hd{color:var(–rd);border-color:rgba(255,107,107,.2)}
-.cmp-good .cmp-hd{color:var(–gr);border-color:rgba(6,214,160,.2)}
+.cmp-hd{font-family:var(--font-mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid}
+.cmp-bad .cmp-hd{color:var(--rd);border-color:rgba(255,107,107,.2)}
+.cmp-good .cmp-hd{color:var(--gr);border-color:rgba(6,214,160,.2)}
 .cmp-txt{font-size:13px;line-height:1.6}
-.cmp-note{font-size:11px;color:var(–t3);margin-top:7px;font-style:italic}
+.cmp-note{font-size:11px;color:var(--t3);margin-top:7px;font-style:italic}
 
 /* SELF-CHECK PANEL */
 .check-section{margin-bottom:18px}
-.check-title{font-size:12px;font-weight:600;color:var(–t1);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.check-title{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:8px;display:flex;align-items:center;gap:6px}
 .check-item{
-display:flex;align-items:flex-start;gap:10px;
-padding:8px 10px;border-radius:var(–rs);
-background:var(–s2);border:1px solid var(–b);
-margin-bottom:5px;cursor:pointer;transition:all .15s;
-font-size:13px;color:var(–t2);
-user-select:none;
+  display:flex;align-items:flex-start;gap:10px;
+  padding:8px 10px;border-radius:var(--rs);
+  background:var(--s2);border:1px solid var(--b);
+  margin-bottom:5px;cursor:pointer;transition:all .15s;
+  font-size:13px;color:var(--t2);
+  user-select:none;
 }
-.check-item:hover{border-color:var(–ac)}
-.check-item.checked{background:rgba(6,214,160,.06);border-color:rgba(6,214,160,.3);color:var(–t1)}
+.check-item:hover{border-color:var(--ac)}
+.check-item.checked{background:rgba(6,214,160,.06);border-color:rgba(6,214,160,.3);color:var(--t1)}
 .check-box{
-width:16px;height:16px;border-radius:3px;border:1px solid var(–b);
-flex-shrink:0;margin-top:1px;display:flex;align-items:center;
-justify-content:center;font-size:10px;transition:all .15s;
+  width:16px;height:16px;border-radius:3px;border:1px solid var(--b);
+  flex-shrink:0;margin-top:1px;display:flex;align-items:center;
+  justify-content:center;font-size:10px;transition:all .15s;
 }
-.check-item.checked .check-box{background:var(–gr);border-color:var(–gr);color:#000}
+.check-item.checked .check-box{background:var(--gr);border-color:var(--gr);color:#000}
 .check-score{
-text-align:center;padding:20px;background:var(–s2);
-border:1px solid var(–b);border-radius:var(–r);margin-top:16px;
+  text-align:center;padding:20px;background:var(--s2);
+  border:1px solid var(--b);border-radius:var(--r);margin-top:16px;
 }
-.score-num{font-family:var(–font-serif);font-size:42px;line-height:1}
-.score-lbl{font-size:12px;color:var(–t2);margin-top:4px}
-.score-msg{font-size:13px;color:var(–t2);margin-top:10px;line-height:1.6}
+.score-num{font-family:var(--font-serif);font-size:42px;line-height:1}
+.score-lbl{font-size:12px;color:var(--t2);margin-top:4px}
+.score-msg{font-size:13px;color:var(--t2);margin-top:10px;line-height:1.6}
 
 /* BUTTONS */
 .btn{
-padding:9px 18px;border-radius:var(–rs);
-font-family:var(–font-sans);font-size:13px;font-weight:500;
-cursor:pointer;border:none;transition:all .2s;
-display:inline-flex;align-items:center;gap:6px;
+  padding:9px 18px;border-radius:var(--rs);
+  font-family:var(--font-sans);font-size:13px;font-weight:500;
+  cursor:pointer;border:none;transition:all .2s;
+  display:inline-flex;align-items:center;gap:6px;
 }
-.btn-p{background:var(–ac);color:#fff}
+.btn-p{background:var(--ac);color:#fff}
 .btn-p:hover{background:#9580ff;transform:translateY(-1px)}
-.btn-s{background:var(–s2);color:var(–t1);border:1px solid var(–b)}
-.btn-s:hover{border-color:var(–ac)}
-.btn-gr{background:var(–gr);color:#000;font-weight:600}
+.btn-s{background:var(--s2);color:var(--t1);border:1px solid var(--b)}
+.btn-s:hover{border-color:var(--ac)}
+.btn-gr{background:var(--gr);color:#000;font-weight:600}
 .btn-gr:hover{transform:translateY(-1px)}
 .btn-sm{padding:6px 13px;font-size:12px}
 .btn-full{width:100%;justify-content:center}
@@ -236,234 +235,232 @@ display:inline-flex;align-items:center;gap:6px;
 
 /* TEXTAREA / INPUT */
 .txt{
-width:100%;background:var(–s2);border:1px solid var(–b);
-border-radius:var(–rs);padding:11px 13px;
-font-family:var(–font-sans);font-size:13px;color:var(–t1);
-resize:vertical;outline:none;transition:border-color .15s;line-height:1.7;
+  width:100%;background:var(--s2);border:1px solid var(--b);
+  border-radius:var(--rs);padding:11px 13px;
+  font-family:var(--font-sans);font-size:13px;color:var(--t1);
+  resize:vertical;outline:none;transition:border-color .15s;line-height:1.7;
 }
-.txt:focus{border-color:var(–ac)}
-.txt::placeholder{color:var(–t3)}
+.txt:focus{border-color:var(--ac)}
+.txt::placeholder{color:var(--t3)}
 .inp{
-background:var(–s2);border:1px solid var(–b);
-border-radius:var(–rs);padding:9px 12px;
-font-family:var(–font-sans);font-size:13px;color:var(–t1);
-outline:none;transition:border-color .15s;width:100%;
+  background:var(--s2);border:1px solid var(--b);
+  border-radius:var(--rs);padding:9px 12px;
+  font-family:var(--font-sans);font-size:13px;color:var(--t1);
+  outline:none;transition:border-color .15s;width:100%;
 }
-.inp:focus{border-color:var(–ac)}
+.inp:focus{border-color:var(--ac)}
 
 /* IDEA LAB */
 .angle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
 .angle-card{
-background:var(–s2);border:1px solid var(–b);border-radius:var(–rs);
-padding:12px;cursor:pointer;transition:all .15s;
+  background:var(--s2);border:1px solid var(--b);border-radius:var(--rs);
+  padding:12px;cursor:pointer;transition:all .15s;
 }
-.angle-card:hover,.angle-card.sel{border-color:var(–ac);background:rgba(124,111,255,.07)}
-.angle-card.sel{border-left:3px solid var(–ac)}
+.angle-card:hover,.angle-card.sel{border-color:var(--ac);background:rgba(124,111,255,.07)}
+.angle-card.sel{border-left:3px solid var(--ac)}
 .angle-ic{font-size:18px;margin-bottom:6px}
 .angle-name{font-size:12px;font-weight:600}
-.angle-ex{font-size:11px;color:var(–t2);margin-top:3px}
+.angle-ex{font-size:11px;color:var(--t2);margin-top:3px}
 
 .idea-pill{
-display:inline-flex;align-items:center;gap:6px;
-background:var(–s2);border:1px solid var(–b);
-border-radius:20px;padding:5px 12px;
-font-size:12px;cursor:pointer;margin:3px;transition:all .15s;
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--s2);border:1px solid var(--b);
+  border-radius:20px;padding:5px 12px;
+  font-size:12px;cursor:pointer;margin:3px;transition:all .15s;
 }
-.idea-pill:hover{border-color:var(–ac)}
-.idea-pill .rm{color:var(–t3);font-size:10px}
+.idea-pill:hover{border-color:var(--ac)}
+.idea-pill .rm{color:var(--t3);font-size:10px}
 
 .expand-box{
-background:rgba(124,111,255,.06);border:1px solid rgba(124,111,255,.2);
-border-radius:var(–rs);padding:14px;margin-top:12px;
+  background:rgba(124,111,255,.06);border:1px solid rgba(124,111,255,.2);
+  border-radius:var(--rs);padding:14px;margin-top:12px;
 }
-.expand-label{font-family:var(–font-mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(–ac);margin-bottom:6px}
+.expand-label{font-family:var(--font-mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--ac);margin-bottom:6px}
 
 /* WHY/HOW DRILLS */
 .drill-prompt{
-background:var(–s2);border:1px solid var(–b);border-radius:var(–rs);
-padding:14px;margin-bottom:12px;font-size:13px;line-height:1.6;
+  background:var(--s2);border:1px solid var(--b);border-radius:var(--rs);
+  padding:14px;margin-bottom:12px;font-size:13px;line-height:1.6;
 }
 .drill-step{
-display:flex;align-items:flex-start;gap:10px;
-margin-bottom:10px;
+  display:flex;align-items:flex-start;gap:10px;
+  margin-bottom:10px;
 }
 .drill-num{
-width:22px;height:22px;border-radius:50%;background:var(–ac);
-color:#fff;display:flex;align-items:center;justify-content:center;
-font-size:10px;font-family:var(–font-mono);flex-shrink:0;margin-top:2px;
+  width:22px;height:22px;border-radius:50%;background:var(--ac);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-family:var(--font-mono);flex-shrink:0;margin-top:2px;
 }
-.drill-num.why{background:var(–bl)}
-.drill-num.how{background:var(–gr);color:#000}
+.drill-num.why{background:var(--bl)}
+.drill-num.how{background:var(--gr);color:#000}
 
 /* IDEA BANK */
 .bank-topic-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
 .topic-btn{
-padding:5px 13px;border-radius:20px;font-size:11px;
-cursor:pointer;border:1px solid var(–b);color:var(–t2);
-transition:all .15s;font-family:var(–font-mono);background:none;
+  padding:5px 13px;border-radius:20px;font-size:11px;
+  cursor:pointer;border:1px solid var(--b);color:var(--t2);
+  transition:all .15s;font-family:var(--font-mono);background:none;
 }
-.topic-btn:hover,.topic-btn.on{border-color:var(–ac);color:var(–ac);background:rgba(124,111,255,.08)}
+.topic-btn:hover,.topic-btn.on{border-color:var(--ac);color:var(--ac);background:rgba(124,111,255,.08)}
 
 .idea-entry{
-background:var(–s2);border:1px solid var(–b);border-radius:var(–rs);
-padding:14px;margin-bottom:8px;
+  background:var(--s2);border:1px solid var(--b);border-radius:var(--rs);
+  padding:14px;margin-bottom:8px;
 }
 .idea-entry-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
 .idea-main{font-size:13px;line-height:1.5;flex:1}
 .idea-tag{
-font-family:var(–font-mono);font-size:9px;padding:3px 7px;
-border-radius:4px;flex-shrink:0;
+  font-family:var(--font-mono);font-size:9px;padding:3px 7px;
+  border-radius:4px;flex-shrink:0;
 }
-.tag-ec{background:rgba(255,209,102,.12);color:var(–gd)}
-.tag-sc{background:rgba(76,201,240,.12);color:var(–bl)}
-.tag-ps{background:rgba(124,111,255,.15);color:var(–ac)}
-.tag-en{background:rgba(6,214,160,.12);color:var(–gr)}
-.tag-pr{background:rgba(255,107,107,.12);color:var(–rd)}
-.idea-expand{font-size:12px;color:var(–t3);line-height:1.6;border-top:1px solid var(–b);padding-top:8px;margin-top:0;display:none}
+.tag-ec{background:rgba(255,209,102,.12);color:var(--gd)}
+.tag-sc{background:rgba(76,201,240,.12);color:var(--bl)}
+.tag-ps{background:rgba(124,111,255,.15);color:var(--ac)}
+.tag-en{background:rgba(6,214,160,.12);color:var(--gr)}
+.tag-pr{background:rgba(255,107,107,.12);color:var(--rd)}
+.idea-expand{font-size:12px;color:var(--t3);line-height:1.6;border-top:1px solid var(--b);padding-top:8px;margin-top:0;display:none}
 .idea-entry.open .idea-expand{display:block}
 .idea-expand-btn{
-font-size:10px;color:var(–t3);cursor:pointer;
-font-family:var(–font-mono);letter-spacing:.5px;
-background:none;border:none;padding:0;transition:color .15s;
+  font-size:10px;color:var(--t3);cursor:pointer;
+  font-family:var(--font-mono);letter-spacing:.5px;
+  background:none;border:none;padding:0;transition:color .15s;
 }
-.idea-expand-btn:hover{color:var(–ac)}
+.idea-expand-btn:hover{color:var(--ac)}
 
 /* WRITING WORKSPACE */
 .ws{display:grid;grid-template-columns:260px 1fr 300px;height:calc(100vh - 54px);overflow:hidden}
-.ws-pane{overflow-y:auto;padding:18px;border-right:1px solid var(–b)}
+.ws-pane{overflow-y:auto;padding:18px;border-right:1px solid var(--b)}
 .ws-pane:last-child{border-right:none}
-.ws-left{background:var(–s1)}
-.ws-mid{background:var(–bg);display:flex;flex-direction:column;padding:0}
-.ws-right{background:var(–s1)}
+.ws-left{background:var(--s1)}
+.ws-mid{background:var(--bg);display:flex;flex-direction:column;padding:0}
+.ws-right{background:var(--s1)}
 
-.ws-lbl{font-family:var(–font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(–t3);margin-bottom:10px}
-.prompt-block{background:var(–s2);border:1px solid var(–b);border-radius:var(–rs);padding:14px;font-size:13px;line-height:1.7;margin-bottom:14px}
-.ptype{display:inline-block;font-family:var(–font-mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(–ac);color:#fff;margin-bottom:8px}
+.ws-lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.prompt-block{background:var(--s2);border:1px solid var(--b);border-radius:var(--rs);padding:14px;font-size:13px;line-height:1.7;margin-bottom:14px}
+.ptype{display:inline-block;font-family:var(--font-mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:var(--ac);color:#fff;margin-bottom:8px}
 
-.tip-row{background:rgba(124,111,255,.07);border:1px solid rgba(124,111,255,.18);border-radius:var(–rs);padding:10px 12px;font-size:12px;line-height:1.6;color:var(–t2);margin-bottom:8px}
-.tip-row b{color:var(–ac)}
+.tip-row{background:rgba(124,111,255,.07);border:1px solid rgba(124,111,255,.18);border-radius:var(--rs);padding:10px 12px;font-size:12px;line-height:1.6;color:var(--t2);margin-bottom:8px}
+.tip-row b{color:var(--ac)}
 
-.wc-bar{display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(–b);background:var(–s1);font-family:var(–font-mono);font-size:11px;color:var(–t2);flex-shrink:0}
-.wc-n{color:var(–gr)}
+.wc-bar{display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--b);background:var(--s1);font-family:var(--font-mono);font-size:11px;color:var(--t2);flex-shrink:0}
+.wc-n{color:var(--gr)}
 
 .editor{
-flex:1;width:100%;background:transparent;border:none;outline:none;
-resize:none;padding:22px;font-family:var(–font-sans);
-font-size:14px;line-height:1.9;color:var(–t1);caret-color:var(–ac);
+  flex:1;width:100%;background:transparent;border:none;outline:none;
+  resize:none;padding:22px;font-family:var(--font-sans);
+  font-size:14px;line-height:1.9;color:var(--t1);caret-color:var(--ac);
 }
-.editor::placeholder{color:var(–t3)}
+.editor::placeholder{color:var(--t3)}
 
-.ws-actions{padding:10px 14px;border-top:1px solid var(–b);background:var(–s1);display:flex;gap:7px;flex-shrink:0}
+.ws-actions{padding:10px 14px;border-top:1px solid var(--b);background:var(--s1);display:flex;gap:7px;flex-shrink:0}
 
 /* checklist sidebar in workspace */
 .cl-item{
-display:flex;align-items:center;gap:8px;padding:7px 9px;
-border-radius:var(–rs);font-size:12px;color:var(–t2);
-background:var(–s2);border:1px solid var(–b);margin-bottom:5px;
-transition:all .2s;
+  display:flex;align-items:center;gap:8px;padding:7px 9px;
+  border-radius:var(--rs);font-size:12px;color:var(--t2);
+  background:var(--s2);border:1px solid var(--b);margin-bottom:5px;
+  transition:all .2s;
 }
-.cl-item.ok{background:rgba(6,214,160,.06);border-color:rgba(6,214,160,.25);color:var(–t1)}
-.cl-dot{width:8px;height:8px;border-radius:50%;background:var(–s3);flex-shrink:0;transition:background .2s}
-.cl-item.ok .cl-dot{background:var(–gr)}
+.cl-item.ok{background:rgba(6,214,160,.06);border-color:rgba(6,214,160,.25);color:var(--t1)}
+.cl-dot{width:8px;height:8px;border-radius:50%;background:var(--s3);flex-shrink:0;transition:background .2s}
+.cl-item.ok .cl-dot{background:var(--gr)}
 
 /* DAY GRID */
 .day-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin-bottom:14px}
 .dc{
-aspect-ratio:1;border-radius:4px;background:var(–s2);border:1px solid var(–b);
-display:flex;align-items:center;justify-content:center;
-font-family:var(–font-mono);font-size:10px;color:var(–t3);
-cursor:pointer;transition:all .15s;
+  aspect-ratio:1;border-radius:4px;background:var(--s2);border:1px solid var(--b);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:10px;color:var(--t3);
+  cursor:pointer;transition:all .15s;
 }
-.dc:hover{border-color:var(–ac);color:var(–ac)}
-.dc.done{background:var(–gr);color:#000;border-color:transparent}
-.dc.now{background:var(–ac);color:#fff;border-color:transparent}
+.dc:hover{border-color:var(--ac);color:var(--ac)}
+.dc.done{background:var(--gr);color:#000;border-color:transparent}
+.dc.now{background:var(--ac);color:#fff;border-color:transparent}
 .dc.lock{opacity:.28;cursor:not-allowed}
 
 .phase-hd{
-display:flex;align-items:center;gap:12px;padding:14px 16px;
-background:var(–s2);border:1px solid var(–b);border-radius:var(–r);
-margin-bottom:12px;margin-top:20px;
+  display:flex;align-items:center;gap:12px;padding:14px 16px;
+  background:var(--s2);border:1px solid var(--b);border-radius:var(--r);
+  margin-bottom:12px;margin-top:20px;
 }
 .phase-n{
-width:32px;height:32px;border-radius:50%;background:var(–ac);
-display:flex;align-items:center;justify-content:center;
-font-family:var(–font-mono);font-size:11px;font-weight:700;color:#fff;flex-shrink:0;
+  width:32px;height:32px;border-radius:50%;background:var(--ac);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-mono);font-size:11px;font-weight:700;color:#fff;flex-shrink:0;
 }
 .phase-nm{font-size:13px;font-weight:600}
-.phase-ds{font-size:11px;color:var(–t2);margin-top:2px}
+.phase-ds{font-size:11px;color:var(--t2);margin-top:2px}
 
 /* PROMPT SELECTOR */
 .p-sel{
-width:100%;background:var(–s2);border:1px solid var(–b);
-color:var(–t1);border-radius:var(–rs);padding:8px 10px;
-font-size:12px;font-family:var(–font-sans);outline:none;
-margin-bottom:12px;transition:border-color .15s;
+  width:100%;background:var(--s2);border:1px solid var(--b);
+  color:var(--t1);border-radius:var(--rs);padding:8px 10px;
+  font-size:12px;font-family:var(--font-sans);outline:none;
+  margin-bottom:12px;transition:border-color .15s;
 }
-.p-sel:focus{border-color:var(–ac)}
+.p-sel:focus{border-color:var(--ac)}
 
 /* TIMER */
-.timer-row{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(–s2);border-radius:var(–rs);margin-bottom:10px;border:1px solid var(–b)}
-.timer-val{font-family:var(–font-mono);font-size:18px;color:var(–gd);font-weight:500}
+.timer-row{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--s2);border-radius:var(--rs);margin-bottom:10px;border:1px solid var(--b)}
+.timer-val{font-family:var(--font-mono);font-size:18px;color:var(--gd);font-weight:500}
 .timer-btns{display:flex;gap:5px}
-.t-btn{background:none;border:1px solid var(–b);color:var(–t2);padding:3px 9px;border-radius:4px;cursor:pointer;font-size:11px;transition:all .15s;font-family:var(–font-mono)}
-.t-btn:hover{border-color:var(–ac);color:var(–ac)}
+.t-btn{background:none;border:1px solid var(--b);color:var(--t2);padding:3px 9px;border-radius:4px;cursor:pointer;font-size:11px;transition:all .15s;font-family:var(--font-mono)}
+.t-btn:hover{border-color:var(--ac);color:var(--ac)}
 
 /* TOAST */
 .toast{
-position:fixed;bottom:22px;right:22px;
-background:var(–s1);border:1px solid var(–b);border-radius:var(–r);
-padding:12px 16px;font-size:13px;z-index:999;
-transform:translateY(60px);opacity:0;transition:all .25s;max-width:300px;
-pointer-events:none;
+  position:fixed;bottom:22px;right:22px;
+  background:var(--s1);border:1px solid var(--b);border-radius:var(--r);
+  padding:12px 16px;font-size:13px;z-index:999;
+  transform:translateY(60px);opacity:0;transition:all .25s;max-width:300px;
+  pointer-events:none;
 }
 .toast.on{transform:translateY(0);opacity:1}
-.toast.ok{border-color:var(–gr)}
-.toast.err{border-color:var(–rd)}
+.toast.ok{border-color:var(--gr)}
+.toast.err{border-color:var(--rd)}
 
 /* MODAL */
 .mo-bg{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .mo-bg.on{display:flex}
 .mo-bg.on{display:flex}
-.mo{background:var(–s1);border:1px solid var(–b);border-radius:var(–r);padding:26px;max-width:480px;width:90%;max-height:85vh;overflow-y:auto}
-.mo-title{font-family:var(–font-serif);font-size:20px;margin-bottom:16px}
+.mo{background:var(--s1);border:1px solid var(--b);border-radius:var(--r);padding:26px;max-width:480px;width:90%;max-height:85vh;overflow-y:auto}
+.mo-title{font-family:var(--font-serif);font-size:20px;margin-bottom:16px}
 
 /* Done button row */
-.done-row{margin-top:16px;padding-top:16px;border-top:1px solid var(–b);display:flex;align-items:center;justify-content:space-between}
-.done-note{font-size:11px;color:var(–t3)}
+.done-row{margin-top:16px;padding-top:16px;border-top:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+.done-note{font-size:11px;color:var(--t3)}
 
 /* Hamburger */
-.hamburger{background:none;border:none;cursor:pointer;padding:6px;color:var(–t1);font-size:20px;line-height:1}
+.hamburger{background:none;border:none;cursor:pointer;padding:6px;color:var(--t1);font-size:20px;line-height:1}
 
 /* ── MOBILE ── */
 @media(max-width:768px){
-.sb{transform:translateX(-100%);transition:transform .25s;z-index:300}
-.sb.open{transform:translateX(0)}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:299}
-.sb-overlay.open{display:block}
-.main{margin-left:0}
-.topbar{padding:0 12px;gap:8px}
-.content{padding:14px}
-.g3{grid-template-columns:1fr}
-.g2{grid-template-columns:1fr}
-.cmp{grid-template-columns:1fr}
-.angle-grid{grid-template-columns:1fr}
-#ws-overlay{left:0}
-.ws{grid-template-columns:1fr}
-.ws-pane.ws-left,.ws-pane.ws-right{display:none}
-.ws-pane.ws-mid{height:calc(100vh - 54px)}
+  .sb{transform:translateX(-100%);transition:transform .25s;z-index:300}
+  .sb.open{transform:translateX(0)}
+  .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:299}
+  .sb-overlay.open{display:block}
+  .main{margin-left:0}
+  .topbar{padding:0 12px;gap:8px}
+  .content{padding:14px}
+  .g3{grid-template-columns:1fr}
+  .g2{grid-template-columns:1fr}
+  .cmp{grid-template-columns:1fr}
+  .angle-grid{grid-template-columns:1fr}
+  #ws-overlay{left:0}
+  .ws{grid-template-columns:1fr}
+  .ws-pane.ws-left,.ws-pane.ws-right{display:none}
+  .ws-pane.ws-mid{height:calc(100vh - 54px)}
 }
 @media(min-width:769px){
-.hamburger{display:none}
-.sb-overlay{display:none!important}
+  .hamburger{display:none}
+  .sb-overlay{display:none!important}
 }
 </style>
-
 </head>
 <body>
 <div class="shell">
 
 <!-- ═══════════ SIDEBAR ═══════════ -->
-
 <aside class="sb">
   <div class="sb-logo">
     <div class="sb-logo-main">IELTS<br>Writing System</div>
@@ -475,19 +472,16 @@ pointer-events:none;
     <div class="nav-item on" onclick="go('dashboard')"><span class="nav-ic">⬡</span>Dashboard</div>
     <div class="nav-item" onclick="go('path')"><span class="nav-ic">◈</span>30-Day Path</div>
 
-```
-<div class="nav-sect">Skills</div>
-<div class="nav-item" onclick="go('lessons')"><span class="nav-ic">◉</span>Sentence Skills<span class="nav-chip">6</span></div>
-<div class="nav-item" onclick="go('idea-lab')"><span class="nav-ic">⚗</span>Idea Lab</div>
-<div class="nav-item" onclick="go('drills')"><span class="nav-ic">⚡</span>WHY/HOW Drills</div>
-<div class="nav-item" onclick="go('idea-bank')"><span class="nav-ic">◆</span>Idea Bank</div>
+    <div class="nav-sect">Skills</div>
+    <div class="nav-item" onclick="go('lessons')"><span class="nav-ic">◉</span>Sentence Skills<span class="nav-chip">6</span></div>
+    <div class="nav-item" onclick="go('idea-lab')"><span class="nav-ic">⚗</span>Idea Lab</div>
+    <div class="nav-item" onclick="go('drills')"><span class="nav-ic">⚡</span>WHY/HOW Drills</div>
+    <div class="nav-item" onclick="go('idea-bank')"><span class="nav-ic">◆</span>Idea Bank</div>
 
-<div class="nav-sect">Practice</div>
-<div class="nav-item" onclick="go('workspace')"><span class="nav-ic">✎</span>Writing Lab</div>
-<div class="nav-item" onclick="go('review')"><span class="nav-ic">↺</span>Review Queue<span class="nav-chip" id="rv-badge">3</span></div>
-<div class="nav-item" onclick="openSyncModal()"><span class="nav-ic">☁</span>Sync / Devices</div>
-```
-
+    <div class="nav-sect">Practice</div>
+    <div class="nav-item" onclick="go('workspace')"><span class="nav-ic">✎</span>Writing Lab</div>
+    <div class="nav-item" onclick="go('review')"><span class="nav-ic">↺</span>Review Queue<span class="nav-chip" id="rv-badge">3</span></div>
+    <div class="nav-item" onclick="openSyncModal()"><span class="nav-ic">☁</span>Sync / Devices</div>
   </nav>
 
   <div class="streak-box">
@@ -510,7 +504,6 @@ pointer-events:none;
 </aside>
 
 <!-- ═══════════ MAIN ═══════════ -->
-
 <main class="main">
   <div class="topbar">
     <button class="hamburger" onclick="toggleSidebar()">☰</button>
@@ -522,101 +515,92 @@ pointer-events:none;
   <div class="content" id="content-wrap">
 
   <!-- ══ DASHBOARD ══ -->
-
   <div class="page on" id="pg-dashboard">
     <div class="pg-title">Dashboard</div>
     <div class="pg-sub">Your progress at a glance. Everything resets unless you put in the work.</div>
 
-```
-<div class="g3" style="margin-bottom:22px">
-  <div class="card ac-top">
-    <div class="sect-label">Days active</div>
-    <div class="stat-val" id="d-days">0</div>
-    <div class="stat-sub">of 30-day plan</div>
-  </div>
-  <div class="card gr-top">
-    <div class="sect-label">Sessions done</div>
-    <div class="stat-val" id="d-sessions">0</div>
-    <div class="stat-sub">lessons + writings</div>
-  </div>
-  <div class="card gd-top">
-    <div class="sect-label">Skills trained</div>
-    <div class="stat-val" id="d-skills">0<span style="font-size:16px;color:var(--t2)">/6</span></div>
-    <div class="stat-sub">sentence types</div>
-  </div>
-</div>
-
-<div class="sect-label">Today — pick something and do it</div>
-<div class="card" style="cursor:pointer;border-color:var(--ac)" onclick="go('lessons')">
-  <div style="display:flex;align-items:center;justify-content:space-between">
-    <div>
-      <div style="font-size:11px;font-family:var(--font-mono);color:var(--ac);margin-bottom:6px">CONTINUE LESSON</div>
-      <div style="font-size:15px;font-weight:600" id="today-lesson">The Mechanism Sentence (HOW)</div>
-      <div style="font-size:12px;color:var(--t2);margin-top:4px">The single most important skill for Band 6 → 7. Most students skip it.</div>
+    <div class="g3" style="margin-bottom:22px">
+      <div class="card ac-top">
+        <div class="sect-label">Days active</div>
+        <div class="stat-val" id="d-days">0</div>
+        <div class="stat-sub">of 30-day plan</div>
+      </div>
+      <div class="card gr-top">
+        <div class="sect-label">Sessions done</div>
+        <div class="stat-val" id="d-sessions">0</div>
+        <div class="stat-sub">lessons + writings</div>
+      </div>
+      <div class="card gd-top">
+        <div class="sect-label">Skills trained</div>
+        <div class="stat-val" id="d-skills">0<span style="font-size:16px;color:var(--t2)">/6</span></div>
+        <div class="stat-sub">sentence types</div>
+      </div>
     </div>
-    <div style="font-size:22px;color:var(--t3)">→</div>
-  </div>
-</div>
-<div style="display:flex;gap:10px">
-  <div class="card" style="flex:1;cursor:pointer" onclick="go('idea-lab')">
-    <div style="font-size:18px;margin-bottom:6px">⚗</div>
-    <div style="font-size:13px;font-weight:600">Idea Lab</div>
-    <div style="font-size:11px;color:var(--t2);margin-top:3px">Generate arguments from any angle</div>
-  </div>
-  <div class="card" style="flex:1;cursor:pointer" onclick="go('drills')">
-    <div style="font-size:18px;margin-bottom:6px">⚡</div>
-    <div style="font-size:13px;font-weight:600">WHY/HOW Drills</div>
-    <div style="font-size:11px;color:var(--t2);margin-top:3px">The Band 6 → 7 gap in one exercise</div>
-  </div>
-  <div class="card" style="flex:1;cursor:pointer" onclick="go('workspace')">
-    <div style="font-size:18px;margin-bottom:6px">✎</div>
-    <div style="font-size:13px;font-weight:600">Writing Lab</div>
-    <div style="font-size:11px;color:var(--t2);margin-top:3px">Even 3 sentences counts as Done</div>
-  </div>
-</div>
 
-<div class="sect-label" style="margin-top:22px">Skill status</div>
-<div id="dash-skills"></div>
-```
+    <div class="sect-label">Today — pick something and do it</div>
+    <div class="card" style="cursor:pointer;border-color:var(--ac)" onclick="go('lessons')">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:11px;font-family:var(--font-mono);color:var(--ac);margin-bottom:6px">CONTINUE LESSON</div>
+          <div style="font-size:15px;font-weight:600" id="today-lesson">The Mechanism Sentence (HOW)</div>
+          <div style="font-size:12px;color:var(--t2);margin-top:4px">The single most important skill for Band 6 → 7. Most students skip it.</div>
+        </div>
+        <div style="font-size:22px;color:var(--t3)">→</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('idea-lab')">
+        <div style="font-size:18px;margin-bottom:6px">⚗</div>
+        <div style="font-size:13px;font-weight:600">Idea Lab</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">Generate arguments from any angle</div>
+      </div>
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('drills')">
+        <div style="font-size:18px;margin-bottom:6px">⚡</div>
+        <div style="font-size:13px;font-weight:600">WHY/HOW Drills</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">The Band 6 → 7 gap in one exercise</div>
+      </div>
+      <div class="card" style="flex:1;cursor:pointer" onclick="go('workspace')">
+        <div style="font-size:18px;margin-bottom:6px">✎</div>
+        <div style="font-size:13px;font-weight:600">Writing Lab</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:3px">Even 3 sentences counts as Done</div>
+      </div>
+    </div>
 
+    <div class="sect-label" style="margin-top:22px">Skill status</div>
+    <div id="dash-skills"></div>
   </div>
 
   <!-- ══ 30-DAY PATH ══ -->
-
   <div class="page" id="pg-path">
     <div class="pg-title">30-Day Training Path</div>
     <div class="pg-sub">Four phases. Do them in order. Skipping ahead is how people stay at Band 6.</div>
 
-```
-<div class="phase-hd" style="margin-top:0">
-  <div class="phase-n">I</div>
-  <div><div class="phase-nm">Sentence Mastery</div><div class="phase-ds">Days 1–10 · The 6 core sentence types</div></div>
-</div>
-<div class="day-grid" id="dg-1"></div>
+    <div class="phase-hd" style="margin-top:0">
+      <div class="phase-n">I</div>
+      <div><div class="phase-nm">Sentence Mastery</div><div class="phase-ds">Days 1–10 · The 6 core sentence types</div></div>
+    </div>
+    <div class="day-grid" id="dg-1"></div>
 
-<div class="phase-hd">
-  <div class="phase-n" style="background:var(--bl);color:#000">II</div>
-  <div><div class="phase-nm">Paragraph Construction</div><div class="phase-ds">Days 11–18 · Assemble full paragraphs with logical flow</div></div>
-</div>
-<div class="day-grid" id="dg-2"></div>
+    <div class="phase-hd">
+      <div class="phase-n" style="background:var(--bl);color:#000">II</div>
+      <div><div class="phase-nm">Paragraph Construction</div><div class="phase-ds">Days 11–18 · Assemble full paragraphs with logical flow</div></div>
+    </div>
+    <div class="day-grid" id="dg-2"></div>
 
-<div class="phase-hd">
-  <div class="phase-n" style="background:var(--gr);color:#000">III</div>
-  <div><div class="phase-nm">Coherence & Flow</div><div class="phase-ds">Days 19–24 · Cohesion, transitions, academic vocabulary</div></div>
-</div>
-<div class="day-grid" id="dg-3"></div>
+    <div class="phase-hd">
+      <div class="phase-n" style="background:var(--gr);color:#000">III</div>
+      <div><div class="phase-nm">Coherence & Flow</div><div class="phase-ds">Days 19–24 · Cohesion, transitions, academic vocabulary</div></div>
+    </div>
+    <div class="day-grid" id="dg-3"></div>
 
-<div class="phase-hd">
-  <div class="phase-n" style="background:var(--gd);color:#000">IV</div>
-  <div><div class="phase-nm">Full Essay Practice</div><div class="phase-ds">Days 25–30 · Timed essays, self-check, band scoring</div></div>
-</div>
-<div class="day-grid" id="dg-4"></div>
-```
-
+    <div class="phase-hd">
+      <div class="phase-n" style="background:var(--gd);color:#000">IV</div>
+      <div><div class="phase-nm">Full Essay Practice</div><div class="phase-ds">Days 25–30 · Timed essays, self-check, band scoring</div></div>
+    </div>
+    <div class="day-grid" id="dg-4"></div>
   </div>
 
   <!-- ══ LESSONS ══ -->
-
   <div class="page" id="pg-lessons">
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px" id="skill-nav"></div>
     <div class="card ac-top" style="margin-bottom:16px">
@@ -627,230 +611,213 @@ pointer-events:none;
       </div>
     </div>
 
-```
-<div class="tabs">
-  <div class="tab on" onclick="switchTab('learn','lessons')">① Learn</div>
-  <div class="tab" onclick="switchTab('compare','lessons')">② Compare</div>
-  <div class="tab" onclick="switchTab('practice','lessons')">③ Practice</div>
-  <div class="tab" onclick="switchTab('done-check','lessons')">④ Self-Check</div>
-</div>
-
-<div class="tc on" id="tc-learn">
-  <div class="card">
-    <div class="sect-label">Concept</div>
-    <div style="font-size:14px;line-height:1.7" id="l-concept"></div>
-  </div>
-  <div class="card">
-    <div class="sect-label">Templates — click to copy</div>
-    <div id="l-templates"></div>
-  </div>
-</div>
-
-<div class="tc" id="tc-compare">
-  <div class="pg-sub" style="margin-bottom:14px">Study the exact gap between Band 6 and Band 7. Name the difference before moving on.</div>
-  <div id="l-comparisons"></div>
-</div>
-
-<div class="tc" id="tc-practice">
-  <div class="card">
-    <div class="sect-label">Practice Task</div>
-    <div id="l-practice-prompt" style="font-size:13px;line-height:1.7;color:var(--t2);margin-bottom:14px"></div>
-    <textarea class="txt" id="l-practice-input" rows="4" placeholder="Write your sentence here..."></textarea>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button class="btn btn-s btn-sm" onclick="showModel()">Show model answer</button>
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab('learn','lessons')">① Learn</div>
+      <div class="tab" onclick="switchTab('compare','lessons')">② Compare</div>
+      <div class="tab" onclick="switchTab('practice','lessons')">③ Practice</div>
+      <div class="tab" onclick="switchTab('done-check','lessons')">④ Self-Check</div>
     </div>
-  </div>
-  <div id="l-model-area"></div>
-</div>
 
-<div class="tc" id="tc-done-check">
-  <div class="pg-sub" style="margin-bottom:14px">Tick every box honestly. Then click <strong>Done</strong> to log your streak.</div>
-  <div id="lesson-checklist"></div>
-  <div class="done-row">
-    <div class="done-note" id="check-tally">0 / 5 checked</div>
-    <button class="btn btn-gr" onclick="completLesson()" id="lesson-done-btn" disabled>Mark as Done ✓</button>
-  </div>
-</div>
-```
+    <div class="tc on" id="tc-learn">
+      <div class="card">
+        <div class="sect-label">Concept</div>
+        <div style="font-size:14px;line-height:1.7" id="l-concept"></div>
+      </div>
+      <div class="card">
+        <div class="sect-label">Templates — click to copy</div>
+        <div id="l-templates"></div>
+      </div>
+    </div>
 
+    <div class="tc" id="tc-compare">
+      <div class="pg-sub" style="margin-bottom:14px">Study the exact gap between Band 6 and Band 7. Name the difference before moving on.</div>
+      <div id="l-comparisons"></div>
+    </div>
+
+    <div class="tc" id="tc-practice">
+      <div class="card">
+        <div class="sect-label">Practice Task</div>
+        <div id="l-practice-prompt" style="font-size:13px;line-height:1.7;color:var(--t2);margin-bottom:14px"></div>
+        <textarea class="txt" id="l-practice-input" rows="4" placeholder="Write your sentence here..."></textarea>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn btn-s btn-sm" onclick="showModel()">Show model answer</button>
+        </div>
+      </div>
+      <div id="l-model-area"></div>
+    </div>
+
+    <div class="tc" id="tc-done-check">
+      <div class="pg-sub" style="margin-bottom:14px">Tick every box honestly. Then click <strong>Done</strong> to log your streak.</div>
+      <div id="lesson-checklist"></div>
+      <div class="done-row">
+        <div class="done-note" id="check-tally">0 / 5 checked</div>
+        <button class="btn btn-gr" onclick="completLesson()" id="lesson-done-btn" disabled>Mark as Done ✓</button>
+      </div>
+    </div>
   </div>
 
   <!-- ══ IDEA LAB ══ -->
-
   <div class="page" id="pg-idea-lab">
     <div class="pg-title">Idea Lab</div>
     <div class="pg-sub">Ideas don't appear from nowhere. They come from angles. This teaches you to think systematically before you write a single sentence.</div>
 
-```
-<div class="tabs">
-  <div class="tab on" onclick="switchTab('angles','idea-lab')">① Five Angles</div>
-  <div class="tab" onclick="switchTab('expand','idea-lab')">② Expand an Idea</div>
-  <div class="tab" onclick="switchTab('drill-idea','idea-lab')">③ Idea Drill</div>
-</div>
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab('angles','idea-lab')">① Five Angles</div>
+      <div class="tab" onclick="switchTab('expand','idea-lab')">② Expand an Idea</div>
+      <div class="tab" onclick="switchTab('drill-idea','idea-lab')">③ Idea Drill</div>
+    </div>
 
-<!-- Angles -->
-<div class="tc on" id="tc-angles">
-  <div class="pg-sub" style="margin-bottom:14px">Every IELTS argument fits into one of these five categories. Pick a prompt and use at least two different angles.</div>
-  <div class="angle-grid">
-    <div class="angle-card" onclick="selectAngle(this,'economic')">
-      <div class="angle-ic">💰</div>
-      <div class="angle-name">Economic</div>
-      <div class="angle-ex">Money · Cost · Jobs · Trade</div>
-    </div>
-    <div class="angle-card" onclick="selectAngle(this,'social')">
-      <div class="angle-ic">👥</div>
-      <div class="angle-name">Social</div>
-      <div class="angle-ex">People · Behaviour · Relationships · Community</div>
-    </div>
-    <div class="angle-card" onclick="selectAngle(this,'psychological')">
-      <div class="angle-ic">🧠</div>
-      <div class="angle-name">Psychological</div>
-      <div class="angle-ex">Emotions · Motivation · Mental health</div>
-    </div>
-    <div class="angle-card" onclick="selectAngle(this,'environmental')">
-      <div class="angle-ic">🌱</div>
-      <div class="angle-name">Environmental</div>
-      <div class="angle-ex">Nature · Sustainability · Climate</div>
-    </div>
-    <div class="angle-card" onclick="selectAngle(this,'practical')">
-      <div class="angle-ic">⚙️</div>
-      <div class="angle-name">Practical</div>
-      <div class="angle-ex">Convenience · Time · Efficiency · Daily life</div>
-    </div>
-    <div class="angle-card" style="opacity:.4;cursor:not-allowed">
-      <div class="angle-ic">＋</div>
-      <div class="angle-name">Other</div>
-      <div class="angle-ex">Political · Ethical · Historical</div>
-    </div>
-  </div>
+    <!-- Angles -->
+    <div class="tc on" id="tc-angles">
+      <div class="pg-sub" style="margin-bottom:14px">Every IELTS argument fits into one of these five categories. Pick a prompt and use at least two different angles.</div>
+      <div class="angle-grid">
+        <div class="angle-card" onclick="selectAngle(this,'economic')">
+          <div class="angle-ic">💰</div>
+          <div class="angle-name">Economic</div>
+          <div class="angle-ex">Money · Cost · Jobs · Trade</div>
+        </div>
+        <div class="angle-card" onclick="selectAngle(this,'social')">
+          <div class="angle-ic">👥</div>
+          <div class="angle-name">Social</div>
+          <div class="angle-ex">People · Behaviour · Relationships · Community</div>
+        </div>
+        <div class="angle-card" onclick="selectAngle(this,'psychological')">
+          <div class="angle-ic">🧠</div>
+          <div class="angle-name">Psychological</div>
+          <div class="angle-ex">Emotions · Motivation · Mental health</div>
+        </div>
+        <div class="angle-card" onclick="selectAngle(this,'environmental')">
+          <div class="angle-ic">🌱</div>
+          <div class="angle-name">Environmental</div>
+          <div class="angle-ex">Nature · Sustainability · Climate</div>
+        </div>
+        <div class="angle-card" onclick="selectAngle(this,'practical')">
+          <div class="angle-ic">⚙️</div>
+          <div class="angle-name">Practical</div>
+          <div class="angle-ex">Convenience · Time · Efficiency · Daily life</div>
+        </div>
+        <div class="angle-card" style="opacity:.4;cursor:not-allowed">
+          <div class="angle-ic">＋</div>
+          <div class="angle-name">Other</div>
+          <div class="angle-ex">Political · Ethical · Historical</div>
+        </div>
+      </div>
 
-  <div class="card" id="angle-detail" style="display:none">
-    <div class="sect-label" id="angle-detail-label">ECONOMIC ANGLE</div>
-    <div id="angle-detail-content"></div>
-  </div>
-</div>
+      <div class="card" id="angle-detail" style="display:none">
+        <div class="sect-label" id="angle-detail-label">ECONOMIC ANGLE</div>
+        <div id="angle-detail-content"></div>
+      </div>
+    </div>
 
-<!-- Expand -->
-<div class="tc" id="tc-expand">
-  <div class="pg-sub" style="margin-bottom:14px">Pick a prompt. Generate three ideas (one per angle). Then expand the strongest one into a full argument chain.</div>
-  <div style="margin-bottom:12px">
-    <div class="sect-label">Step 1 — Choose a prompt</div>
-    <select class="p-sel" id="expand-prompt-sel" onchange="renderExpandPrompt()">
-      <option value="0">Social media is harmful to society</option>
-      <option value="1">Governments should invest in renewable energy</option>
-      <option value="2">University education should be free</option>
-      <option value="3">Technology is making people less sociable</option>
-      <option value="4">Fast food advertising should be banned</option>
-    </select>
-    <div class="prompt-block" id="expand-prompt-text"></div>
-  </div>
+    <!-- Expand -->
+    <div class="tc" id="tc-expand">
+      <div class="pg-sub" style="margin-bottom:14px">Pick a prompt. Generate three ideas (one per angle). Then expand the strongest one into a full argument chain.</div>
+      <div style="margin-bottom:12px">
+        <div class="sect-label">Step 1 — Choose a prompt</div>
+        <select class="p-sel" id="expand-prompt-sel" onchange="renderExpandPrompt()">
+          <option value="0">Social media is harmful to society</option>
+          <option value="1">Governments should invest in renewable energy</option>
+          <option value="2">University education should be free</option>
+          <option value="3">Technology is making people less sociable</option>
+          <option value="4">Fast food advertising should be banned</option>
+        </select>
+        <div class="prompt-block" id="expand-prompt-text"></div>
+      </div>
 
-  <div style="margin-bottom:14px">
-    <div class="sect-label">Step 2 — Generate 3 ideas (different angles)</div>
-    <div style="display:flex;gap:7px;margin-bottom:8px">
-      <input class="inp" id="idea-inp" placeholder="e.g. causes anxiety in young users" style="flex:1">
-      <select class="p-sel" style="width:160px;margin-bottom:0" id="idea-angle-sel">
-        <option value="psychological">🧠 Psychological</option>
-        <option value="social">👥 Social</option>
-        <option value="economic">💰 Economic</option>
-        <option value="environmental">🌱 Environmental</option>
-        <option value="practical">⚙️ Practical</option>
-      </select>
-      <button class="btn btn-s btn-sm" onclick="addIdea()">Add</button>
-    </div>
-    <div id="idea-list"></div>
-  </div>
+      <div style="margin-bottom:14px">
+        <div class="sect-label">Step 2 — Generate 3 ideas (different angles)</div>
+        <div style="display:flex;gap:7px;margin-bottom:8px">
+          <input class="inp" id="idea-inp" placeholder="e.g. causes anxiety in young users" style="flex:1">
+          <select class="p-sel" style="width:160px;margin-bottom:0" id="idea-angle-sel">
+            <option value="psychological">🧠 Psychological</option>
+            <option value="social">👥 Social</option>
+            <option value="economic">💰 Economic</option>
+            <option value="environmental">🌱 Environmental</option>
+            <option value="practical">⚙️ Practical</option>
+          </select>
+          <button class="btn btn-s btn-sm" onclick="addIdea()">Add</button>
+        </div>
+        <div id="idea-list"></div>
+      </div>
 
-  <div id="expand-area" style="display:none">
-    <div class="sect-label">Step 3 — Expand your best idea into a full argument</div>
-    <div class="expand-box" id="expand-selected-idea" style="margin-bottom:12px"></div>
-    <div style="margin-bottom:10px">
-      <div class="expand-label">Topic Sentence</div>
-      <textarea class="txt" id="exp-topic" rows="2" placeholder="One major reason why [position] is that [your idea]..."></textarea>
+      <div id="expand-area" style="display:none">
+        <div class="sect-label">Step 3 — Expand your best idea into a full argument</div>
+        <div class="expand-box" id="expand-selected-idea" style="margin-bottom:12px"></div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Topic Sentence</div>
+          <textarea class="txt" id="exp-topic" rows="2" placeholder="One major reason why [position] is that [your idea]..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Reason (WHY)</div>
+          <textarea class="txt" id="exp-reason" rows="2" placeholder="This is because..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Mechanism (HOW)</div>
+          <textarea class="txt" id="exp-mechanism" rows="2" placeholder="Specifically, when [A] occurs, this leads to [B], which ultimately causes [C]..."></textarea>
+        </div>
+        <div class="done-row">
+          <div class="done-note">Write all 3 parts, then mark done</div>
+          <button class="btn btn-gr" onclick="completeExpand()">Mark Done ✓</button>
+        </div>
+      </div>
     </div>
-    <div style="margin-bottom:10px">
-      <div class="expand-label">Reason (WHY)</div>
-      <textarea class="txt" id="exp-reason" rows="2" placeholder="This is because..."></textarea>
-    </div>
-    <div style="margin-bottom:10px">
-      <div class="expand-label">Mechanism (HOW)</div>
-      <textarea class="txt" id="exp-mechanism" rows="2" placeholder="Specifically, when [A] occurs, this leads to [B], which ultimately causes [C]..."></textarea>
-    </div>
-    <div class="done-row">
-      <div class="done-note">Write all 3 parts, then mark done</div>
-      <button class="btn btn-gr" onclick="completeExpand()">Mark Done ✓</button>
-    </div>
-  </div>
-</div>
 
-<!-- Idea Drill -->
-<div class="tc" id="tc-drill-idea">
-  <div class="pg-sub" style="margin-bottom:14px">Timed drill. You get a topic. You have 3 minutes. You produce 3 ideas from 3 different angles. No thinking, just writing.</div>
-  <div class="card" id="drill-idea-prompt">
-    <div class="sect-label">Your Topic</div>
-    <div style="font-size:16px;font-weight:600;margin-bottom:12px" id="drill-idea-topic">Click Start to get your topic</div>
-    <div style="display:flex;gap:8px">
-      <button class="btn btn-p btn-sm" onclick="startIdeaDrill()">Start drill</button>
+    <!-- Idea Drill -->
+    <div class="tc" id="tc-drill-idea">
+      <div class="pg-sub" style="margin-bottom:14px">Timed drill. You get a topic. You have 3 minutes. You produce 3 ideas from 3 different angles. No thinking, just writing.</div>
+      <div class="card" id="drill-idea-prompt">
+        <div class="sect-label">Your Topic</div>
+        <div style="font-size:16px;font-weight:600;margin-bottom:12px" id="drill-idea-topic">Click Start to get your topic</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-p btn-sm" onclick="startIdeaDrill()">Start drill</button>
+        </div>
+      </div>
+      <div id="drill-idea-inputs" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="sect-label" style="margin:0">3 minutes — go</div>
+          <div style="font-family:var(--font-mono);font-size:16px;color:var(--gd)" id="drill-timer">3:00</div>
+        </div>
+        <div class="card" style="margin-bottom:8px">
+          <div class="expand-label">Idea 1 — angle: <span id="drill-a1" style="color:var(--ac)"></span></div>
+          <textarea class="txt" id="drill-i1" rows="2" placeholder="Your idea..."></textarea>
+        </div>
+        <div class="card" style="margin-bottom:8px">
+          <div class="expand-label">Idea 2 — angle: <span id="drill-a2" style="color:var(--bl)"></span></div>
+          <textarea class="txt" id="drill-i2" rows="2" placeholder="Your idea..."></textarea>
+        </div>
+        <div class="card" style="margin-bottom:8px">
+          <div class="expand-label">Idea 3 — angle: <span id="drill-a3" style="color:var(--gr)"></span></div>
+          <textarea class="txt" id="drill-i3" rows="2" placeholder="Your idea..."></textarea>
+        </div>
+        <button class="btn btn-gr btn-full" onclick="submitIdeaDrill()">Submit & Finish ✓</button>
+      </div>
     </div>
-  </div>
-  <div id="drill-idea-inputs" style="display:none">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-      <div class="sect-label" style="margin:0">3 minutes — go</div>
-      <div style="font-family:var(--font-mono);font-size:16px;color:var(--gd)" id="drill-timer">3:00</div>
-    </div>
-    <div class="card" style="margin-bottom:8px">
-      <div class="expand-label">Idea 1 — angle: <span id="drill-a1" style="color:var(--ac)"></span></div>
-      <textarea class="txt" id="drill-i1" rows="2" placeholder="Your idea..."></textarea>
-    </div>
-    <div class="card" style="margin-bottom:8px">
-      <div class="expand-label">Idea 2 — angle: <span id="drill-a2" style="color:var(--bl)"></span></div>
-      <textarea class="txt" id="drill-i2" rows="2" placeholder="Your idea..."></textarea>
-    </div>
-    <div class="card" style="margin-bottom:8px">
-      <div class="expand-label">Idea 3 — angle: <span id="drill-a3" style="color:var(--gr)"></span></div>
-      <textarea class="txt" id="drill-i3" rows="2" placeholder="Your idea..."></textarea>
-    </div>
-    <button class="btn btn-gr btn-full" onclick="submitIdeaDrill()">Submit & Finish ✓</button>
-  </div>
-</div>
-```
-
   </div>
 
   <!-- ══ WHY/HOW DRILLS ══ -->
-
   <div class="page" id="pg-drills">
     <div class="pg-title">WHY / HOW Drills</div>
     <div class="pg-sub">This is where Band 6 becomes Band 7. Weak writers jump from claim to example. Strong writers explain WHY the claim is true, then HOW that mechanism actually works.</div>
 
-```
-<div id="drill-set"></div>
-<div style="text-align:center;margin-top:16px">
-  <button class="btn btn-p" onclick="loadDrills()">Next set →</button>
-</div>
-```
-
+    <div id="drill-set"></div>
+    <div style="text-align:center;margin-top:16px">
+      <button class="btn btn-p" onclick="loadDrills()">Next set →</button>
+    </div>
   </div>
 
   <!-- ══ IDEA BANK ══ -->
-
   <div class="page" id="pg-idea-bank">
     <div class="pg-title">Idea Bank</div>
     <div class="pg-sub">Pre-built arguments from Band 9 model essays, tagged by topic and angle. Use these when your brain goes blank. Then practise building your own.</div>
 
-```
-<div class="bank-topic-row" id="bank-topics"></div>
-<div id="bank-entries"></div>
-```
-
+    <div class="bank-topic-row" id="bank-topics"></div>
+    <div id="bank-entries"></div>
   </div>
 
   <!-- ══ WORKSPACE ══ -->
-
   <div class="page" id="pg-workspace" style="padding:0;margin:-28px"></div>
 
   <!-- ══ REVIEW ══ -->
-
   <div class="page" id="pg-review">
     <div class="pg-title">Review Queue</div>
     <div class="pg-sub">3 cards. Each takes under 2 minutes. Write, then self-check before marking done.</div>
@@ -864,7 +831,6 @@ pointer-events:none;
 <div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
 
 <!-- Writing workspace (full-screen overlay) -->
-
 <div id="ws-overlay" style="display:none;position:fixed;inset:54px 0 0 240px;z-index:10">
   <div class="ws">
     <div class="ws-pane ws-left">
@@ -873,58 +839,54 @@ pointer-events:none;
       <div class="ptype" id="ws-ptype">OPINION ESSAY</div>
       <div class="prompt-block" id="ws-prompt-text"></div>
 
-```
-  <div class="ws-lbl" style="margin-top:14px">Structure checklist</div>
-  <div class="cl-item" id="cl-intro"><div class="cl-dot"></div>Introduction + thesis</div>
-  <div class="cl-item" id="cl-b1"><div class="cl-dot"></div>Body 1: Topic → Reason → HOW → Example</div>
-  <div class="cl-item" id="cl-b2"><div class="cl-dot"></div>Body 2: Topic → Reason → HOW → Example</div>
-  <div class="cl-item" id="cl-conc"><div class="cl-dot"></div>Conclusion</div>
+      <div class="ws-lbl" style="margin-top:14px">Structure checklist</div>
+      <div class="cl-item" id="cl-intro"><div class="cl-dot"></div>Introduction + thesis</div>
+      <div class="cl-item" id="cl-b1"><div class="cl-dot"></div>Body 1: Topic → Reason → HOW → Example</div>
+      <div class="cl-item" id="cl-b2"><div class="cl-dot"></div>Body 2: Topic → Reason → HOW → Example</div>
+      <div class="cl-item" id="cl-conc"><div class="cl-dot"></div>Conclusion</div>
 
-  <div class="ws-lbl" style="margin-top:14px">Quick templates</div>
-  <div class="tip-row"><b>Mechanism:</b> "When [A], this leads to [B], causing [C]."</div>
-  <div class="tip-row"><b>Example:</b> "For instance, in [country], [evidence], demonstrating that [link]."</div>
-  <div class="tip-row"><b>Conclusion:</b> "Therefore, it is clear that [restate point]."</div>
-</div>
-
-<div class="ws-pane ws-mid">
-  <div class="timer-row" style="margin:12px 12px 0;border-radius:var(--rs)">
-    <div>
-      <div style="font-family:var(--font-mono);font-size:9px;color:var(--t3);margin-bottom:2px">TIMER</div>
-      <div class="timer-val" id="ws-timer">40:00</div>
+      <div class="ws-lbl" style="margin-top:14px">Quick templates</div>
+      <div class="tip-row"><b>Mechanism:</b> "When [A], this leads to [B], causing [C]."</div>
+      <div class="tip-row"><b>Example:</b> "For instance, in [country], [evidence], demonstrating that [link]."</div>
+      <div class="tip-row"><b>Conclusion:</b> "Therefore, it is clear that [restate point]."</div>
     </div>
-    <div class="timer-btns">
-      <button class="t-btn" onclick="toggleTimer()" id="timer-btn">▶ Start</button>
-      <button class="t-btn" onclick="resetTimer()">↺</button>
+
+    <div class="ws-pane ws-mid">
+      <div class="timer-row" style="margin:12px 12px 0;border-radius:var(--rs)">
+        <div>
+          <div style="font-family:var(--font-mono);font-size:9px;color:var(--t3);margin-bottom:2px">TIMER</div>
+          <div class="timer-val" id="ws-timer">40:00</div>
+        </div>
+        <div class="timer-btns">
+          <button class="t-btn" onclick="toggleTimer()" id="timer-btn">▶ Start</button>
+          <button class="t-btn" onclick="resetTimer()">↺</button>
+        </div>
+      </div>
+      <div class="wc-bar">
+        Words: <span class="wc-n" id="ws-wc">0</span>
+        <span style="color:var(--t3)">·</span>
+        Target: <span style="color:var(--bl)">250–300</span>
+      </div>
+      <textarea class="editor" id="ws-editor"
+        placeholder="Start writing your essay here.&#10;&#10;Use the structure checklist on the left. Even 3 solid paragraphs with clear sentence types beats 5 vague ones."
+        oninput="wsUpdate()"></textarea>
+      <div class="ws-actions">
+        <button class="btn btn-p btn-sm" onclick="openSelfCheck()">Self-Check →</button>
+        <button class="btn btn-s btn-sm" onclick="wsSave()">💾 Save</button>
+        <button class="btn btn-s btn-sm" onclick="wsClear()">✕ Clear</button>
+      </div>
     </div>
-  </div>
-  <div class="wc-bar">
-    Words: <span class="wc-n" id="ws-wc">0</span>
-    <span style="color:var(--t3)">·</span>
-    Target: <span style="color:var(--bl)">250–300</span>
-  </div>
-  <textarea class="editor" id="ws-editor"
-    placeholder="Start writing your essay here.&#10;&#10;Use the structure checklist on the left. Even 3 solid paragraphs with clear sentence types beats 5 vague ones."
-    oninput="wsUpdate()"></textarea>
-  <div class="ws-actions">
-    <button class="btn btn-p btn-sm" onclick="openSelfCheck()">Self-Check →</button>
-    <button class="btn btn-s btn-sm" onclick="wsSave()">💾 Save</button>
-    <button class="btn btn-s btn-sm" onclick="wsClear()">✕ Clear</button>
-  </div>
-</div>
 
-<div class="ws-pane ws-right" id="ws-right-panel">
-  <div class="ws-lbl">Self-Evaluation</div>
-  <div style="font-size:12px;color:var(--t3);line-height:1.6">
-    Write something first. Then click <strong style="color:var(--t2)">Self-Check</strong> to evaluate your own writing before marking it Done.
-  </div>
-</div>
-```
-
+    <div class="ws-pane ws-right" id="ws-right-panel">
+      <div class="ws-lbl">Self-Evaluation</div>
+      <div style="font-size:12px;color:var(--t3);line-height:1.6">
+        Write something first. Then click <strong style="color:var(--t2)">Self-Check</strong> to evaluate your own writing before marking it Done.
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- Self-Check Modal -->
-
 <div class="mo-bg" id="selfcheck-modal">
   <div class="mo" style="max-width:540px">
     <div class="mo-title">Self-Evaluation</div>
@@ -941,7 +903,6 @@ pointer-events:none;
 </div>
 
 <!-- Username / Sync Modal -->
-
 <div class="mo-bg" id="username-modal">
   <div class="mo" style="max-width:400px">
     <div class="mo-title">☁ Cloud Sync</div>
@@ -950,26 +911,22 @@ pointer-events:none;
     </p>
     <div style="font-size:11px;color:var(--t3);margin-bottom:18px" id="username-current"></div>
 
-```
-<div class="sect-label">Your username</div>
-<input class="inp" id="username-input" placeholder="e.g. justin_ielts" style="margin-bottom:6px"
-  onkeydown="if(event.key==='Enter') saveUsername()">
-<div style="font-size:11px;color:var(--t3);margin-bottom:18px">
-  Lowercase, no spaces (underscores OK). Minimum 3 characters.<br>
-  Anyone who knows your username can read your data — don't use a password.
-</div>
+    <div class="sect-label">Your username</div>
+    <input class="inp" id="username-input" placeholder="e.g. justin_ielts" style="margin-bottom:6px"
+      onkeydown="if(event.key==='Enter') saveUsername()">
+    <div style="font-size:11px;color:var(--t3);margin-bottom:18px">
+      Lowercase, no spaces (underscores OK). Minimum 3 characters.<br>
+      Anyone who knows your username can read your data — don't use a password.
+    </div>
 
-<div style="display:flex;gap:8px">
-  <button class="btn btn-gr" onclick="saveUsername()" style="flex:1">Save & Sync</button>
-  <button class="btn btn-s" onclick="closeUsernameModal()">Cancel</button>
-</div>
-```
-
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-gr" onclick="saveUsername()" style="flex:1">Save & Sync</button>
+      <button class="btn btn-s" onclick="closeUsernameModal()">Cancel</button>
+    </div>
   </div>
 </div>
 
 <!-- Toast -->
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1777,217 +1734,249 @@ function loadDrills(){
         <div style="flex:1">
           <div style="font-size:11px;color:var(--t2);margin-bottom:5px">Why is this claim true? (Explain the cause)</div>
           <textarea class="txt" id="why-${i}" rows="2" placeholder="This is because..."></textarea>
-
-```
-      <div class="cmp-note" style="margin-top:4px;display:none" id="why-model-${i}">Model: ${d.why}</div>
-    </div>
-  </div>
-  <div class="drill-step">
-    <div class="drill-num how">HOW</div>
-    <div style="flex:1">
-      <div style="font-size:11px;color:var(--t2);margin-bottom:5px">How does that mechanism work? (Write the chain: A → B → C)</div>
-      <textarea class="txt" id="how-${i}" rows="2" placeholder="Specifically, when [A] happens, this leads to [B], which causes [C]..."></textarea>
-      <div class="cmp-note" style="margin-top:4px;display:none" id="how-model-${i}">Model: ${d.how}</div>
-    </div>
-  </div>
-  <div style="display:flex;gap:8px;margin-top:10px">
-    <button class="btn btn-s btn-sm" onclick="showDrillModel(${i})">Show model</button>
-    <button class="btn btn-gr btn-sm" onclick="markDrillDone(${i},this)">Done ✓</button>
-  </div>
-</div>`).join('');
-```
-
+          <div class="cmp-note" style="margin-top:4px;display:none" id="why-model-${i}">Model: ${d.why}</div>
+        </div>
+      </div>
+      <div class="drill-step">
+        <div class="drill-num how">HOW</div>
+        <div style="flex:1">
+          <div style="font-size:11px;color:var(--t2);margin-bottom:5px">How does that mechanism work? (Write the chain: A → B → C)</div>
+          <textarea class="txt" id="how-${i}" rows="2" placeholder="Specifically, when [A] happens, this leads to [B], which causes [C]..."></textarea>
+          <div class="cmp-note" style="margin-top:4px;display:none" id="how-model-${i}">Model: ${d.how}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn btn-s btn-sm" onclick="showDrillModel(${i})">Show model</button>
+        <button class="btn btn-gr btn-sm" onclick="markDrillDone(${i},this)">Done ✓</button>
+      </div>
+    </div>`).join('');
 }
 
 function showDrillModel(i){
-document.getElementById(‘why-model-’+i).style.display=‘block’;
-document.getElementById(‘how-model-’+i).style.display=‘block’;
+  document.getElementById('why-model-'+i).style.display='block';
+  document.getElementById('how-model-'+i).style.display='block';
 }
 
 function markDrillDone(i,btn){
-const why=document.getElementById(‘why-’+i).value.trim();
-const how=document.getElementById(‘how-’+i).value.trim();
-if(!why||!how){toast(‘Write both WHY and HOW first’,‘err’);return}
-btn.disabled=true;btn.textContent=‘Done ✓’;
-markDone();
+  const why=document.getElementById('why-'+i).value.trim();
+  const how=document.getElementById('how-'+i).value.trim();
+  if(!why||!how){toast('Write both WHY and HOW first','err');return}
+  btn.disabled=true;btn.textContent='Done ✓';
+  markDone();
 }
 
 // ════════════════════════════════════
 // IDEA BANK
 // ════════════════════════════════════
-const TAG_CLASS={economic:‘tag-ec’,social:‘tag-sc’,psychological:‘tag-ps’,environmental:‘tag-en’,practical:‘tag-pr’};
-const TAG_LABEL={economic:‘Economic’,social:‘Social’,psychological:‘Psychological’,environmental:‘Environmental’,practical:‘Practical’};
+const TAG_CLASS={economic:'tag-ec',social:'tag-sc',psychological:'tag-ps',environmental:'tag-en',practical:'tag-pr'};
+const TAG_LABEL={economic:'Economic',social:'Social',psychological:'Psychological',environmental:'Environmental',practical:'Practical'};
 
 function renderBankTopics(){
-const topics=Object.keys(IDEA_BANK);
-document.getElementById(‘bank-topics’).innerHTML=topics.map(t=>` <button class="topic-btn ${t===S.bankTopic?'on':''}" onclick="renderIdeaBank('${t}')">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join(’’);
+  const topics=Object.keys(IDEA_BANK);
+  document.getElementById('bank-topics').innerHTML=topics.map(t=>`
+    <button class="topic-btn ${t===S.bankTopic?'on':''}" onclick="renderIdeaBank('${t}')">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('');
 }
 
 function renderIdeaBank(topic){
-S.bankTopic=topic;
-document.querySelectorAll(’.topic-btn’).forEach(b=>{
-b.classList.toggle(‘on’,b.textContent.toLowerCase()===topic);
-});
-const entries=IDEA_BANK[topic]||[];
-document.getElementById(‘bank-entries’).innerHTML=entries.map((e,i)=>` <div class="idea-entry" id="be-${i}"> <div class="idea-entry-top"> <div class="idea-main">${e.idea}</div> <div class="idea-tag ${TAG_CLASS[e.angle]||''}">${TAG_LABEL[e.angle]||e.angle}</div> </div> <button class="idea-expand-btn" onclick="toggleBankEntry(${i})">▼ See full argument chain</button> <div class="idea-expand">${e.expand.split('.').map((s,si)=>`<div style="margin-bottom:6px;font-size:12px;color:var(--t2)">${s.trim()&&s.trim()+’.’}</div>`).join('')}</div> </div>`).join(’’);
+  S.bankTopic=topic;
+  document.querySelectorAll('.topic-btn').forEach(b=>{
+    b.classList.toggle('on',b.textContent.toLowerCase()===topic);
+  });
+  const entries=IDEA_BANK[topic]||[];
+  document.getElementById('bank-entries').innerHTML=entries.map((e,i)=>`
+    <div class="idea-entry" id="be-${i}">
+      <div class="idea-entry-top">
+        <div class="idea-main">${e.idea}</div>
+        <div class="idea-tag ${TAG_CLASS[e.angle]||''}">${TAG_LABEL[e.angle]||e.angle}</div>
+      </div>
+      <button class="idea-expand-btn" onclick="toggleBankEntry(${i})">▼ See full argument chain</button>
+      <div class="idea-expand">${e.expand.split('.').map((s,si)=>`<div style="margin-bottom:6px;font-size:12px;color:var(--t2)">${s.trim()&&s.trim()+'.'}</div>`).join('')}</div>
+    </div>`).join('');
 }
 
 function toggleBankEntry(i){
-const el=document.getElementById(‘be-’+i);
-const open=el.classList.contains(‘open’);
-el.classList.toggle(‘open’);
-el.querySelector(’.idea-expand-btn’).textContent=open?‘▼ See full argument chain’:‘▲ Hide’;
+  const el=document.getElementById('be-'+i);
+  const open=el.classList.contains('open');
+  el.classList.toggle('open');
+  el.querySelector('.idea-expand-btn').textContent=open?'▼ See full argument chain':'▲ Hide';
 }
 
 // ════════════════════════════════════
 // WRITING WORKSPACE
 // ════════════════════════════════════
 function wsInitPromptSel(){
-const sel=document.getElementById(‘ws-sel’);
-sel.innerHTML=PROMPTS.map((p,i)=>`<option value="${i}">${p.type}: ${p.text.slice(0,50)}...</option>`).join(’’);
-wsChangePrompt();
+  const sel=document.getElementById('ws-sel');
+  sel.innerHTML=PROMPTS.map((p,i)=>`<option value="${i}">${p.type}: ${p.text.slice(0,50)}...</option>`).join('');
+  wsChangePrompt();
 }
 
 function wsInit(){wsChangePrompt()}
 
 function wsChangePrompt(){
-const i=parseInt(document.getElementById(‘ws-sel’).value);
-const p=PROMPTS[i];
-document.getElementById(‘ws-prompt-text’).textContent=p.text;
-document.getElementById(‘ws-ptype’).textContent=p.type;
+  const i=parseInt(document.getElementById('ws-sel').value);
+  const p=PROMPTS[i];
+  document.getElementById('ws-prompt-text').textContent=p.text;
+  document.getElementById('ws-ptype').textContent=p.type;
 }
 
 function wsUpdate(){
-const text=document.getElementById(‘ws-editor’).value;
-const wc=text.trim()?text.trim().split(/\s+/).length:0;
-document.getElementById(‘ws-wc’).textContent=wc;
-const tl=text.toLowerCase();
-const cl=(id,cond)=>{document.getElementById(id).classList.toggle(‘ok’,cond)};
-cl(‘cl-intro’,tl.length>50&&(tl.includes(‘believe’)||tl.includes(‘argue’)||tl.includes(‘essay’)||tl.includes(‘view’)||tl.includes(‘contend’)));
-cl(‘cl-b1’,(tl.includes(‘one major’)||tl.includes(‘firstly’)||tl.includes(‘one reason’))&&tl.includes(‘because’));
-cl(‘cl-b2’,(tl.includes(‘furthermore’)||tl.includes(‘additionally’)||tl.includes(‘secondly’)||tl.includes(‘another’))&&tl.includes(‘specifically’));
-cl(‘cl-conc’,tl.includes(‘therefore’)||tl.includes(‘in conclusion’)||tl.includes(‘to conclude’)||tl.includes(‘in summary’));
+  const text=document.getElementById('ws-editor').value;
+  const wc=text.trim()?text.trim().split(/\s+/).length:0;
+  document.getElementById('ws-wc').textContent=wc;
+  const tl=text.toLowerCase();
+  const cl=(id,cond)=>{document.getElementById(id).classList.toggle('ok',cond)};
+  cl('cl-intro',tl.length>50&&(tl.includes('believe')||tl.includes('argue')||tl.includes('essay')||tl.includes('view')||tl.includes('contend')));
+  cl('cl-b1',(tl.includes('one major')||tl.includes('firstly')||tl.includes('one reason'))&&tl.includes('because'));
+  cl('cl-b2',(tl.includes('furthermore')||tl.includes('additionally')||tl.includes('secondly')||tl.includes('another'))&&tl.includes('specifically'));
+  cl('cl-conc',tl.includes('therefore')||tl.includes('in conclusion')||tl.includes('to conclude')||tl.includes('in summary'));
 }
 
 function wsSave(){
-const text=document.getElementById(‘ws-editor’).value;
-localStorage.setItem(‘saved_essay_’+Date.now(),text);
-toast(‘Essay saved ✓’,‘ok’);
+  const text=document.getElementById('ws-editor').value;
+  localStorage.setItem('saved_essay_'+Date.now(),text);
+  toast('Essay saved ✓','ok');
 }
 
 function wsClear(){
-if(!confirm(‘Clear the editor?’))return;
-document.getElementById(‘ws-editor’).value=’’;
-wsUpdate();
-document.getElementById(‘ws-right-panel’).innerHTML=`<div class="ws-lbl">Self-Evaluation</div><div style="font-size:12px;color:var(--t3);line-height:1.6">Write something first. Then click <strong style="color:var(--t2)">Self-Check</strong>.</div>`;
+  if(!confirm('Clear the editor?'))return;
+  document.getElementById('ws-editor').value='';
+  wsUpdate();
+  document.getElementById('ws-right-panel').innerHTML=`<div class="ws-lbl">Self-Evaluation</div><div style="font-size:12px;color:var(--t3);line-height:1.6">Write something first. Then click <strong style="color:var(--t2)">Self-Check</strong>.</div>`;
 }
 
 // Timer
 function toggleTimer(){
-const T=S.timer;
-if(T.running){
-clearInterval(T.iv);T.running=false;
-document.getElementById(‘timer-btn’).textContent=‘▶ Resume’;
-} else {
-T.running=true;
-document.getElementById(‘timer-btn’).textContent=‘⏸ Pause’;
-T.iv=setInterval(()=>{
-T.secs–;
-if(T.secs<=0){clearInterval(T.iv);T.running=false;document.getElementById(‘timer-btn’).textContent=‘▶ Start’;toast(‘⏰ Time up.’,‘ok’)}
-const m=Math.floor(T.secs/60),s=T.secs%60;
-document.getElementById(‘ws-timer’).textContent=`${m}:${s.toString().padStart(2,'0')}`;
-if(T.secs<=300) document.getElementById(‘ws-timer’).style.color=‘var(–rd)’;
-},1000);
-}
+  const T=S.timer;
+  if(T.running){
+    clearInterval(T.iv);T.running=false;
+    document.getElementById('timer-btn').textContent='▶ Resume';
+  } else {
+    T.running=true;
+    document.getElementById('timer-btn').textContent='⏸ Pause';
+    T.iv=setInterval(()=>{
+      T.secs--;
+      if(T.secs<=0){clearInterval(T.iv);T.running=false;document.getElementById('timer-btn').textContent='▶ Start';toast('⏰ Time up.','ok')}
+      const m=Math.floor(T.secs/60),s=T.secs%60;
+      document.getElementById('ws-timer').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+      if(T.secs<=300) document.getElementById('ws-timer').style.color='var(--rd)';
+    },1000);
+  }
 }
 function resetTimer(){
-clearInterval(S.timer.iv);S.timer.running=false;S.timer.secs=40*60;
-document.getElementById(‘ws-timer’).textContent=‘40:00’;
-document.getElementById(‘ws-timer’).style.color=‘var(–gd)’;
-document.getElementById(‘timer-btn’).textContent=‘▶ Start’;
+  clearInterval(S.timer.iv);S.timer.running=false;S.timer.secs=40*60;
+  document.getElementById('ws-timer').textContent='40:00';
+  document.getElementById('ws-timer').style.color='var(--gd)';
+  document.getElementById('timer-btn').textContent='▶ Start';
 }
 
 // Self-check modal
 let modalCheckState={};
 function openSelfCheck(){
-const wc=document.getElementById(‘ws-editor’).value.trim().split(/\s+/).length;
-if(wc<30){toast(‘Write at least 30 words before self-checking’,‘err’);return}
-modalCheckState={};
-let html=’’;
-SELF_CHECK_ITEMS.forEach((sec,si)=>{
-html+=`<div style="margin-bottom:14px"> <div class="check-title">${sec.sec}</div> ${sec.items.map((item,ii)=>{ const key=`${si}-${ii}`; return `<div class="check-item" id="mci-${key}" onclick="toggleModalCheck('${key}')">
-<div class="check-box" id="mcb-${key}"></div>${item}
-</div>`; }).join('')} </div>`;
-});
-document.getElementById(‘modal-checklist’).innerHTML=html;
-updateModalTally();
-document.getElementById(‘selfcheck-modal’).classList.add(‘on’);
+  const wc=document.getElementById('ws-editor').value.trim().split(/\s+/).length;
+  if(wc<30){toast('Write at least 30 words before self-checking','err');return}
+  modalCheckState={};
+  let html='';
+  SELF_CHECK_ITEMS.forEach((sec,si)=>{
+    html+=`<div style="margin-bottom:14px">
+      <div class="check-title">${sec.sec}</div>
+      ${sec.items.map((item,ii)=>{
+        const key=`${si}-${ii}`;
+        return `<div class="check-item" id="mci-${key}" onclick="toggleModalCheck('${key}')">
+          <div class="check-box" id="mcb-${key}"></div>${item}
+        </div>`;
+      }).join('')}
+    </div>`;
+  });
+  document.getElementById('modal-checklist').innerHTML=html;
+  updateModalTally();
+  document.getElementById('selfcheck-modal').classList.add('on');
 }
 
 function toggleModalCheck(key){
-modalCheckState[key]=!modalCheckState[key];
-document.getElementById(‘mci-’+key).classList.toggle(‘checked’,modalCheckState[key]);
-document.getElementById(‘mcb-’+key).textContent=modalCheckState[key]?‘✓’:’’;
-updateModalTally();
+  modalCheckState[key]=!modalCheckState[key];
+  document.getElementById('mci-'+key).classList.toggle('checked',modalCheckState[key]);
+  document.getElementById('mcb-'+key).textContent=modalCheckState[key]?'✓':'';
+  updateModalTally();
 }
 
 function updateModalTally(){
-const total=10, checked=Object.values(modalCheckState).filter(Boolean).length;
-document.getElementById(‘modal-tally’).textContent=`${checked} / ${total} checked`;
-document.getElementById(‘modal-done-btn’).disabled=checked<6;
+  const total=10, checked=Object.values(modalCheckState).filter(Boolean).length;
+  document.getElementById('modal-tally').textContent=`${checked} / ${total} checked`;
+  document.getElementById('modal-done-btn').disabled=checked<6;
 }
 
-function closeSelfCheck(){document.getElementById(‘selfcheck-modal’).classList.remove(‘on’)}
+function closeSelfCheck(){document.getElementById('selfcheck-modal').classList.remove('on')}
 
 function markWritingDone(){
-closeSelfCheck();
-const checked=Object.values(modalCheckState).filter(Boolean).length;
-// Show score in right panel
-const pct=Math.round(checked/10*100);
-const msg=checked>=8?‘Strong self-evaluation. The discipline of honest checking is half the work.’
-:checked>=6?‘Decent. The items you didn't tick are your next focus areas.’
-:‘Some honesty. Focus specifically on the unchecked items in your next draft.’;
-document.getElementById(‘ws-right-panel’).innerHTML=` <div class="ws-lbl">Session Complete</div> <div class="check-score" style="margin-bottom:12px"> <div class="score-num" style="color:${pct>=70?'var(--gr)':'var(--gd)'}">${checked}/10</div> <div class="score-lbl">self-check score</div> <div class="score-msg">${msg}</div> </div> ${SELF_CHECK_ITEMS.map(sec=>`
-<div style="margin-bottom:10px">
-<div class="sect-label">${sec.sec}</div>
-${sec.items.map((item,ii)=>`<div style="font-size:11px;color:var(--t3);padding:3px 0;border-bottom:1px solid var(--b)">${item}</div>`).join(’’)}
-</div>`).join('')}`;
-markDone();
+  closeSelfCheck();
+  const checked=Object.values(modalCheckState).filter(Boolean).length;
+  // Show score in right panel
+  const pct=Math.round(checked/10*100);
+  const msg=checked>=8?'Strong self-evaluation. The discipline of honest checking is half the work.'
+    :checked>=6?'Decent. The items you didn\'t tick are your next focus areas.'
+    :'Some honesty. Focus specifically on the unchecked items in your next draft.';
+  document.getElementById('ws-right-panel').innerHTML=`
+    <div class="ws-lbl">Session Complete</div>
+    <div class="check-score" style="margin-bottom:12px">
+      <div class="score-num" style="color:${pct>=70?'var(--gr)':'var(--gd)'}">${checked}/10</div>
+      <div class="score-lbl">self-check score</div>
+      <div class="score-msg">${msg}</div>
+    </div>
+    ${SELF_CHECK_ITEMS.map(sec=>`
+      <div style="margin-bottom:10px">
+        <div class="sect-label">${sec.sec}</div>
+        ${sec.items.map((item,ii)=>`
+          <div style="font-size:11px;color:var(--t3);padding:3px 0;border-bottom:1px solid var(--b)">${item}</div>
+        `).join('')}
+      </div>`).join('')}`;
+  markDone();
 }
 
 // ════════════════════════════════════
 // REVIEW
 // ════════════════════════════════════
 const REVIEW_Q=[
-{skill:‘Mechanism’,prompt:’“Governments should invest in public transport.”\nReason: “This is because private car usage drives urban pollution.”\n\n→ Complete the mechanism: “Specifically, when more commuters switch to buses and trains, ___”’,model:’…the total volume of private vehicles on city roads falls, directly reducing exhaust emissions and improving air quality, particularly during peak commuting hours.’},
-{skill:‘Topic Sentence’,prompt:‘Essay: “Technology is making people less sociable. To what extent do you agree?”\n\n→ Write a topic sentence for a paragraph AGREEING with this view.’,model:‘One major reason why technology erodes sociability is that messaging apps enable people to substitute shallow digital exchanges for the deeper engagement of face-to-face conversation.’},
-{skill:‘Thesis’,prompt:’“Some people believe fast food advertising should be banned. Do you agree or disagree?”\n\n→ Write a strong, specific thesis statement.’,model:‘I strongly believe that fast food advertising should be banned from all media targeting children, as such campaigns exploit cognitive vulnerabilities in young audiences and directly contribute to rising rates of childhood obesity.’},
+  {skill:'Mechanism',prompt:'"Governments should invest in public transport."\nReason: "This is because private car usage drives urban pollution."\n\n→ Complete the mechanism: "Specifically, when more commuters switch to buses and trains, ___"',model:'...the total volume of private vehicles on city roads falls, directly reducing exhaust emissions and improving air quality, particularly during peak commuting hours.'},
+  {skill:'Topic Sentence',prompt:'Essay: "Technology is making people less sociable. To what extent do you agree?"\n\n→ Write a topic sentence for a paragraph AGREEING with this view.',model:'One major reason why technology erodes sociability is that messaging apps enable people to substitute shallow digital exchanges for the deeper engagement of face-to-face conversation.'},
+  {skill:'Thesis',prompt:'"Some people believe fast food advertising should be banned. Do you agree or disagree?"\n\n→ Write a strong, specific thesis statement.',model:'I strongly believe that fast food advertising should be banned from all media targeting children, as such campaigns exploit cognitive vulnerabilities in young audiences and directly contribute to rising rates of childhood obesity.'},
 ];
 
 function buildReview(){
-document.getElementById(‘review-cards’).innerHTML=REVIEW_Q.map((q,i)=>` <div class="card" style="margin-bottom:14px"> <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"> <div class="sect-label" style="margin:0">↺ ${q.skill}</div> <div style="font-size:10px;color:var(--t3);font-family:var(--font-mono)">Card ${i+1} of ${REVIEW_Q.length}</div> </div> <div style="font-size:13px;line-height:1.6;color:var(--t2);margin-bottom:12px;white-space:pre-line">${q.prompt}</div> <textarea class="txt" id="rv-${i}" rows="3" placeholder="Write your answer..."></textarea> <div style="display:flex;gap:7px;margin-top:10px"> <button class="btn btn-s btn-sm" onclick="revealReview(${i})">Show model</button> <button class="btn btn-gr btn-sm" onclick="doneReview(${i},this)">Done ✓</button> </div> <div class="cmp-note" id="rv-model-${i}" style="display:none;margin-top:8px">Model: ${q.model}</div> </div>`).join(’’);
+  document.getElementById('review-cards').innerHTML=REVIEW_Q.map((q,i)=>`
+    <div class="card" style="margin-bottom:14px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div class="sect-label" style="margin:0">↺ ${q.skill}</div>
+        <div style="font-size:10px;color:var(--t3);font-family:var(--font-mono)">Card ${i+1} of ${REVIEW_Q.length}</div>
+      </div>
+      <div style="font-size:13px;line-height:1.6;color:var(--t2);margin-bottom:12px;white-space:pre-line">${q.prompt}</div>
+      <textarea class="txt" id="rv-${i}" rows="3" placeholder="Write your answer..."></textarea>
+      <div style="display:flex;gap:7px;margin-top:10px">
+        <button class="btn btn-s btn-sm" onclick="revealReview(${i})">Show model</button>
+        <button class="btn btn-gr btn-sm" onclick="doneReview(${i},this)">Done ✓</button>
+      </div>
+      <div class="cmp-note" id="rv-model-${i}" style="display:none;margin-top:8px">Model: ${q.model}</div>
+    </div>`).join('');
 }
 
-function revealReview(i){document.getElementById(‘rv-model-’+i).style.display=‘block’}
+function revealReview(i){document.getElementById('rv-model-'+i).style.display='block'}
 function doneReview(i,btn){
-if(!document.getElementById(‘rv-’+i).value.trim()){toast(‘Write your answer first’,‘err’);return}
-btn.disabled=true;btn.textContent=‘Done ✓’;
-markDone();
-const left=document.querySelectorAll(’.review-cards button[disabled]’).length;
-document.getElementById(‘rv-badge’).textContent=Math.max(0,REVIEW_Q.length-left);
+  if(!document.getElementById('rv-'+i).value.trim()){toast('Write your answer first','err');return}
+  btn.disabled=true;btn.textContent='Done ✓';
+  markDone();
+  const left=document.querySelectorAll('.review-cards button[disabled]').length;
+  document.getElementById('rv-badge').textContent=Math.max(0,REVIEW_Q.length-left);
 }
 
 // ════════════════════════════════════
 // TOAST
 // ════════════════════════════════════
 let toastT;
-function toast(msg,type=‘ok’){
-const el=document.getElementById(‘toast’);
-el.textContent=msg;el.className=`toast on ${type}`;
-clearTimeout(toastT);
-toastT=setTimeout(()=>el.classList.remove(‘on’),3000);
+function toast(msg,type='ok'){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.className=`toast on ${type}`;
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>el.classList.remove('on'),3000);
 }
 </script>
-
 </body>
 </html>
