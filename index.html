@@ -1186,17 +1186,15 @@ const S = {
   ideaList:[], checkStates:{}, bankTopic:'technology',
 };
 
-// ── Username-keyed cloud sync via kvdb.io ─────────────────
-// kvdb.io: free key-value store, no account needed.
-// Key = "ielts_" + username  →  same key on every device = same data.
-// User picks a username once; we store it locally so they don't retype it.
+// ── Cloud sync via Firebase Realtime Database ─────────────
+// Free tier, proper CORS from any browser, no auth needed with public rules.
+// Data lives at: FIREBASE_URL/users/{username}.json
+// Anyone who knows the username can read/write — fine for progress data.
 
-const KVDB_BUCKET = 'XqhfoZsrvwteYHaLc7c3he';
-const KVDB = `https://kvdb.io/${KVDB_BUCKET}`;
-
-function cloudKey(username){ return `ielts_${username.toLowerCase().replace(/\s+/g,'_')}`; }
+const FIREBASE_URL = 'https://writing-5f898-default-rtdb.asia-southeast1.firebasedatabase.app';
 
 function getUsername(){ return localStorage.getItem('ielts_username')||''; }
+function userURL(u){ return `${FIREBASE_URL}/users/${u.toLowerCase().replace(/[^a-z0-9_]/g,'_')}.json`; }
 
 // ── Persist ───────────────────────────────────────────────
 function saveState(){
@@ -1211,7 +1209,6 @@ function saveState(){
 }
 
 function applyState(data){
-  // Merge cloud + local: always take the higher value (most progress wins)
   const merged = {
     streak: Math.max(S.streak, data.streak||0),
     freezesUsed: Math.max(S.freezesUsed, data.freezesUsed||0),
@@ -1224,7 +1221,6 @@ function applyState(data){
   };
   Object.assign(S, merged);
   localStorage.setItem('ielts_state', JSON.stringify(merged));
-  // Refresh UI
   renderStreak();
   buildDashSkills();
   document.getElementById('d-sessions').textContent = S.sessions;
@@ -1233,32 +1229,33 @@ function applyState(data){
 
 async function cloudPush(username, data){
   try {
-    await fetch(`${KVDB}/${cloudKey(username)}`, {
-      method:'POST',
-      body: JSON.stringify(data),
-      headers:{'Content-Type':'text/plain'} // kvdb stores raw string values
+    await fetch(userURL(username), {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
     });
-  } catch(e){ /* silent — local already saved */ }
+  } catch(e){}
 }
 
 async function cloudPull(){
   const u = getUsername();
-  if(!u){ setSyncStatus('Set a username to sync','warn'); showUsernamePrompt(); return; }
+  if(!u){ setSyncStatus('☁ Set username','warn'); return; }
   setSyncStatus('Syncing...','warn');
   try {
-    const r = await fetch(`${KVDB}/${cloudKey(u)}`);
-    if(r.status===404){ 
-      // No cloud data yet — push local state up
-      await cloudPush(u, saved);
-      setSyncStatus('✓ Synced','ok');
-      return;
-    }
-    if(!r.ok) throw new Error();
+    const r = await fetch(userURL(u));
+    if(!r.ok) throw new Error('HTTP '+r.status);
     const data = await r.json();
-    applyState(data);
-    setSyncStatus('✓ Synced','ok');
+    if(data && typeof data === 'object'){
+      applyState(data);
+      setSyncStatus('✓ Synced','ok');
+    } else {
+      // No data yet — first time on this username, push local up
+      await cloudPush(u, JSON.parse(localStorage.getItem('ielts_state')||'{}'));
+      setSyncStatus('✓ Synced','ok');
+    }
   } catch(e){
     setSyncStatus('Offline — local only','warn');
+    console.warn('Sync failed:', e.message);
   }
 }
 
