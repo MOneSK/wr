@@ -475,6 +475,7 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);min-heigh
     <div class="nav-sect">Skills</div>
     <div class="nav-item" onclick="go('lessons')"><span class="nav-ic">◉</span>Sentence Skills<span class="nav-chip">6</span></div>
     <div class="nav-item" onclick="go('idea-lab')"><span class="nav-ic">⚗</span>Idea Lab</div>
+    <div class="nav-item" onclick="go('idea-mode')"><span class="nav-ic">⚡</span>Idea Mode<span class="nav-chip">NEW</span></div>
     <div class="nav-item" onclick="go('drills')"><span class="nav-ic">⚡</span>WHY/HOW Drills</div>
     <div class="nav-item" onclick="go('idea-bank')"><span class="nav-ic">◆</span>Idea Bank</div>
 
@@ -791,6 +792,169 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);min-heigh
         </div>
         <button class="btn btn-gr btn-full" onclick="submitIdeaDrill()">Submit & Finish ✓</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ══ IDEA MODE ══ -->
+  <div class="page" id="pg-idea-mode">
+    <div class="pg-title">Idea Mode</div>
+    <div class="pg-sub">Train yourself to generate, evaluate, and select strong ideas fast. The goal is not the best idea — it's the most developable one.</div>
+
+    <!-- Mode selector -->
+    <div id="im-mode-select">
+      <div class="sect-label">Choose a level</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
+        <div class="card" style="cursor:pointer;border-color:var(--ac)" onclick="startIdeaMode('flow')">
+          <div style="font-size:20px;margin-bottom:6px">⚡</div>
+          <div style="font-size:13px;font-weight:600">Full Flow</div>
+          <div style="font-size:11px;color:var(--t2);margin-top:3px">Generate → Evaluate → Select → Expand. The complete process.</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="startIdeaMode('identify')">
+          <div style="font-size:20px;margin-bottom:6px">🎯</div>
+          <div style="font-size:13px;font-weight:600">Level 1 — Identify Best</div>
+          <div style="font-size:11px;color:var(--t2);margin-top:3px">Pick the strongest idea from 3 options.</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="startIdeaMode('fix')">
+          <div style="font-size:20px;margin-bottom:6px">🔧</div>
+          <div style="font-size:13px;font-weight:600">Level 2 — Fix Weak Ideas</div>
+          <div style="font-size:11px;color:var(--t2);margin-top:3px">Rewrite a vague idea into a concrete one.</div>
+        </div>
+        <div class="card" style="cursor:pointer" onclick="startIdeaMode('speed')">
+          <div style="font-size:20px;margin-bottom:6px">⏱</div>
+          <div style="font-size:13px;font-weight:600">Level 4 — Speed Training</div>
+          <div style="font-size:11px;color:var(--t2);margin-top:3px">2 minutes. 3 ideas. Pick 1. Justify it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOW MODE (Steps 1–6) -->
+    <div id="im-flow" style="display:none">
+      <!-- Step indicator -->
+      <div style="display:flex;gap:4px;margin-bottom:20px" id="im-steps"></div>
+
+      <!-- Step 1: Prompt -->
+      <div id="im-step-1">
+        <div class="card ac-top">
+          <div class="sect-label">Step 1 — Your Prompt</div>
+          <div style="font-size:15px;font-weight:600;line-height:1.5;margin-bottom:12px" id="im-prompt-text"></div>
+          <div style="font-size:12px;color:var(--t2);margin-bottom:14px">Read the question carefully. You will generate 3 ideas in the next step — under 2 minutes.</div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-p btn-sm" onclick="imNext(2)">Ready — Start timer →</button>
+            <button class="btn btn-s btn-sm" onclick="imNewPrompt()">Different prompt</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Generate ideas -->
+      <div id="im-step-2" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="sect-label" style="margin:0">Step 2 — Generate 3 ideas</div>
+          <div style="font-family:var(--font-mono);font-size:18px;color:var(--gd)" id="im-timer">2:00</div>
+        </div>
+        <div class="card" style="margin-bottom:6px;border-color:var(--t3)">
+          <div style="font-size:11px;color:var(--t3);margin-bottom:10px;font-family:var(--font-mono)">PROMPT</div>
+          <div style="font-size:13px;color:var(--t2)" id="im-prompt-small"></div>
+        </div>
+        <div style="font-size:12px;color:var(--t3);margin-bottom:12px;padding:8px 12px;background:var(--s2);border-radius:var(--rs)">
+          ⚠ Do not overthink. Write simple, direct ideas. One sentence each.
+        </div>
+        <div style="margin-bottom:8px">
+          <div class="expand-label">Idea 1</div>
+          <input class="inp" id="im-idea-1" placeholder="e.g. reduces government spending on healthcare">
+        </div>
+        <div style="margin-bottom:8px">
+          <div class="expand-label">Idea 2</div>
+          <input class="inp" id="im-idea-2" placeholder="e.g. causes anxiety through social comparison">
+        </div>
+        <div style="margin-bottom:14px">
+          <div class="expand-label">Idea 3</div>
+          <input class="inp" id="im-idea-3" placeholder="e.g. saves commuting time for workers">
+        </div>
+        <button class="btn btn-p btn-sm" onclick="imSubmitIdeas()">Submit ideas →</button>
+      </div>
+
+      <!-- Step 3: Evaluate -->
+      <div id="im-step-3" style="display:none">
+        <div class="sect-label">Step 3 — Evaluate each idea honestly</div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:14px">For each idea, answer 3 questions. Be honest — this is the most important step.</div>
+        <div id="im-eval-cards"></div>
+        <button class="btn btn-p btn-sm" onclick="imSubmitEval()" id="im-eval-btn" style="margin-top:4px">Get AI feedback →</button>
+      </div>
+
+      <!-- Step 4: AI Feedback -->
+      <div id="im-step-4" style="display:none">
+        <div class="sect-label">Step 4 — Idea Feedback</div>
+        <div id="im-feedback-cards"></div>
+        <button class="btn btn-p btn-sm" onclick="imNext(5)" style="margin-top:8px">Choose your idea →</button>
+      </div>
+
+      <!-- Step 5: Select -->
+      <div id="im-step-5" style="display:none">
+        <div class="sect-label">Step 5 — Select one idea</div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:14px">Pick the idea that is <strong style="color:var(--t1)">easiest to develop</strong> — not the most impressive.</div>
+        <div id="im-select-cards"></div>
+        <div id="im-justify-wrap" style="display:none;margin-top:14px">
+          <div class="expand-label">Why is this the easiest idea to develop?</div>
+          <textarea class="txt" id="im-justify" rows="2" placeholder="Because it has a clear cause-effect chain and I can think of a real example..."></textarea>
+          <button class="btn btn-p btn-sm" onclick="imNext(6)" style="margin-top:8px">Begin writing →</button>
+        </div>
+      </div>
+
+      <!-- Step 6: Expansion Bridge -->
+      <div id="im-step-6" style="display:none">
+        <div class="sect-label">Step 6 — Expand into a paragraph</div>
+        <div class="card" style="border-color:var(--ac);margin-bottom:14px">
+          <div class="expand-label">Your selected idea</div>
+          <div style="font-size:14px;color:var(--t1)" id="im-selected-display"></div>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Topic Sentence</div>
+          <textarea class="txt" id="im-exp-topic" rows="2" placeholder="One major reason why [position] is that [your idea]..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Reason — WHY is this true?</div>
+          <textarea class="txt" id="im-exp-reason" rows="2" placeholder="This is because..."></textarea>
+        </div>
+        <div style="margin-bottom:10px">
+          <div class="expand-label">Mechanism — HOW does it work? (A → B → C)</div>
+          <textarea class="txt" id="im-exp-mechanism" rows="2" placeholder="Specifically, when [A] occurs, this leads to [B], which causes [C]..."></textarea>
+        </div>
+        <div style="margin-bottom:14px">
+          <div class="expand-label">Example</div>
+          <textarea class="txt" id="im-exp-example" rows="2" placeholder="For instance, in [country/context], [evidence], demonstrating that [link]..."></textarea>
+        </div>
+        <div class="done-row">
+          <div class="done-note">Complete all 4 parts</div>
+          <button class="btn btn-gr" onclick="imComplete()">Mark Done ✓</button>
+        </div>
+      </div>
+
+      <!-- Back button -->
+      <div style="margin-top:20px">
+        <button class="btn btn-s btn-sm" onclick="imReset()">← Back to levels</button>
+      </div>
+    </div>
+
+    <!-- IDENTIFY MODE -->
+    <div id="im-identify" style="display:none">
+      <div class="sect-label">Level 1 — Which idea is strongest?</div>
+      <div style="font-size:12px;color:var(--t2);margin-bottom:14px">Pick the idea that is most concrete, easiest to explain, and easiest to support with an example.</div>
+      <div id="im-identify-content"></div>
+      <button class="btn btn-s btn-sm" onclick="imReset()" style="margin-top:14px">← Back</button>
+    </div>
+
+    <!-- FIX MODE -->
+    <div id="im-fix" style="display:none">
+      <div class="sect-label">Level 2 — Rewrite this weak idea</div>
+      <div style="font-size:12px;color:var(--t2);margin-bottom:14px">The idea below is too vague to develop. Rewrite it to be specific, concrete, and arguable.</div>
+      <div id="im-fix-content"></div>
+      <button class="btn btn-s btn-sm" onclick="imReset()" style="margin-top:14px">← Back</button>
+    </div>
+
+    <!-- SPEED MODE -->
+    <div id="im-speed" style="display:none">
+      <div id="im-speed-content"></div>
+      <button class="btn btn-s btn-sm" onclick="imReset()" style="margin-top:14px">← Back</button>
     </div>
   </div>
 
@@ -1389,7 +1553,7 @@ function renderStreak(){
 // ════════════════════════════════════
 // NAVIGATION
 // ════════════════════════════════════
-const PAGE_LABELS={dashboard:'Dashboard',path:'30-Day Path',lessons:'Sentence Skills','idea-lab':'Idea Lab',drills:'WHY/HOW Drills','idea-bank':'Idea Bank',workspace:'Writing Lab',review:'Review Queue'};
+const PAGE_LABELS={dashboard:'Dashboard',path:'30-Day Path',lessons:'Sentence Skills','idea-lab':'Idea Lab','idea-mode':'Idea Mode',drills:'WHY/HOW Drills','idea-bank':'Idea Bank',workspace:'Writing Lab',review:'Review Queue'};
 
 function go(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
@@ -1974,6 +2138,524 @@ function toast(msg,type='ok'){
   clearTimeout(toastT);
   toastT=setTimeout(()=>el.classList.remove('on'),3000);
 }
+
+// ════════════════════════════════════
+// IDEA MODE
+// ════════════════════════════════════
+
+const IM_PROMPTS = [
+  'Some people think university education should be free for all students. Do you agree or disagree?',
+  'Technology is making people less sociable. To what extent do you agree?',
+  'Governments should ban fast food advertising. Do you agree or disagree?',
+  'Some people believe children should be taught to be competitive at school. Others feel cooperation is more important. Discuss both views.',
+  'The number of people working from home has increased significantly. Is this a positive or negative development?',
+  'Some people think that governments should spend money on public transport rather than building new roads. To what extent do you agree?',
+  'Many people believe that social media has had a negative effect on communication between people. To what extent do you agree?',
+  'Some people think that a sense of competition in children should be encouraged. Others believe that children who are taught to cooperate rather than compete become more useful adults. Discuss both views.',
+];
+
+const IM_IDENTIFY_SETS = [
+  {
+    topic:'Technology reduces social interaction',
+    ideas:[
+      {text:'It affects human connection', correct:false},
+      {text:'People spend more time on phones instead of talking face-to-face', correct:true},
+      {text:'Society becomes less meaningful over time', correct:false},
+    ],
+    explanation:{
+      0:'Too abstract. "Affects human connection" says nothing specific — you cannot explain HOW or give an example.',
+      1:'Concrete and specific. You can explain HOW (phone use replaces conversation) and give a real example (families at dinner, etc.).',
+      2:'Philosophical and vague. "Less meaningful" cannot be explained step-by-step or supported with a clear example.',
+    }
+  },
+  {
+    topic:'University education should be free',
+    ideas:[
+      {text:'It promotes equality in society', correct:false},
+      {text:'Students from low-income families can enrol without taking on debt', correct:true},
+      {text:'Education is a fundamental human right', correct:false},
+    ],
+    explanation:{
+      0:'Too vague. "Promotes equality" is an abstract claim — you cannot explain the exact mechanism or give a concrete example easily.',
+      1:'Concrete. You can explain HOW (no fees → no debt → more enrolments) and give a country example like Germany or Norway.',
+      2:'This is a philosophical claim, not an argument. It cannot be explained logically or supported with cause-effect reasoning.',
+    }
+  },
+  {
+    topic:'Fast food advertising should be banned',
+    ideas:[
+      {text:'It is harmful to public health', correct:false},
+      {text:'Children repeatedly exposed to fast food ads are more likely to request and consume these products', correct:true},
+      {text:'It damages the moral fabric of society', correct:false},
+    ],
+    explanation:{
+      0:'Too broad. Every argument about banning something could use "harmful to health" — this tells the examiner nothing specific.',
+      1:'Specific chain: repeated exposure → normalised consumption → purchasing behaviour. Easy to support with evidence.',
+      2:'Abstract and moral. Cannot be explained mechanically or supported with a real-world example.',
+    }
+  },
+];
+
+const IM_FIX_SETS = [
+  {
+    weak:'Education improves society',
+    hint:'Too vague. How does it improve society? What specific outcome?',
+    model:'Education increases employment opportunities by equipping graduates with marketable skills, which reduces unemployment and poverty levels.',
+    topic:'Education'
+  },
+  {
+    weak:'Social media is bad for people',
+    hint:'No mechanism. Bad in what way? For which people? Through what process?',
+    model:'Social media causes anxiety in young users by exposing them to curated images of others\' lives, triggering persistent social comparison and feelings of inadequacy.',
+    topic:'Social Media'
+  },
+  {
+    weak:'Technology helps the economy',
+    hint:'Too broad. Which technology? Which part of the economy? How?',
+    model:'Automation reduces production costs for manufacturers by replacing repetitive labour with machines, allowing companies to lower prices and increase output.',
+    topic:'Technology'
+  },
+  {
+    weak:'The environment is important',
+    hint:'This is a statement of value, not an argument. Rewrite as a specific claim with a mechanism.',
+    model:'Investing in renewable energy reduces carbon emissions from the energy sector by replacing fossil fuel plants with solar and wind infrastructure, directly slowing the rate of climate change.',
+    topic:'Environment'
+  },
+];
+
+// ── Idea Mode State ───────────────────────────────────────
+let IM = {
+  mode: null,
+  step: 1,
+  prompt: '',
+  ideas: ['','',''],
+  evalState: {}, // key: "idea-N-q-M" → true/false
+  selected: null,
+  timerIv: null,
+  timerSecs: 120,
+  identifyIdx: 0,
+  fixIdx: 0,
+};
+
+function startIdeaMode(mode){
+  IM.mode = mode;
+  document.getElementById('im-mode-select').style.display = 'none';
+  ['im-flow','im-identify','im-fix','im-speed'].forEach(id=>{
+    document.getElementById(id).style.display = 'none';
+  });
+
+  if(mode === 'flow'){
+    imPickPrompt();
+    renderImSteps(1);
+    document.getElementById('im-flow').style.display = 'block';
+    imShowStep(1);
+  } else if(mode === 'identify'){
+    IM.identifyIdx = 0;
+    document.getElementById('im-identify').style.display = 'block';
+    renderIdentify();
+  } else if(mode === 'fix'){
+    IM.fixIdx = 0;
+    document.getElementById('im-fix').style.display = 'block';
+    renderFix();
+  } else if(mode === 'speed'){
+    document.getElementById('im-speed').style.display = 'block';
+    renderSpeed();
+  }
+}
+
+function imReset(){
+  clearInterval(IM.timerIv);
+  IM = {...IM, mode:null, step:1, ideas:['','',''], evalState:{}, selected:null, timerSecs:120};
+  document.getElementById('im-mode-select').style.display = 'block';
+  ['im-flow','im-identify','im-fix','im-speed'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+}
+
+// ── Flow Mode ─────────────────────────────────────────────
+function imPickPrompt(){
+  IM.prompt = IM_PROMPTS[Math.floor(Math.random()*IM_PROMPTS.length)];
+  document.getElementById('im-prompt-text').textContent = IM.prompt;
+  document.getElementById('im-prompt-small').textContent = IM.prompt;
+}
+
+function imNewPrompt(){
+  imPickPrompt();
+}
+
+function renderImSteps(current){
+  const labels = ['Prompt','Generate','Evaluate','Feedback','Select','Expand'];
+  document.getElementById('im-steps').innerHTML = labels.map((l,i)=>{
+    const n = i+1;
+    const done = n < current;
+    const active = n === current;
+    return `<div style="
+      flex:1;padding:6px 4px;text-align:center;border-radius:var(--rs);
+      font-family:var(--font-mono);font-size:9px;letter-spacing:.5px;
+      background:${active?'var(--ac)':done?'var(--s3)':'var(--s2)'};
+      color:${active?'#fff':done?'var(--gr)':'var(--t3)'};
+      border:1px solid ${active?'var(--ac)':done?'var(--gr)':'var(--b)'};
+      ">${n}. ${l}</div>`;
+  }).join('');
+}
+
+function imShowStep(n){
+  for(let i=1;i<=6;i++) document.getElementById('im-step-'+i).style.display = 'none';
+  document.getElementById('im-step-'+n).style.display = 'block';
+  IM.step = n;
+  renderImSteps(n);
+}
+
+function imNext(step){
+  imShowStep(step);
+  if(step === 2) imStartTimer();
+}
+
+function imStartTimer(){
+  IM.timerSecs = 120;
+  clearInterval(IM.timerIv);
+  const el = document.getElementById('im-timer');
+  IM.timerIv = setInterval(()=>{
+    IM.timerSecs--;
+    const m = Math.floor(IM.timerSecs/60), s = IM.timerSecs % 60;
+    if(el) el.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+    if(IM.timerSecs <= 30 && el) el.style.color = 'var(--rd)';
+    if(IM.timerSecs <= 0){ clearInterval(IM.timerIv); toast('Time\'s up — submit your ideas','err'); }
+  }, 1000);
+}
+
+function imSubmitIdeas(){
+  clearInterval(IM.timerIv);
+  const i1 = document.getElementById('im-idea-1').value.trim();
+  const i2 = document.getElementById('im-idea-2').value.trim();
+  const i3 = document.getElementById('im-idea-3').value.trim();
+  if(!i1 || !i2 || !i3){ toast('Write all 3 ideas first','err'); return; }
+  IM.ideas = [i1, i2, i3];
+  renderEvalCards();
+  imShowStep(3);
+}
+
+function renderEvalCards(){
+  const questions = [
+    'Is this idea easy to explain in simple terms?',
+    'Can you clearly explain HOW it works (cause → effect)?',
+    'Can you give a specific, real-world example?',
+  ];
+  document.getElementById('im-eval-cards').innerHTML = IM.ideas.map((idea, ii)=>`
+    <div class="card" style="margin-bottom:12px">
+      <div class="expand-label">Idea ${ii+1}</div>
+      <div style="font-size:13px;color:var(--t1);margin-bottom:12px;padding:8px 10px;background:var(--s2);border-radius:var(--rs)">${idea}</div>
+      ${questions.map((q, qi)=>`
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--b)">
+          <div style="font-size:12px;color:var(--t2);flex:1">${q}</div>
+          <div style="display:flex;gap:6px;flex-shrink:0;margin-left:12px">
+            <button class="btn btn-s btn-sm" id="eval-${ii}-${qi}-y"
+              onclick="setEval(${ii},${qi},true)"
+              style="min-width:40px">Yes</button>
+            <button class="btn btn-s btn-sm" id="eval-${ii}-${qi}-n"
+              onclick="setEval(${ii},${qi},false)"
+              style="min-width:40px">No</button>
+          </div>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+function setEval(ideaIdx, qIdx, val){
+  const key = `${ideaIdx}-${qIdx}`;
+  IM.evalState[key] = val;
+  const yBtn = document.getElementById(`eval-${ideaIdx}-${qIdx}-y`);
+  const nBtn = document.getElementById(`eval-${ideaIdx}-${qIdx}-n`);
+  if(yBtn) yBtn.style.background = val ? 'var(--gr)' : '';
+  if(yBtn) yBtn.style.color = val ? '#000' : '';
+  if(nBtn) nBtn.style.background = !val ? 'var(--rd)' : '';
+  if(nBtn) nBtn.style.color = !val ? '#fff' : '';
+}
+
+async function imSubmitEval(){
+  // Check all 9 questions answered
+  const needed = IM.ideas.flatMap((_,ii)=>[0,1,2].map(qi=>`${ii}-${qi}`));
+  const missing = needed.filter(k => IM.evalState[k] === undefined);
+  if(missing.length){ toast(`Answer all questions first (${missing.length} remaining)`,'err'); return; }
+
+  imShowStep(4);
+
+  // Generate feedback per idea
+  const cards = document.getElementById('im-feedback-cards');
+  cards.innerHTML = IM.ideas.map((idea,ii)=>{
+    const scores = [0,1,2].map(qi => IM.evalState[`${ii}-${qi}`]);
+    const yesCount = scores.filter(Boolean).length;
+    return `<div class="card" style="margin-bottom:10px;border-left:3px solid ${scoreColor(yesCount)}">
+      <div class="expand-label" style="color:${scoreColor(yesCount)}">Idea ${ii+1} — ${scoreLabel(yesCount)}</div>
+      <div style="font-size:13px;color:var(--t1);margin-bottom:8px">${idea}</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.6">${ideaFeedback(idea, scores)}</div>
+    </div>`;
+  }).join('');
+}
+
+function scoreColor(n){ return n===3?'var(--gr)':n===2?'var(--gd)':'var(--rd)'; }
+function scoreLabel(n){ return n===3?'Strong idea':n===2?'Usable idea':'Weak idea'; }
+
+function ideaFeedback(idea, scores){
+  const [easy, mech, example] = scores;
+  const parts = [];
+
+  // Detect abstract language
+  const abstract = ['equality','justice','morality','society','meaningful','important','valuable','dignity','rights','humanity','freedom','fairness'];
+  const isAbstract = abstract.some(w => idea.toLowerCase().includes(w));
+  if(isAbstract) parts.push('⚠ Contains abstract language — hard to explain step-by-step or support with a real example.');
+
+  // Detect concrete signals
+  const concrete = ['cost','money','time','job','health','rate','income','spend','reduce','increase','access','employ'];
+  const isConcrete = concrete.some(w => idea.toLowerCase().includes(w));
+  if(isConcrete) parts.push('✓ Contains a concrete element — easier to build a cause-effect chain around.');
+
+  if(!easy) parts.push('You marked this as hard to explain — consider whether you can simplify it to one clear action and one clear result.');
+  if(!mech) parts.push('No clear mechanism means no Band 7. You need to show HOW this idea produces an outcome.');
+  if(!example) parts.push('If you cannot think of an example, examiners will not be convinced. Find a specific country, study, or situation.');
+  if(easy && mech && example) parts.push('Strong: you can explain it simply, trace the mechanism, and support it with an example. This is a developable idea.');
+
+  return parts.length ? parts.join(' ') : 'Review this idea against the three criteria before selecting it.';
+}
+
+function renderSelectCards(){
+  document.getElementById('im-select-cards').innerHTML = IM.ideas.map((idea,ii)=>{
+    const scores = [0,1,2].map(qi => IM.evalState[`${ii}-${qi}`]);
+    const yesCount = scores.filter(Boolean).length;
+    return `<div class="card" style="cursor:pointer;margin-bottom:8px;border-color:${IM.selected===ii?'var(--ac)':'var(--b)'}"
+      id="sel-card-${ii}" onclick="imSelectIdea(${ii})">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:13px;color:var(--t1);flex:1">${idea}</div>
+        <div style="font-family:var(--font-mono);font-size:10px;color:${scoreColor(yesCount)};margin-left:10px">${'●'.repeat(yesCount)}${'○'.repeat(3-yesCount)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function imSelectIdea(idx){
+  IM.selected = idx;
+  renderSelectCards();
+  document.getElementById('im-justify-wrap').style.display = 'block';
+  document.getElementById('im-justify-wrap').scrollIntoView({behavior:'smooth'});
+}
+
+function imComplete(){
+  const t = document.getElementById('im-exp-topic').value.trim();
+  const r = document.getElementById('im-exp-reason').value.trim();
+  const m = document.getElementById('im-exp-mechanism').value.trim();
+  const e = document.getElementById('im-exp-example').value.trim();
+  if(!t||!r||!m||!e){ toast('Complete all 4 parts','err'); return; }
+  markDone();
+  imReset();
+}
+
+// Override imNext for step 5 to render select cards
+const _imNextOrig = imNext;
+function imNext(step){
+  imShowStep(step);
+  if(step === 2) imStartTimer();
+  if(step === 5){
+    renderSelectCards();
+    document.getElementById('im-justify-wrap').style.display='none';
+  }
+  if(step === 6 && IM.selected !== null){
+    document.getElementById('im-selected-display').textContent = IM.ideas[IM.selected];
+  }
+}
+
+// ── Level 1: Identify ─────────────────────────────────────
+function renderIdentify(){
+  const set = IM_IDENTIFY_SETS[IM.identifyIdx % IM_IDENTIFY_SETS.length];
+  document.getElementById('im-identify-content').innerHTML = `
+    <div class="card" style="margin-bottom:14px">
+      <div class="sect-label">Topic</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:14px">${set.topic}</div>
+      <div style="font-size:12px;color:var(--t2);margin-bottom:12px">Which idea is the strongest? Pick the one that is most concrete and easiest to explain step-by-step.</div>
+      ${set.ideas.map((idea,i)=>`
+        <div class="card" style="cursor:pointer;margin-bottom:7px" id="id-opt-${i}" onclick="checkIdentify(${i})">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="font-family:var(--font-mono);font-size:12px;color:var(--ac);flex-shrink:0">${String.fromCharCode(65+i)}.</div>
+            <div style="font-size:13px">${idea.text}</div>
+          </div>
+        </div>`).join('')}
+      <div id="id-result" style="display:none"></div>
+    </div>`;
+}
+
+function checkIdentify(chosen){
+  const set = IM_IDENTIFY_SETS[IM.identifyIdx % IM_IDENTIFY_SETS.length];
+  const correct = set.ideas[chosen].correct;
+  const correctIdx = set.ideas.findIndex(i=>i.correct);
+
+  // Color all options
+  set.ideas.forEach((_,i)=>{
+    const el = document.getElementById('id-opt-'+i);
+    if(!el) return;
+    if(i === correctIdx) el.style.borderColor = 'var(--gr)';
+    else if(i === chosen && !correct) el.style.borderColor = 'var(--rd)';
+  });
+
+  const res = document.getElementById('id-result');
+  res.style.display = 'block';
+  res.innerHTML = `
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--b)">
+      <div style="font-size:12px;font-weight:600;color:${correct?'var(--gr)':'var(--rd)'};margin-bottom:8px">
+        ${correct ? '✓ Correct' : '✗ Not quite'}
+      </div>
+      ${set.ideas.map((idea,i)=>`
+        <div style="font-size:12px;color:var(--t2);margin-bottom:6px;padding:6px 10px;background:var(--s2);border-radius:var(--rs);${i===correctIdx?'border-left:2px solid var(--gr)':''}">
+          <strong style="color:${i===correctIdx?'var(--gr)':'var(--t3)'}">${String.fromCharCode(65+i)}:</strong> ${set.explanation[i]}
+        </div>`).join('')}
+      <button class="btn btn-p btn-sm" onclick="nextIdentify()" style="margin-top:10px">Next →</button>
+    </div>`;
+}
+
+function nextIdentify(){
+  IM.identifyIdx++;
+  renderIdentify();
+}
+
+// ── Level 2: Fix ──────────────────────────────────────────
+function renderFix(){
+  const set = IM_FIX_SETS[IM.fixIdx % IM_FIX_SETS.length];
+  document.getElementById('im-fix-content').innerHTML = `
+    <div class="card" style="margin-bottom:12px">
+      <div class="cmp-col cmp-bad" style="margin-bottom:12px">
+        <div class="cmp-hd">❌ Weak idea — ${set.topic}</div>
+        <div class="cmp-txt">${set.weak}</div>
+        <div class="cmp-note">${set.hint}</div>
+      </div>
+      <div class="expand-label">Rewrite it — make it specific and concrete</div>
+      <textarea class="txt" id="fix-input" rows="3" placeholder="e.g. ${set.topic} increases... / reduces... / leads to..."></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button class="btn btn-p btn-sm" onclick="checkFix()">Check my rewrite</button>
+        <button class="btn btn-s btn-sm" onclick="showFixModel()">Show model</button>
+      </div>
+      <div id="fix-result" style="display:none;margin-top:12px"></div>
+    </div>`;
+}
+
+function checkFix(){
+  const val = document.getElementById('fix-input').value.trim();
+  if(!val){ toast('Write your rewrite first','err'); return; }
+  const set = IM_FIX_SETS[IM.fixIdx % IM_FIX_SETS.length];
+
+  // Simple heuristic check
+  const concrete = ['cost','money','time','job','health','rate','income','spend','reduce','increase','access','employ','student','worker','government','country','city','percent','year'];
+  const hasConcrete = concrete.some(w => val.toLowerCase().includes(w));
+  const hasVerb = val.toLowerCase().match(/\b(reduces?|increases?|improves?|creates?|causes?|leads?\s+to|results?\s+in|allows?|enables?)\b/);
+  const longEnough = val.split(' ').length >= 8;
+
+  const score = [hasConcrete, hasVerb, longEnough].filter(Boolean).length;
+  const el = document.getElementById('fix-result');
+  el.style.display = 'block';
+
+  if(score === 3){
+    el.innerHTML = `<div style="color:var(--gr);font-size:12px;line-height:1.6">✓ Concrete and specific. Your rewrite contains measurable language and a clear action/outcome. Compare it to the model to see if you captured the mechanism too.</div>
+    <button class="btn btn-s btn-sm" onclick="showFixModel()" style="margin-top:8px">See model answer</button>`;
+  } else {
+    const tips = [];
+    if(!hasConcrete) tips.push('Add something measurable — a group, outcome, or number.');
+    if(!hasVerb) tips.push('Use a clear action verb: reduces, increases, leads to, causes.');
+    if(!longEnough) tips.push('Too short — specify what happens and to whom.');
+    el.innerHTML = `<div style="color:var(--gd);font-size:12px;line-height:1.6;margin-bottom:8px">Not quite. ${tips.join(' ')}</div>
+    <button class="btn btn-s btn-sm" onclick="showFixModel()">See model answer</button>`;
+  }
+}
+
+function showFixModel(){
+  const set = IM_FIX_SETS[IM.fixIdx % IM_FIX_SETS.length];
+  const el = document.getElementById('fix-result');
+  el.style.display = 'block';
+  el.innerHTML = `
+    <div class="cmp-col cmp-good" style="margin-bottom:10px">
+      <div class="cmp-hd">✓ Model rewrite</div>
+      <div class="cmp-txt">${set.model}</div>
+    </div>
+    <div style="font-size:11px;color:var(--t3);line-height:1.6;margin-bottom:10px">Notice: specific group, specific outcome, clear mechanism implied.</div>
+    <button class="btn btn-p btn-sm" onclick="nextFix()">Next →</button>`;
+}
+
+function nextFix(){
+  IM.fixIdx++;
+  renderFix();
+  markDone();
+}
+
+// ── Level 4: Speed ────────────────────────────────────────
+let speedTimerIv = null;
+function renderSpeed(){
+  const prompt = IM_PROMPTS[Math.floor(Math.random()*IM_PROMPTS.length)];
+  document.getElementById('im-speed-content').innerHTML = `
+    <div class="sect-label">Level 4 — Speed Training</div>
+    <div style="font-size:12px;color:var(--t2);margin-bottom:14px">2 minutes. Generate 3 ideas, pick 1, justify your choice. No overthinking.</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div style="font-size:13px;font-weight:600;flex:1;line-height:1.5">${prompt}</div>
+      <div style="font-family:var(--font-mono);font-size:20px;color:var(--gd);margin-left:14px;flex-shrink:0" id="speed-timer">2:00</div>
+    </div>
+    <div style="margin-bottom:8px">
+      <div class="expand-label">Idea 1</div>
+      <input class="inp" id="speed-i1" placeholder="Write a direct, concrete idea...">
+    </div>
+    <div style="margin-bottom:8px">
+      <div class="expand-label">Idea 2</div>
+      <input class="inp" id="speed-i2" placeholder="Different angle from Idea 1...">
+    </div>
+    <div style="margin-bottom:12px">
+      <div class="expand-label">Idea 3</div>
+      <input class="inp" id="speed-i3" placeholder="Different angle from Ideas 1 and 2...">
+    </div>
+    <div style="margin-bottom:12px">
+      <div class="expand-label">Which idea will you use? (write it again)</div>
+      <input class="inp" id="speed-pick" placeholder="I will use...">
+    </div>
+    <div style="margin-bottom:14px">
+      <div class="expand-label">Why is it the easiest to develop?</div>
+      <input class="inp" id="speed-why" placeholder="Because it has a clear mechanism and I can think of an example...">
+    </div>
+    <button class="btn btn-gr btn-full" onclick="submitSpeed()">Submit ✓</button>
+    <div id="speed-result" style="display:none;margin-top:14px"></div>`;
+
+  // Start timer
+  clearInterval(speedTimerIv);
+  let secs = 120;
+  speedTimerIv = setInterval(()=>{
+    secs--;
+    const el = document.getElementById('speed-timer');
+    if(!el){ clearInterval(speedTimerIv); return; }
+    const m = Math.floor(secs/60), s = secs%60;
+    el.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+    if(secs<=30) el.style.color='var(--rd)';
+    if(secs<=0){ clearInterval(speedTimerIv); toast('Time\'s up — submit now','err'); }
+  },1000);
+}
+
+function submitSpeed(){
+  clearInterval(speedTimerIv);
+  const i1=document.getElementById('speed-i1').value.trim();
+  const i2=document.getElementById('speed-i2').value.trim();
+  const i3=document.getElementById('speed-i3').value.trim();
+  const pick=document.getElementById('speed-pick').value.trim();
+  const why=document.getElementById('speed-why').value.trim();
+
+  if(!i1||!i2||!i3||!pick||!why){ toast('Complete all fields','err'); return; }
+
+  const el=document.getElementById('speed-result');
+  el.style.display='block';
+  el.innerHTML=`
+    <div class="card" style="border-color:var(--gr)">
+      <div class="expand-label" style="color:var(--gr)">✓ Done</div>
+      <div style="font-size:13px;color:var(--t2);line-height:1.7">
+        You generated 3 ideas and selected: <strong style="color:var(--t1)">${pick}</strong><br>
+        Reason: <em>${why}</em>
+      </div>
+      <div style="font-size:11px;color:var(--t3);margin-top:10px;line-height:1.6">
+        Repeat this drill daily. The goal is to reach a point where idea selection feels automatic — under 60 seconds.
+      </div>
+      <button class="btn btn-p btn-sm" onclick="renderSpeed()" style="margin-top:10px">Try again with new prompt</button>
+    </div>`;
+  markDone();
+}
+
 </script>
 </body>
 </html>
